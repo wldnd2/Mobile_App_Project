@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AFF52CDF2A014A9000934692 /* Empty in Resources */ = {isa = PBXBuildFile; fileRef = AFF52CDE2A014A9000934692 /* Empty */; };
+		AFF52CE22A014ABB00934692 /* Empty in Resources */ = {isa = PBXBuildFile; fileRef = AFF52CE12A014ABB00934692 /* Empty */; };
+		AFF52CE52A014B3000934692 /* Empty in Resources */ = {isa = PBXBuildFile; fileRef = AFF52CE42A014B3000934692 /* Empty */; };
 		F573B76A2A01422D00ADB834 /* frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573B7692A01422D00ADB834 /* frontendApp.swift */; };
 		F573B76C2A01422D00ADB834 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573B76B2A01422D00ADB834 /* ContentView.swift */; };
 		F573B76E2A01423000ADB834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F573B76D2A01423000ADB834 /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AFF52CDE2A014A9000934692 /* Empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = Empty; sourceTree = "<group>"; };
+		AFF52CE12A014ABB00934692 /* Empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = Empty; sourceTree = "<group>"; };
+		AFF52CE42A014B3000934692 /* Empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = Empty; sourceTree = "<group>"; };
 		F573B7662A01422D00ADB834 /* frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frontend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F573B7692A01422D00ADB834 /* frontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = frontendApp.swift; sourceTree = "<group>"; };
 		F573B76B2A01422D00ADB834 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +38,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AFF52CD82A0149A300934692 /* Ressource */ = {
+			isa = PBXGroup;
+			children = (
+				AFF52CE32A014B1F00934692 /* ImageSource */,
+				F573B76D2A01423000ADB834 /* Assets.xcassets */,
+			);
+			path = Ressource;
+			sourceTree = "<group>";
+		};
+		AFF52CD92A0149B000934692 /* Appilcation */ = {
+			isa = PBXGroup;
+			children = (
+				F573B7692A01422D00ADB834 /* frontendApp.swift */,
+			);
+			path = Appilcation;
+			sourceTree = "<group>";
+		};
+		AFF52CDA2A0149BD00934692 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F573B76B2A01422D00ADB834 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AFF52CDB2A0149C400934692 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AFF52CDE2A014A9000934692 /* Empty */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AFF52CDC2A0149D000934692 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AFF52CE12A014ABB00934692 /* Empty */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		AFF52CE32A014B1F00934692 /* ImageSource */ = {
+			isa = PBXGroup;
+			children = (
+				AFF52CE42A014B3000934692 /* Empty */,
+			);
+			path = ImageSource;
+			sourceTree = "<group>";
+		};
 		F573B75D2A01422C00ADB834 = {
 			isa = PBXGroup;
 			children = (
@@ -51,9 +106,11 @@
 		F573B7682A01422D00ADB834 /* frontend */ = {
 			isa = PBXGroup;
 			children = (
-				F573B7692A01422D00ADB834 /* frontendApp.swift */,
-				F573B76B2A01422D00ADB834 /* ContentView.swift */,
-				F573B76D2A01423000ADB834 /* Assets.xcassets */,
+				AFF52CDC2A0149D000934692 /* ViewModels */,
+				AFF52CDB2A0149C400934692 /* Models */,
+				AFF52CDA2A0149BD00934692 /* Views */,
+				AFF52CD92A0149B000934692 /* Appilcation */,
+				AFF52CD82A0149A300934692 /* Ressource */,
 				F573B76F2A01423000ADB834 /* Preview Content */,
 			);
 			path = frontend;
@@ -125,6 +182,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFF52CE22A014ABB00934692 /* Empty in Resources */,
+				AFF52CE52A014B3000934692 /* Empty in Resources */,
+				AFF52CDF2A014A9000934692 /* Empty in Resources */,
 				F573B7712A01423000ADB834 /* Preview Assets.xcassets in Resources */,
 				F573B76E2A01423000ADB834 /* Assets.xcassets in Resources */,
 			);
