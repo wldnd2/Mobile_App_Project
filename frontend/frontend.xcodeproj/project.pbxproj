@@ -46,6 +46,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AF4A66AC2A0BAAE900BA8876 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AFEE20402A09173D00412FD9 /* ImagePicker.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		AFF52CD82A0149A300934692 /* Ressource */ = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +74,7 @@
 		AFF52CDA2A0149BD00934692 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AF4A66AC2A0BAAE900BA8876 /* ViewControllers */,
 				F573B76B2A01422D00ADB834 /* ContentView.swift */,
 				AFEE20432A09179800412FD9 /* Home.swift */,
 				AFEE20422A09179700412FD9 /* ToggleView.swift */,
@@ -85,7 +94,6 @@
 		AFF52CDC2A0149D000934692 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AFEE20402A09173D00412FD9 /* ImagePicker.swift */,
 				AFF52CE12A014ABB00934692 /* Empty1 */,
 			);
 			path = ViewModels;
