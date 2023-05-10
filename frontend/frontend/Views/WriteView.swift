@@ -40,9 +40,8 @@ struct WriteView: View {
         
       }
       
-      bottomLayer // 취소, 완료 버튼
-      
     }// V
+    .onAppear (perform : UIApplication.shared.hideKeyboard)
   }
   
   var topLayer: some View{
@@ -67,7 +66,7 @@ struct WriteView: View {
   }
   
   var newHomeUI: some View {
-    ScrollView() {
+    ScrollView(.vertical) {
       VStack(alignment: .leading){
         
         
@@ -81,6 +80,7 @@ struct WriteView: View {
             .padding(.horizontal)
             .background(Color(UIColor.lightGray))
             .cornerRadius(20)
+            .keyboardType(.default)
           Spacer()
           Spacer()
         }
@@ -123,10 +123,13 @@ struct WriteView: View {
               .cornerRadius(10)
               .frame(height: 200)
               .colorMultiply(Color(UIColor.lightGray))
+              .keyboardType(.default)
           }
           Spacer()
           Spacer()
         }
+        
+        bottomLayer
         
       }// V
       .frame(maxWidth: .infinity)
@@ -155,6 +158,9 @@ struct WriteView: View {
       
       Button(action: {
         //
+        print(title)
+        print(image)
+        print(describe)
       }){
         Text("완료")
           .font(.headline)
