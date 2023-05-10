@@ -30,13 +30,13 @@ struct WriteView: View {
       switch selectedToggle {
         
       case 0: // 다이어리 글 작성 UI
-        diaryUI
+        newHomeUI  // diaryUI add..
         
       case 1: // 분양 글 작성 UI
-        diaryUI // saleUI add..
+        newHomeUI // diaryUI add..
         
       default: // 길냥이 글 작성 UI
-        diaryUI // StrayUI add..
+        newHomeUI // StrayUI add..
         
       }
       
@@ -66,7 +66,7 @@ struct WriteView: View {
     }// H
   }
   
-  var diaryUI: some View {
+  var newHomeUI: some View {
     ScrollView() {
       VStack(alignment: .leading){
         
