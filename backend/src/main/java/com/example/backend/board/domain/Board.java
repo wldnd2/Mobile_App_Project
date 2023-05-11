@@ -1,8 +1,14 @@
-package com.example.backend.domain;
+package com.example.backend.board.domain;
 
+
+import com.example.backend.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.relational.core.mapping.Table;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;

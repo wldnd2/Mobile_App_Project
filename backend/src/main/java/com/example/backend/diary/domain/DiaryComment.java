@@ -1,5 +1,7 @@
-package com.example.backend.domain;
+package com.example.backend.diary.domain;
 
+import com.example.backend.user.domain.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -31,6 +33,7 @@ public class DiaryComment {
     // FK
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "diary_id")
+    @JsonIgnore
     private Diary diary;
 }
 

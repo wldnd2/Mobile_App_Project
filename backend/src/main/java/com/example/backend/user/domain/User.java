@@ -1,4 +1,4 @@
-package com.example.backend.domain;
+package com.example.backend.user.domain;
 
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
@@ -27,3 +27,4 @@ public class User {
     @Column(length = 200, nullable = false)
     private String profile;
 }
+

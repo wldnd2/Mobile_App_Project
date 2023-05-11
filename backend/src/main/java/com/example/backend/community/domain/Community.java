@@ -1,5 +1,7 @@
-package com.example.backend.domain;
+package com.example.backend.community.domain;
 
+
+import com.example.backend.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;

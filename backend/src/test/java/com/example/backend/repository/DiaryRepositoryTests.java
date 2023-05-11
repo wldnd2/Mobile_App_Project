@@ -1,7 +1,9 @@
 package com.example.backend.repository;
 
-import com.example.backend.domain.Diary;
-import com.example.backend.domain.User;
+import com.example.backend.diary.domain.Diary;
+import com.example.backend.diary.repository.DiaryRepository;
+import com.example.backend.user.domain.User;
+import com.example.backend.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +14,6 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-@Transactional
 public class DiaryRepositoryTests {
     @Autowired
     DiaryRepository diaryRepository;

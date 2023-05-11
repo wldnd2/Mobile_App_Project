@@ -1,7 +1,9 @@
 package com.example.backend.repository;
 
-import com.example.backend.domain.Community;
-import com.example.backend.domain.User;
+import com.example.backend.community.domain.Community;
+import com.example.backend.community.repository.CommunityRepository;
+import com.example.backend.user.domain.User;
+import com.example.backend.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
