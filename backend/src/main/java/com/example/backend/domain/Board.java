@@ -1,5 +1,6 @@
 package com.example.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
 import javax.persistence.*;
@@ -7,7 +8,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-@ToString
 @Getter
 @Builder
 @AllArgsConstructor
@@ -37,10 +37,12 @@ public class Board {
     // FK
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_user_id")
+    @JsonIgnore
     private User user;
 
     // FK
     @Builder.Default
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @Column(nullable = true)
     private List<BoardComment> boardComment = new ArrayList<>();
 }

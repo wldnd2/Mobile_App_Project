@@ -1,12 +1,12 @@
 package com.example.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@ToString
 @Getter
 @Builder
 @AllArgsConstructor
@@ -38,5 +38,6 @@ public class Community {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 }
