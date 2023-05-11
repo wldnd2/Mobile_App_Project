@@ -19,7 +19,7 @@ struct Home: View {
       
       Spacer() // 글쓰기 화면
         .fullScreenCover(isPresented: $presented){
-          Text("글쓰기 화면")
+          WriteView(presented: $presented)
         } // 글쓰기 화면
       
       switch selectedIndex {
