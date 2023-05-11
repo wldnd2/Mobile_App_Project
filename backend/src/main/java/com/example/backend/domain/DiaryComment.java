@@ -6,7 +6,6 @@ import org.springframework.data.relational.core.mapping.Table;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@ToString
 @Getter
 @Builder
 @AllArgsConstructor
