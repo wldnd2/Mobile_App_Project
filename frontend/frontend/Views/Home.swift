@@ -14,51 +14,47 @@ struct Home: View {
   @State var presented = false
   
   var body: some View {
-    VStack{
+    
+    ZStack{
       
-      ZStack{
-        
-        Spacer() // 글쓰기 화면
-          .fullScreenCover(isPresented: $presented){
-            Text("글쓰기 화면")
-          } // 글쓰기 화면
-        
-        switch selectedIndex {
-        case 0:
-          NavigationView {
-            VStack{
-              Text("1 Screen")
-            }
-            .navigationTitle("1")
+      Spacer() // 글쓰기 화면
+        .fullScreenCover(isPresented: $presented){
+          Text("글쓰기 화면")
+        } // 글쓰기 화면
+      
+      switch selectedIndex {
+      case 0:
+        NewHomeSlide()
+      case 1:
+        NavigationView {
+          VStack{
+            Text("2 Screen")
           }
-        case 1:
-          NavigationView {
-            VStack{
-              Text("2 Screen")
-            }
-            .navigationTitle("2")
-          }
-        case 3:
-          NavigationView {
-            VStack{
-              Text("4 Screen")
-            }
-            .navigationTitle("4")
-          }
-        default:
-          NavigationView {
-            VStack{
-              Text("5 Screen")
-            }
-            .navigationTitle("5")
-          }
+          .navigationTitle("2")
         }
-        
-      }// Z
+      case 3:
+        NavigationView {
+          VStack{
+            Text("4 Screen")
+          }
+          .navigationTitle("4")
+        }
+      default:
+        NavigationView {
+          VStack{
+            Text("5 Screen")
+          }
+          .navigationTitle("5")
+        }
+      }
       
-      bottomBar
       
-    }// V
+      VStack {
+        Spacer()
+        bottomBar
+      }
+      
+    }// Z
   }
   
   let icons = [
@@ -71,13 +67,11 @@ struct Home: View {
   
   var bottomBar: some View {
     ZStack {// 하단바
-      
       Capsule()
         .fill(Color.white)
         .frame(width: 370, height: 80)
       
       HStack{
-        
         ForEach(0..<5, id: \.self){ number in
           Button(action: {
             if number == 2 {
@@ -112,12 +106,11 @@ struct Home: View {
             }
           })
         }
-        
       }// H
-      
     }// Z
     .cornerRadius(60)
     .shadow(color: Color.black.opacity(0.2), radius: 5, x: 3, y: 3)
+    .padding(.bottom,-30)
   }
 }
 
