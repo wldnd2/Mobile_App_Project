@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AFF52CDF2A014A9000934692 /* Empty in Resources */ = {isa = PBXBuildFile; fileRef = AFF52CDE2A014A9000934692 /* Empty */; };
-		AFF52CE22A014ABB00934692 /* Empty in Resources */ = {isa = PBXBuildFile; fileRef = AFF52CE12A014ABB00934692 /* Empty */; };
-		AFF52CE52A014B3000934692 /* Empty in Resources */ = {isa = PBXBuildFile; fileRef = AFF52CE42A014B3000934692 /* Empty */; };
+		AFEE20392A0911AD00412FD9 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEE20382A0911AD00412FD9 /* Home.swift */; };
+		AFF52CDF2A014A9000934692 /* Empty2 in Resources */ = {isa = PBXBuildFile; fileRef = AFF52CDE2A014A9000934692 /* Empty2 */; };
+		AFF52CE22A014ABB00934692 /* Empty1 in Resources */ = {isa = PBXBuildFile; fileRef = AFF52CE12A014ABB00934692 /* Empty1 */; };
+		AFF52CE52A014B3000934692 /* Empty3 in Resources */ = {isa = PBXBuildFile; fileRef = AFF52CE42A014B3000934692 /* Empty3 */; };
 		F573B76A2A01422D00ADB834 /* frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573B7692A01422D00ADB834 /* frontendApp.swift */; };
 		F573B76C2A01422D00ADB834 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573B76B2A01422D00ADB834 /* ContentView.swift */; };
 		F573B76E2A01423000ADB834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F573B76D2A01423000ADB834 /* Assets.xcassets */; };
@@ -17,9 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AFF52CDE2A014A9000934692 /* Empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = Empty; sourceTree = "<group>"; };
-		AFF52CE12A014ABB00934692 /* Empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = Empty; sourceTree = "<group>"; };
-		AFF52CE42A014B3000934692 /* Empty */ = {isa = PBXFileReference; lastKnownFileType = text; path = Empty; sourceTree = "<group>"; };
+		AFEE20382A0911AD00412FD9 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		AFF52CDE2A014A9000934692 /* Empty2 */ = {isa = PBXFileReference; lastKnownFileType = text; path = Empty2; sourceTree = "<group>"; };
+		AFF52CE12A014ABB00934692 /* Empty1 */ = {isa = PBXFileReference; lastKnownFileType = text; path = Empty1; sourceTree = "<group>"; };
+		AFF52CE42A014B3000934692 /* Empty3 */ = {isa = PBXFileReference; lastKnownFileType = text; path = Empty3; sourceTree = "<group>"; };
 		F573B7662A01422D00ADB834 /* frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frontend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F573B7692A01422D00ADB834 /* frontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = frontendApp.swift; sourceTree = "<group>"; };
 		F573B76B2A01422D00ADB834 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				F573B76B2A01422D00ADB834 /* ContentView.swift */,
+				AFEE20382A0911AD00412FD9 /* Home.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -66,7 +69,7 @@
 		AFF52CDB2A0149C400934692 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AFF52CDE2A014A9000934692 /* Empty */,
+				AFF52CDE2A014A9000934692 /* Empty2 */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -74,7 +77,7 @@
 		AFF52CDC2A0149D000934692 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AFF52CE12A014ABB00934692 /* Empty */,
+				AFF52CE12A014ABB00934692 /* Empty1 */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -82,7 +85,7 @@
 		AFF52CE32A014B1F00934692 /* ImageSource */ = {
 			isa = PBXGroup;
 			children = (
-				AFF52CE42A014B3000934692 /* Empty */,
+				AFF52CE42A014B3000934692 /* Empty3 */,
 			);
 			path = ImageSource;
 			sourceTree = "<group>";
@@ -182,9 +185,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFF52CE22A014ABB00934692 /* Empty in Resources */,
-				AFF52CE52A014B3000934692 /* Empty in Resources */,
-				AFF52CDF2A014A9000934692 /* Empty in Resources */,
+				AFF52CE22A014ABB00934692 /* Empty1 in Resources */,
+				AFF52CE52A014B3000934692 /* Empty3 in Resources */,
+				AFF52CDF2A014A9000934692 /* Empty2 in Resources */,
 				F573B7712A01423000ADB834 /* Preview Assets.xcassets in Resources */,
 				F573B76E2A01423000ADB834 /* Assets.xcassets in Resources */,
 			);
@@ -198,6 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F573B76C2A01422D00ADB834 /* ContentView.swift in Sources */,
+				AFEE20392A0911AD00412FD9 /* Home.swift in Sources */,
 				F573B76A2A01422D00ADB834 /* frontendApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
