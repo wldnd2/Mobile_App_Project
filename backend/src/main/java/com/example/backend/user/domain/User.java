@@ -21,10 +21,10 @@ public class User {
     @Column(length = 200, nullable = false)
     private String userEmail;
 
-    @Column(length = 200, nullable = false)
+    @Column(length = 200)
     private String password;
 
-    @Column(length = 200, nullable = false)
+    @Column(length = 200)
     private String profile;
 }
 
