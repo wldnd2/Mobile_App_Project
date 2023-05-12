@@ -50,12 +50,14 @@ public class LoginService {
                 map, GoogleInfResponse.class);
         String googleEmail = resultEntity2.getBody().getEmail();
         String googleName = resultEntity2.getBody().getName();
+        String googleProfile = resultEntity2.getBody().getPicture();
         Optional<User> userResult = userRepository.findByEmail(googleEmail);
         if (!userResult.isPresent()) {
             // user email and user name send to client!!!
             User newUser = User.builder()
                     .userEmail(googleEmail)
                     .userName(googleName)
+                    .profile(googleProfile)
                     .build();
             userRepository.save(newUser);
             return "Login Successfully!";
