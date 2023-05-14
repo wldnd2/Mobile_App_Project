@@ -147,7 +147,11 @@ struct HeartButton: View{
         .foregroundColor(.black)
     })
     .scaleEffect(animate ? animationScale : 1)
-    .animation(.easeIn(duration: animationDuration))
+    .onChange(of: animate) { _ in
+      withAnimation(.easeIn(duration: animationDuration)) {
+        animate = false
+      }
+    }
   }
 }
 
