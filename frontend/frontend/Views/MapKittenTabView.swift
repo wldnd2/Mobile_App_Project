@@ -22,23 +22,30 @@ struct MapKittenTabView: View {
         .frame(width: 110, height: 110)
         .clipShape(RoundedRectangle(cornerRadius: 15))
       
-      VStack(alignment: .leading){
+      
+        VStack(alignment: .leading){
+            Text("냥이가 저를 쳐다봐요 운명인 것 같아요!!")
+                .font(.footnote)
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+
+            
+            Spacer()
+            
+            LikesComments
+          
+        }
+        .frame(width: 220, height: 100)
+        .padding(.top,10)
         
-        Text("냥이가 저를 쳐다봐요 운명인 것 같아요!!")
-            .font(.footnote)
-            .bold()
-        
-        Spacer()
-        
-        LikesComments
-      }
-      .frame(width: 480, height: 100)
-      .padding(.top,10)
+      
       
       
       
     }.frame(width: 500, height: 100)
       .padding(.trailing, 50)
+      .padding(.bottom, 10)
+      .padding(.leading, 10)
   }
   
 }
