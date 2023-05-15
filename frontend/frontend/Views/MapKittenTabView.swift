@@ -10,25 +10,29 @@ import SwiftUI
 struct MapKittenTabView: View {
   @State private var isLiked = false
   @State private var count: Int = 263
+  //let image = Image(uiImage: UIImage(named: "고양이3L")!)
   
   var body: some View{
     HStack(alignment: .top, spacing: 10){
-      Image("고양이2L")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 115, height: 115)
-            .clipShape(RoundedRectangle(cornerRadius: 15))
-            
-      VStack(alignment: .leading, spacing: 0){
+    
+      //image
+      Image("고양이3L")
+        .resizable()
+        .scaledToFill()
+        .frame(width: 110, height: 110)
+        .clipShape(RoundedRectangle(cornerRadius: 15))
+      
+      VStack(alignment: .leading){
+        
         Text("냥이가 저를 쳐다봐요 운명인 것 같아요!!")
-          .font(.footnote)
-          .bold()
-          
+            .font(.footnote)
+            .bold()
         
         Spacer()
         
         LikesComments
       }
+      .frame(width: 480, height: 100)
       .padding(.top,10)
       
       
