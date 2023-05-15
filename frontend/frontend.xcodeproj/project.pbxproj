@@ -12,6 +12,7 @@
 		AC1C7A8A2A092F9700B8709C /* NewHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A892A092F9700B8709C /* NewHomeHeaderView.swift */; };
 		AC1C7A8C2A09303200B8709C /* NewHomeSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A8B2A09303200B8709C /* NewHomeSlide.swift */; };
 		AC4FD0142A12687900314625 /* DiaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FD0132A12687900314625 /* DiaryHeaderView.swift */; };
+		AC4FD0162A126AFA00314625 /* DiarySlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FD0152A126AFA00314625 /* DiarySlideView.swift */; };
 		AF4A66AE2A0BABBA00BA8876 /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A66AD2A0BABBA00BA8876 /* KeyboardHandler.swift */; };
 		AF4A66B02A0BBF3200BA8876 /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A66AF2A0BBF3200BA8876 /* HideKeyboard.swift */; };
 		AFEE20412A09173D00412FD9 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEE20402A09173D00412FD9 /* ImagePicker.swift */; };
@@ -31,6 +32,7 @@
 		AC1C7A892A092F9700B8709C /* NewHomeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHomeHeaderView.swift; sourceTree = "<group>"; };
 		AC1C7A8B2A09303200B8709C /* NewHomeSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHomeSlide.swift; sourceTree = "<group>"; };
 		AC4FD0132A12687900314625 /* DiaryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryHeaderView.swift; sourceTree = "<group>"; };
+		AC4FD0152A126AFA00314625 /* DiarySlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySlideView.swift; sourceTree = "<group>"; };
 		AF4A66AD2A0BABBA00BA8876 /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		AF4A66AF2A0BBF3200BA8876 /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 		AFEE20382A0911AD00412FD9 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		AFF52CDA2A0149BD00934692 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AC4FD0152A126AFA00314625 /* DiarySlideView.swift */,
 				AC4FD0132A12687900314625 /* DiaryHeaderView.swift */,
 				AFEE20432A09179800412FD9 /* Home.swift */,
 				AC1C7A852A092D0D00B8709C /* ContentView.swift */,
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF4A66B02A0BBF3200BA8876 /* HideKeyboard.swift in Sources */,
+				AC4FD0162A126AFA00314625 /* DiarySlideView.swift in Sources */,
 				AC4FD0142A12687900314625 /* DiaryHeaderView.swift in Sources */,
 				AF4A66AE2A0BABBA00BA8876 /* KeyboardHandler.swift in Sources */,
 				AFEE20452A09179800412FD9 /* ToggleView.swift in Sources */,
