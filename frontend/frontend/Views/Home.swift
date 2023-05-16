@@ -24,21 +24,11 @@ struct Home: View {
       
       switch selectedIndex {
       case 0:
-        NewHomeSlide()
+        DiarySlide()
       case 1:
-        NavigationView {
-          VStack{
-            Text("2 Screen")
-          }
-          .navigationTitle("2")
-        }
+        NewHomeSlide()
       case 3:
-        NavigationView {
-          VStack{
-            Text("4 Screen")
-          }
-          .navigationTitle("4")
-        }
+        MapBottomView()
       default:
         NavigationView {
           VStack{
@@ -58,10 +48,10 @@ struct Home: View {
   }
   
   let icons = [
-    "house",
     "globe.asia.australia.fill",
+    "house",
     "square.and.pencil",
-    "text.book.closed.fill",
+    "mappin.and.ellipse",
     "person.fill"
   ]
   

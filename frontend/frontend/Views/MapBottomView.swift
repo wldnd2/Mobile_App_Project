@@ -19,7 +19,8 @@ struct MapBottomView: View {
             .foregroundColor(.black)
         }
         .frame(width: 500, height: 50)
-        .padding(.top, 690)
+        .background(.gray)
+//        .padding(.top, 690)
         
       }
       .navigationTitle("길냥이 지도")
