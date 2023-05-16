@@ -12,13 +12,18 @@ struct WriteView: View {
   @Binding var presented: Bool
   
   @State var selectedToggle = 0
+  // 0: 다이어리 / 1: 분양 / 2: 길냥이
   
   @State private var title = ""
+  
+  @State var catMood: DropdownMenuOption? = nil
   
   @State private var image = UIImage()
   @State private var openPhoto = false
   
   @State private var describe = ""
+  
+  @State private var keyboardHeight: CGFloat = 0
   
   var body: some View {
     VStack{
@@ -27,21 +32,33 @@ struct WriteView: View {
       
       ToggleView(selectedToggle: $selectedToggle, toggleTexts: ["다이어리", "   분양    ", " 길냥이   "])
       
-      switch selectedToggle {
+      ZStack{
         
-      case 0: // 다이어리 글 작성 UI
-        newHomeUI  // diaryUI add..
         
-      case 1: // 분양 글 작성 UI
-        newHomeUI // diaryUI add..
+        switch selectedToggle {
+          
+        case 0: // 다이어리 글 작성 UI
+          diaryWriteUI  // diaryUI add..
+          
+        case 1: // 분양 글 작성 UI
+          newHomeWriteUI // diaryUI add..
+          
+        default: // 길냥이 글 작성 UI
+          strayWriteUI // StrayUI add..
+          
+        }
         
-      default: // 길냥이 글 작성 UI
-        newHomeUI // StrayUI add..
-        
+        VStack {
+          Spacer()
+          if keyboardHeight == 0 {
+            bottomLayer
+          }
+        }
       }
       
     }// V
-    .onAppear (perform : UIApplication.shared.hideKeyboard)
+    .onAppear(perform : UIApplication.shared.hideKeyboard)
+    .onAppear(perform: subscribeToKeyboardEvents)
   }
   
   var topLayer: some View{
@@ -65,7 +82,8 @@ struct WriteView: View {
     }// H
   }
   
-  var newHomeUI: some View {
+  // diaryWriteUI
+  var diaryWriteUI: some View {
     ScrollView(.vertical) {
       VStack(alignment: .leading){
         
@@ -84,7 +102,88 @@ struct WriteView: View {
           Spacer()
           Spacer()
         }
+        .padding(.vertical)
+        
+        //고양이 기분 선택.
+        DropdownMenu(
+          selectedOption: $catMood,
+          placeholder: "고양이 기분",
+          options: DropdownMenuOption.selectCatMoods
+        )
         .padding(.bottom)
+
+
+        Text("이미지 선택") // 이미지 선택
+          .font(.title3)
+          .fontWeight(.black)
+          .padding(.horizontal,24)
+        ZStack{
+            Rectangle()
+              .fill(Color(UIColor.lightGray))
+            Image(systemName: "plus")
+              .font(.title)
+              .foregroundColor(.white)
+            Image(uiImage: self.image)
+              .resizable()
+        }
+        .frame(width: 180, height: 180)
+        .cornerRadius(20)
+        .padding(.leading,24)
+        .padding(.bottom)
+        .onTapGesture {
+          self.openPhoto = true
+        }.sheet(isPresented: $openPhoto) {
+          ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+        }
+        
+        
+        Text("글 작성") // 세부내용 작성
+          .font(.title3)
+          .fontWeight(.black)
+          .padding(.horizontal,24)
+        HStack {
+          Spacer()
+          Spacer()
+          ZStack(alignment: .topLeading) {
+            TextEditor(text : $describe)
+              .cornerRadius(10)
+              .frame(height: 200)
+              .colorMultiply(Color(UIColor.lightGray))
+              .keyboardType(.default)
+          }
+          Spacer()
+          Spacer()
+          
+        }
+        .padding(.bottom, 80)
+        
+      }// V
+      .frame(maxWidth: .infinity)
+      
+    } //ScrollView
+  }
+  
+  // newHomeWriteUI
+  var newHomeWriteUI: some View {
+    ScrollView(.vertical) {
+      VStack(alignment: .leading){
+        
+        
+        HStack{ // 글 제목
+          Text("제목")
+            .font(.title3)
+            .fontWeight(.black)
+            .padding(.horizontal,24)
+          TextField("", text : $title)
+            .padding(.vertical,9)
+            .padding(.horizontal)
+            .background(Color(UIColor.lightGray))
+            .cornerRadius(20)
+            .keyboardType(.default)
+          Spacer()
+          Spacer()
+        }
+        .padding(.vertical)
         
 
         Text("이미지 선택") // 이미지 선택
@@ -128,15 +227,68 @@ struct WriteView: View {
           Spacer()
           Spacer()
         }
-        
-        bottomLayer
+        .padding(.bottom, 80)
         
       }// V
       .frame(maxWidth: .infinity)
       
     } //ScrollView
   }
-  // saleUI , StrayUI add..
+  
+  // strayWriteUI
+  var strayWriteUI: some View {
+    ScrollView(.vertical) {
+      VStack(alignment: .leading){
+        
+
+        Text("이미지 선택") // 이미지 선택
+          .font(.title3)
+          .fontWeight(.black)
+          .padding(.horizontal,24)
+          .padding(.top)
+        ZStack{
+            Rectangle()
+              .fill(Color(UIColor.lightGray))
+            Image(systemName: "plus")
+              .font(.title)
+              .foregroundColor(.white)
+            Image(uiImage: self.image)
+              .resizable()
+        }
+        .frame(width: 180, height: 180)
+        .cornerRadius(20)
+        .padding(.leading,24)
+        .padding(.bottom)
+        .onTapGesture {
+          self.openPhoto = true
+        }.sheet(isPresented: $openPhoto) {
+          ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+        }
+        
+        
+        Text("그림 설명") // 세부내용 작성
+          .font(.title3)
+          .fontWeight(.black)
+          .padding(.horizontal,24)
+        HStack {
+          Spacer()
+          Spacer()
+          ZStack(alignment: .topLeading) {
+            TextEditor(text : $describe)
+              .cornerRadius(10)
+              .frame(height: 100)
+              .colorMultiply(Color(UIColor.lightGray))
+              .keyboardType(.default)
+          }
+          Spacer()
+          Spacer()
+        }
+      }// V
+      .frame(maxWidth: .infinity)
+      
+    } //ScrollView
+
+  }
   
   var bottomLayer: some View{
     HStack {
@@ -152,7 +304,8 @@ struct WriteView: View {
           .frame(height: 55)
           .frame(maxWidth: .infinity)
           .background(.red)
-          .cornerRadius(10)
+          .cornerRadius(30)
+          .shadow(radius: 5)
 
       }
       
@@ -161,6 +314,9 @@ struct WriteView: View {
         print(title)
         print(image)
         print(describe)
+        if selectedToggle == 0 { print(catMood?.displayText ?? "")
+        }
+        
       }){
         Text("완료")
           .font(.headline)
@@ -168,12 +324,25 @@ struct WriteView: View {
           .frame(height: 55)
           .frame(maxWidth: .infinity)
           .background(.blue)
-          .cornerRadius(10)
+          .cornerRadius(30)
+          .shadow(radius: 5)
       }
       
       Spacer()
       Spacer()
     }// H
+  }
+  
+  private func subscribeToKeyboardEvents() {
+      NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification, object: nil, queue: .main) { (notification) in
+          guard let userInfo = notification.userInfo else { return }
+          guard let keyboardRect = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+          self.keyboardHeight = keyboardRect.height
+      }
+      
+      NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: .main) { (notification) in
+          self.keyboardHeight = 0
+      }
   }
 }
 
