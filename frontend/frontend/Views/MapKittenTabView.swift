@@ -21,12 +21,14 @@ struct MapKittenTabView: View {
         .scaledToFill()
         .frame(width: 110, height: 110)
         .clipShape(RoundedRectangle(cornerRadius: 15))
+        .padding(.leading, 10)
+        .padding(.trailing, 5)
       
       
         VStack(alignment: .leading){
             Text("냥이가 저를 쳐다봐요 운명인 것 같아요!!")
-                .font(.footnote)
-                .bold()
+                //.font(.footnote)
+                .font(.system(size: 15, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             
@@ -35,7 +37,7 @@ struct MapKittenTabView: View {
             LikesComments
           
         }
-        .frame(width: 220, height: 100)
+        .frame(width: 240, height: 100)
         .padding(.top,10)
         
       
@@ -44,8 +46,8 @@ struct MapKittenTabView: View {
       
     }.frame(width: 500, height: 100)
       .padding(.trailing, 50)
-      .padding(.bottom, 10)
-      .padding(.leading, 10)
+      .padding(.bottom, 20)
+      .padding(.leading, 30)
   }
   
 }

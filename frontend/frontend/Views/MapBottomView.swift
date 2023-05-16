@@ -32,7 +32,8 @@ struct MapBottomView: View {
               .font(.title3)
               .padding(.top, 20)
               .padding(.trailing, 250)
-              .padding(.leading, 20)
+              .padding(.leading, 30)
+              .padding(.bottom,10)
               .bold()
               
             MapKittenTabView()
@@ -44,7 +45,8 @@ struct MapBottomView: View {
               .font(.title3)
               .padding(.top, 20)
               .padding(.trailing, 300)
-              .padding(.leading, 20)
+              .padding(.leading, 30)
+              .padding(.bottom,10)
               .bold()
              
             MapKittenTabView()
