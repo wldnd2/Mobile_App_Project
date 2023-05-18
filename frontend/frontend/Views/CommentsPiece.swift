@@ -22,7 +22,7 @@ struct CommentsPiece: View {
               Spacer()
             }
             .frame(width: 300, height: 65)
-            .background(Color.gray)
+            .background(Color(UIColor.lightGray))
             .cornerRadius(15)
             //.padding(.horizontal, 10)
                   
@@ -30,7 +30,7 @@ struct CommentsPiece: View {
           
           
         }
-      
+      //.padding(.vertical, 5)
     }
 }
 
