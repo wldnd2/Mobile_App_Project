@@ -33,4 +33,12 @@ public class BoardController {
 
     @DeleteMapping("/{id}")
     public void deleteBoard(@PathVariable Long id) { boardService.deleteBoard(id); }
+
+    @PutMapping("/increase/{id}")
+    public Board increment(@PathVariable Long id) {
+        return boardService.increment(id);
+    }
+
+    @PutMapping("/decrease/{id}")
+    public Board decrement(@PathVariable Long id) { return boardService.decrement(id); }
 }

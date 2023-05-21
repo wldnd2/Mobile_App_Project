@@ -49,4 +49,16 @@ public class BoardService {
     public void deleteBoard(Long id) {
         boardRepository.deleteById(id);
     }
+
+    public Board increment(Long id) {
+        Board existingBoard = boardRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        existingBoard.increaseLike();
+        return boardRepository.save(existingBoard);
+    }
+
+    public Board decrement(Long id) {
+        Board existingBoard = boardRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        existingBoard.decreaseLike();
+        return boardRepository.save(existingBoard);
+    }
 }
