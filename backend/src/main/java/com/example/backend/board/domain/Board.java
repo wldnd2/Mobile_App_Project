@@ -1,8 +1,6 @@
 package com.example.backend.board.domain;
 
-
-import com.example.backend.user.domain.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,6 +23,9 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardId;
 
+    @Column(nullable = false)
+    private String boardWriter;
+
     @Column(length = 200, nullable = false)
     private String boardTitle;
 
@@ -37,18 +38,41 @@ public class Board {
     @Column(nullable = false)
     private Integer boardLike;
 
-    @Column(nullable = false)
+    @Column()
     private Timestamp boardDate;
 
-    // FK
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_user_id")
-    @JsonIgnore
-    private User user;
+    public void setBoardWriter(String boardWriter) {
+        this.boardWriter = boardWriter;
+    }
 
-    // FK
+    public void setBoardTitle(String boardTitle) {
+        this.boardTitle = boardTitle;
+    }
+
+    public void setBoardImg(String boardImg) {
+        this.boardImg = boardImg;
+    }
+
+    public void setBoardContent(String boardContent) {
+        this.boardContent = boardContent;
+    }
+
+    public void setBoardLike(Integer boardLike) {
+        this.boardLike = boardLike;
+    }
+
+    public void setBoardDate(Timestamp boardDate) {
+        this.boardDate = boardDate;
+    }
+
+    public void increaseLike() { this.boardLike++; }
+
+    public void decreaseLike() {
+        this.boardLike--;
+    }
+
     @Builder.Default
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @Column(nullable = true)
+    @JsonManagedReference
     private List<BoardComment> boardComment = new ArrayList<>();
 }
