@@ -17,4 +17,9 @@ public class BoardCommentController {
 
     @GetMapping("/list")
     public List<BoardComment> showComment(@RequestParam(value = "id") String id) { return boardCommentService.showComment(id); }
+
+    @PostMapping("create")
+    public BoardComment createComment(@RequestParam(value = "id") Long id, @RequestBody BoardComment boardComment) {
+        return boardCommentService.createComment(id, boardComment);
+    }
 }
