@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DiarySlide: View {
+
     var body: some View {
       VStack{
         DiaryHeaderView()
