@@ -26,8 +26,7 @@ struct Home: View {
       case 0:
         DiarySlide()
       case 1:
-        NewHomeSlide()
-      case 3:
+        NewHomeSlide()      case 3:
         MapBottomView()
       default:
         UserView()
