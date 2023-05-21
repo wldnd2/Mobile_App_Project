@@ -1,6 +1,6 @@
 package com.example.backend.board.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
 import javax.persistence.*;
@@ -29,6 +29,6 @@ public class BoardComment {
     // FK
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
-    @JsonIgnore
+    @JsonBackReference
     private Board board;
 }
