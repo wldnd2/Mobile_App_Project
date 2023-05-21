@@ -30,12 +30,7 @@ struct Home: View {
       case 3:
         MapBottomView()
       default:
-        NavigationView {
-          VStack{
-            Text("5 Screen")
-          }
-          .navigationTitle("5")
-        }
+        UserView()
       }
       
       
