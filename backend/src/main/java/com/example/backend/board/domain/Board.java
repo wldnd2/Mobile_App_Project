@@ -74,5 +74,5 @@ public class Board {
     @Builder.Default
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference
-    private List<BoardComment> boardComment = new ArrayList<>();
+    private List<BoardComment> boardComments = new ArrayList<>();
 }
