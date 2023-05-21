@@ -1,7 +1,5 @@
 package com.example.backend.board.domain;
 
-
-import com.example.backend.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
@@ -20,15 +18,13 @@ public class BoardComment {
     private Long commentId;
 
     @Column(nullable = false)
+    private String commentWriter;
+
+    @Column(nullable = false)
     private String commentContent;
 
     @Column(nullable = false)
     private Timestamp commentDate;
-
-    // FK
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     // FK
     @ManyToOne(fetch = FetchType.LAZY)
