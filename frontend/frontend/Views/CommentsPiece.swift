@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CommentsPiece: View {
+    @State var comment :BoardComment
+  
     var body: some View {
       HStack(alignment: .top){
         UserProfile
@@ -16,7 +18,7 @@ struct CommentsPiece: View {
         VStack(alignment: .leading){
           UserId
             VStack(alignment: .leading){
-              Comment()
+              Comment
                 .padding(.top, 10)
                 .offset(x: -60, y: 3)
               Spacer()
@@ -36,7 +38,7 @@ struct CommentsPiece: View {
 
 private extension CommentsPiece {
   var UserId: some View{
-    Text("아이디")
+    Text(comment.commentWriter)
       .font(.system(size: 17))
       .padding(.top, 5)
   }
@@ -48,17 +50,14 @@ private extension CommentsPiece {
       .scaledToFill()
     
   }
-}
-struct Comment: View{
-  var body: some View{
-      Text("너무너무 귀여워요오!!!")
-    
+  var Comment: some View{
+    Text(comment.commentContent)
   }
-    
 }
+
 
 struct CommentsPiece_Previews: PreviewProvider {
     static var previews: some View {
-        CommentsPiece()
+      CommentsPiece( comment: exampleBoardComment)
     }
 }
