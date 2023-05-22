@@ -11,19 +11,13 @@ import SwiftUI
 
 struct NewHomeSlideView: View {
   
-  @State var presented: Bool = false
+  @Binding var presented: Bool
   @State private var isLiked = false
   @State private var count: Int = 17
   
   var body: some View {
 
     VStack(alignment: .leading, spacing: 0){
-      
-      Spacer() // 댓글창
-        .fullScreenCover(isPresented: $presented){
-          CommentView(presented: $presented)
-        }
-      
       HStack(spacing: 15.0){
         
         UserProfile
@@ -95,7 +89,6 @@ private extension NewHomeSlideView {
     .padding(.vertical, 10)
 
   }
-  
   
   var LikesCommentsEmotions: some View{
     HStack{
@@ -176,6 +169,6 @@ struct HeartButton: View{
 
 struct SlideView_Previews: PreviewProvider {
   static var previews: some View {
-    NewHomeSlideView(presented: false)
+    NewHomeSlideView(presented: .constant(false))
   }
 }
