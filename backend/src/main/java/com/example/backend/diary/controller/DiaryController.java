@@ -35,4 +35,11 @@ public class DiaryController {
     @DeleteMapping("/{id}")
     public void deleteDiary(@PathVariable Long id) { diaryService.deleteDiary(id); }
 
+    @PutMapping("/increase/{id}")
+    public Diary increment(@PathVariable Long id) {
+        return diaryService.increment(id);
+    }
+
+    @PutMapping("/decrease/{id}")
+    public Diary decrement(@PathVariable Long id) { return diaryService.decrement(id); }
 }

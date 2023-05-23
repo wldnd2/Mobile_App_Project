@@ -51,6 +51,16 @@ public class DiaryService {
     public void deleteDiary(Long id) {
         diaryRepository.deleteById(id);
     }
+    public Diary increment(Long id) {
+        Diary existingDiary = diaryRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        existingDiary.increase();
+        return diaryRepository.save(existingDiary);
+    }
 
+    public Diary decrement(Long id) {
+        Diary existingDiary = diaryRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        existingDiary.decrease();
+        return diaryRepository.save(existingDiary);
+    }
 
 }
