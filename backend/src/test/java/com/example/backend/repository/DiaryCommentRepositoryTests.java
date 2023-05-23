@@ -17,27 +17,22 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-@Transactional
 public class DiaryCommentRepositoryTests {
     @Autowired
     DiaryCommentRepository diaryCommentRepository;
     @Autowired
     DiaryRepository diaryRepository;
-    @Autowired
-    UserRepository userRepository;
 
     @Test
     public void InsertTest() {
-        Long userId = 1L;
         Long diaryId = 1L;
-        Optional<User> userResult= userRepository.findById(userId);
         Optional<Diary> diaryResult = diaryRepository.findById(diaryId);
-        if(userResult.isPresent() && diaryResult.isPresent()) {
+        if(diaryResult.isPresent()) {
             IntStream.rangeClosed(1,10).forEach(i -> {
                 DiaryComment diaryComment = DiaryComment.builder()
+                        .commentWriter("commentWriter")
                         .commentContent("Comment_" + i)
                         .commentDate(new Timestamp(System.currentTimeMillis()))
-                        .user(userResult.get())
                         .diary(diaryResult.get())
                         .build();
                 diaryCommentRepository.save(diaryComment);

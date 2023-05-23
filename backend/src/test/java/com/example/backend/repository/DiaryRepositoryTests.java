@@ -17,13 +17,14 @@ import java.util.stream.IntStream;
 public class DiaryRepositoryTests {
     @Autowired
     DiaryRepository diaryRepository;
-    @Autowired
-    UserRepository userRepository;
+    //@Autowired
+    //UserRepository userRepository;
 
     @Test
     public void InsertTest() {
         IntStream.rangeClosed(1,10).forEach(i ->{
             Diary diary = Diary.builder()
+                    .diaryWriter("Google_"+i)
                     .diaryTitle("Title_" + i)
                     .diaryImg("Img_" + i)
                     .diaryContent("Content_" + i)
