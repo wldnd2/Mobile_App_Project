@@ -3,6 +3,7 @@ package com.example.backend.diary.domain;
 import com.example.backend.user.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -79,5 +80,6 @@ public class Diary {
     @Builder.Default
     @OneToMany(mappedBy = "diary", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<DiaryComment> diaryComment = new ArrayList<>();
 }
