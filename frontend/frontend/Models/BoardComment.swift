@@ -15,3 +15,7 @@ struct BoardComment: Hashable, Codable{
   let commentDate: String
 }
 
+let exampleBoardComment: BoardComment =
+  BoardComment(commentId: 9999, commentWriter: "아이디", commentContent: "너무너무 귀여워요오!!!", commentDate: "TestDate")
+
+
