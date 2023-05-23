@@ -1,6 +1,7 @@
 package com.example.backend.diary.domain;
 
 import com.example.backend.user.domain.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
@@ -20,20 +21,19 @@ public class DiaryComment {
     private Long commentId;
 
     @Column(nullable = false)
+    private String commentWriter;
+
+    @Column(nullable = false)
     private String commentContent;
 
     @Column(nullable = false)
     private Timestamp commentDate;
 
-    // FK
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
 
     // FK
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "diary_id")
-    @JsonIgnore
+    @JsonBackReference
     private Diary diary;
 }
 
