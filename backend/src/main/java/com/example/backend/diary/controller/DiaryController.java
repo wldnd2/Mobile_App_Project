@@ -29,4 +29,7 @@ public class DiaryController {
         return diaryService.createDiary(diary);
     }
 
+    @PutMapping("/{id}")
+    public Diary updateDiary(@PathVariable Long id, @RequestBody Diary diary) { return diaryService.updateDiary(id, diary); }
+
 }

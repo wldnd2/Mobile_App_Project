@@ -4,7 +4,9 @@ import com.example.backend.board.domain.Board;
 import com.example.backend.diary.domain.Diary;
 import com.example.backend.diary.repository.DiaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -34,5 +36,18 @@ public class DiaryService {
                 .build();
         return diaryRepository.save(newDiary);
     }
+
+    public Diary updateDiary(Long id, Diary diary) {
+        Diary existingDiary = diaryRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        existingDiary.setDiaryWriter(diary.getDiaryWriter());
+        existingDiary.setDiaryTitle(diary.getDiaryTitle());
+        existingDiary.setDiaryContent(diary.getDiaryContent());
+        existingDiary.setDiaryImg(diary.getDiaryImg());
+        existingDiary.setDiaryLike(existingDiary.getDiaryLike());
+        existingDiary.setDiaryDate(existingDiary.getDiaryDate());
+        return diaryRepository.save(existingDiary);
+    }
+
+
 
 }
