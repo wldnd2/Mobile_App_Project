@@ -9,15 +9,26 @@ import SwiftUI
 
 struct CommentView: View {
   @State private var describe = ""
+  
+  @Binding var presented: Bool
+  @StateObject var viewModel = BoardCommentGETViewModel()
+  
     var body: some View {
       VStack{
-        CommentHeaderView()
-          .frame(width: 400, height: 50)
         
-        CommentsPiece()
-        CommentsPiece()
-        CommentsPiece()
+        topLayer
         
+        ScrollView(showsIndicators: true) {
+          VStack{
+            ForEach(viewModel.boardComments, id: \.self) { comment in
+              CommentsPiece(comment:   comment)
+                .listRowInsets(EdgeInsets())
+            }
+          }
+          .onAppear{
+            viewModel.fetch()
+          }
+        }
         Spacer()
         
         HStack {
@@ -35,10 +46,30 @@ struct CommentView: View {
         }
       }
     }
+  
+  var topLayer: some View {
+    HStack {
+      Button(action: { presented.toggle()}) {
+        Image(systemName: "chevron.left")
+          .resizable()
+          .frame(width: 15, height: 20)
+          .scaledToFit()
+          .padding(.leading, 15)
+          .padding([.trailing, .vertical], 10)
+
+      }.foregroundColor(.primary)
+      Text("댓글")
+        .font(.title)
+        .bold()
+      Spacer()
+    }
+    .frame(width: .infinity, height: 50)
+    .padding(.horizontal, 10)
+  }
 }
 
 struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
-        CommentView()
+      CommentView(presented: .constant(false))
     }
 }
