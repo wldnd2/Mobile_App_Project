@@ -22,21 +22,17 @@ public class DiaryRepositoryTests {
 
     @Test
     public void InsertTest() {
-        Long userId = 1L;
-        Optional<User> result = userRepository.findById(userId);
-        if (result.isPresent()) {
-            IntStream.rangeClosed(1,10).forEach(i ->{
-                Diary diary = Diary.builder()
-                        .diaryTitle("Title_" + i)
-                        .diaryImg("Img_" + i)
-                        .diaryContent("Content_" + i)
-                        .diaryLike(i)
-                        .diaryDate(new Timestamp(System.currentTimeMillis()))
-                        .user(result.get())
-                        .build();
-                diaryRepository.save(diary);
-            });
-        }
+        IntStream.rangeClosed(1,10).forEach(i ->{
+            Diary diary = Diary.builder()
+                    .diaryTitle("Title_" + i)
+                    .diaryImg("Img_" + i)
+                    .diaryContent("Content_" + i)
+                    .diaryLike(i)
+                    .diaryDate(new Timestamp(System.currentTimeMillis()))
+                    .diaryemotion(1)
+                    .build();
+            diaryRepository.save(diary);
+        });
     }
 }
 
