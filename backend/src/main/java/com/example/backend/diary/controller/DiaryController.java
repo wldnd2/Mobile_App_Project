@@ -32,4 +32,7 @@ public class DiaryController {
     @PutMapping("/{id}")
     public Diary updateDiary(@PathVariable Long id, @RequestBody Diary diary) { return diaryService.updateDiary(id, diary); }
 
+    @DeleteMapping("/{id}")
+    public void deleteDiary(@PathVariable Long id) { diaryService.deleteDiary(id); }
+
 }

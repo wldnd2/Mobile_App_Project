@@ -48,6 +48,9 @@ public class DiaryService {
         return diaryRepository.save(existingDiary);
     }
 
+    public void deleteDiary(Long id) {
+        diaryRepository.deleteById(id);
+    }
 
 
 }
