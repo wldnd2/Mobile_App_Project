@@ -24,30 +24,17 @@ public class CommunityRepositoryTests {
 
     @Test
     public void InsertTest(){
-        Long userId = 1L;
-        Optional<User> result = userRepository.findById(userId);
-        if(result.isPresent()) {
-            IntStream.rangeClosed(1,10).forEach(i ->{
-                Community community = Community.builder()
-                        .communityImg("catImg_"+i)
-                        .communityContent("Today my cat ... " + i)
-                        .communityDate(new Timestamp(System.currentTimeMillis()))
-                        .communityLike(i)
-                        .latitude(Integer.toString(i*10))
-                        .longitude(Integer.toString(i*10))
-                        .user(result.get())
-                        .build();
-                communityRepository.save(community);
-            });
-        }
-    }
-
-    @Test
-    public void ShowAll() {
-        List<Community> communityList = communityRepository.findAll();
-        System.out.println("-------------------- Community list --------------------");
-        for(Community community : communityList){
-            System.out.println(community.getUser().getId() + " " + community.getCommunityImg() + " " + community.getCommunityContent());
-        }
+        IntStream.rangeClosed(1,10).forEach(i -> {
+            Community community = Community.builder()
+                    .communityWriter("Google_" + i)
+                    .communityImg("catImg_" + i)
+                    .communityContent("Today my cat ... " + i)
+                    .communityDate(new Timestamp(System.currentTimeMillis()))
+                    .communityLike(i)
+                    .latitude(Integer.toString(i * 10))
+                    .longitude(Integer.toString(i * 10))
+                    .build();
+            communityRepository.save(community);
+        });
     }
 }
