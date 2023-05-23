@@ -20,4 +20,8 @@ public class DiaryCommentController {
     @GetMapping("/list")
     public List<DiaryComment> showComment(@RequestParam(value = "id") String id) { return diaryCommentService.showComment(id); }
 
+    @PostMapping("create")
+    public DiaryComment createComment(@RequestParam(value = "id") Long id, @RequestBody DiaryComment diaryComment) {
+        return diaryCommentService.createComment(id, diaryComment);
+    }
 }
