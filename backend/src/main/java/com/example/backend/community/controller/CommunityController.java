@@ -18,6 +18,10 @@ public class CommunityController {
     @GetMapping("/list")
     public List<Community> showCommunity() {return communityService.showAllCommunity();}
 
+    @GetMapping("user")
+    public List<Community> showUserCommunity(@RequestParam(value = "writer") String writer) { return communityService.showUserDiary(writer); }
+
+
     @PostMapping("/create")
     public Community createDiary(@RequestBody Community community) {
         return communityService.createCommunity(community);

@@ -1,5 +1,6 @@
 package com.example.backend.community.service;
 
+import com.example.backend.board.domain.Board;
 import com.example.backend.community.domain.Community;
 import com.example.backend.community.repository.CommunityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,10 @@ public class CommunityService {
     CommunityRepository communityRepository;
 
     public List<Community> showAllCommunity() { return communityRepository.findAll();}
+
+    public List<Community> showUserDiary(String writer) {
+        return communityRepository.showUserCommunityPara(writer);
+    }
 
     public Community createCommunity(Community community) {
         Community newCommunity = Community.builder()
