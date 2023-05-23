@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CommunityRepository extends JpaRepository<Community, Long> {
-    @Query(value = "SELECT * FROM community where community_writer = :wiriter", nativeQuery = true)
+    @Query(value = "SELECT * FROM community where community_writer = :writer", nativeQuery = true)
     List<Community> showUserCommunityPara(@Param("writer") String writer);
 }
