@@ -8,71 +8,73 @@
 import SwiftUI
 
 struct MapKittenTabView: View {
+  
+  @State var boardex: MapBoard
+  
   @State private var isLiked = false
-  @State private var count: Int = 263
-  //let image = Image(uiImage: UIImage(named: "고양이3L")!)
+  @State private var count: Int = 0
   
   var body: some View{
     HStack(alignment: .top, spacing: 10){
-    
-      //image
-      Image("고양이3L")
-        .resizable()
-        .scaledToFill()
-        .frame(width: 110, height: 110)
-        .clipShape(RoundedRectangle(cornerRadius: 15))
-        .padding(.leading, 10)
-        .padding(.trailing, 5)
       
-      
-        VStack(alignment: .leading){
-            Text("냥이가 저를 쳐다봐요 운명인 것 같아요!!")
-                //.font(.footnote)
-                .font(.system(size: 15, weight: .bold))
-                .frame(maxWidth: .infinity, alignment: .leading)
-
+        HStack(alignment: .top, spacing: 10){
+          
+          Image(boardex.communityImg)
+            .resizable()
+            .scaledToFill()
+            .frame(width: 110, height: 110)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .padding(.leading, 10)
+            .padding(.trailing, 5)
+          
+          
+          VStack(alignment: .leading){
+            Text(boardex.communityContent)
+            //.font(.footnote)
+              .font(.system(size: 15, weight: .bold))
+              .frame(maxWidth: .infinity, alignment: .leading)
             
             Spacer()
             
-            LikesComments
-          
+          //LikesandComments
+            
+          HStack{
+            HeartButton(isLiked: $isLiked, count:$count)
+              
+            Image(systemName: "text.bubble")
+                .resizable()
+                .frame(width: 20, height: 20)
+                  
+              //게시글 댓글 수 array count 쓰거나 해서
+              //Text("\(boardex.boardComments.count)")
+              Text("32")
+                .font(.footnote)
+                  
+              }.padding(.bottom, 10)
+            
+          }
+          .frame(width: 240, height: 100)
+          .padding(.top,10)
         }
-        .frame(width: 240, height: 100)
-        .padding(.top,10)
-        
+        .frame(width: 500, height: 100)
+          .padding(.trailing, 50)
+          .padding(.bottom, 20)
+          .padding(.leading, 30)
+      }
+    
+    .onAppear {
+        count = mapex.communityLike
+    }
+    
       
-      
-      
-      
-    }.frame(width: 500, height: 100)
-      .padding(.trailing, 50)
-      .padding(.bottom, 20)
-      .padding(.leading, 30)
   }
   
-}
-
-private extension MapKittenTabView {
   
-  var LikesComments: some View{
-    HStack{
-        HeartButton(isLiked: $isLiked, count:$count)
-      
-        Image(systemName: "text.bubble")
-          .resizable()
-          .frame(width: 20, height: 20)
-          
-          Text("32")
-            .font(.footnote)
-          
-        }.padding(.bottom, 10)
-  }
 }
-
    
 
 struct MapKittenTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapKittenTabView()
-    }
+  static var previews: some View {
+    MapKittenTabView(boardex: mapex)
+  }
 }

@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct MapBottomView: View {
+  
   @State var showSheet: Bool = false
+  @StateObject var viewModel = MapBoardGET()
+  @Environment(\.presentationMode) var presentationMode // 추가
+   
+  
   var body: some View {
     NavigationView{
       Button {
@@ -20,7 +25,6 @@ struct MapBottomView: View {
         }
         .frame(width: 500, height: 50)
         .background(.gray)
-//        .padding(.top, 690)
         
       }
       .navigationTitle("길냥이 지도")
@@ -36,10 +40,13 @@ struct MapBottomView: View {
               .padding(.leading, 30)
               .padding(.bottom,10)
               .bold()
-              
-            MapKittenTabView()
-            MapKittenTabView()
-            MapKittenTabView()
+            
+            ForEach(viewModel.boards, id: \.self) { board in
+              MapKittenTabView(boardex: board)
+            }
+            
+            
+            //MapKittenTabView(boardex: boardex1)
             
             
             Text("인기 길냥이")
@@ -49,18 +56,27 @@ struct MapBottomView: View {
               .padding(.leading, 30)
               .padding(.bottom,10)
               .bold()
-             
-            MapKittenTabView()
-            MapKittenTabView()
-            MapKittenTabView()
             
-          }.frame(maxWidth: .infinity, alignment: .trailing)
+            ForEach(viewModel.boards, id: \.self) { board in
+              MapKittenTabView(boardex: board)
+            }
+            //MapKittenTabView(boardex: boardex1)
+            
+            
+          }// V
+          .frame(maxWidth: .infinity, alignment: .trailing)
+          
         }
         .ignoresSafeArea()
       } onEnd: {
         print("Dismissed")
+        presentationMode.wrappedValue.dismiss()
       }
     }
+    .onAppear{
+      viewModel.fetch()
+    }
+
   }
 }
 
@@ -89,9 +105,11 @@ struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable{
   
   func makeUIViewController(context: Context) -> UIViewController {
     
+    
     controller.view.backgroundColor = .clear
     
     return controller
+  
   }
   
   func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
@@ -110,17 +128,39 @@ struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable{
     }
     
   }
-  class Coordinator: NSObject, UISheetPresentationControllerDelegate{
+  class Coordinator: NSObject, UISheetPresentationControllerDelegate {
     var parent: HalfSheetHelper
     
     init(parent: HalfSheetHelper) {
-      self.parent = parent
+        self.parent = parent
     }
-    
-
-  }
+    /*
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        parent.showSheet = false
+        parent.onEnd()
+    }
+     */
 }
 
+}
+
+class CustomHostingController<Content: View>: UIHostingController<Content> {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        if let presentationController = presentationController as? UISheetPresentationController {
+            presentationController.detents = [
+                .medium(),
+                .large()
+            ]
+
+            presentationController.prefersGrabberVisible = true
+        }
+    }
+}
+
+
+/*
 class CustomHostingController<Content: View>: UIHostingController<Content>{
   override func viewDidLoad() {
     if let presentationController = presentationController as?
@@ -133,7 +173,7 @@ class CustomHostingController<Content: View>: UIHostingController<Content>{
       presentationController.prefersGrabberVisible = true
     }
   }
-}
+}*/
 
 
 struct MapBottomView_Previews: PreviewProvider {

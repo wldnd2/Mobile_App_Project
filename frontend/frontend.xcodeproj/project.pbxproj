@@ -11,11 +11,13 @@
 		AC1C7A882A092D0D00B8709C /* NewHomeSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A862A092D0D00B8709C /* NewHomeSlideView.swift */; };
 		AC1C7A8A2A092F9700B8709C /* NewHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A892A092F9700B8709C /* NewHomeHeaderView.swift */; };
 		AC1C7A8C2A09303200B8709C /* NewHomeSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A8B2A09303200B8709C /* NewHomeSlide.swift */; };
+		AC24BD992A1C5BAB00920EA2 /* MapBoardGET.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC24BD982A1C5BAB00920EA2 /* MapBoardGET.swift */; };
 		AC4FD00C2A1257BC00314625 /* MapKittenTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A952A0B8BC500B8709C /* MapKittenTabView.swift */; };
 		AC4FD0122A125DBC00314625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F573B76D2A01423000ADB834 /* Assets.xcassets */; };
 		AC4FD0142A12687900314625 /* DiaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FD0132A12687900314625 /* DiaryHeaderView.swift */; };
 		AC4FD0162A126AFA00314625 /* DiarySlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FD0152A126AFA00314625 /* DiarySlideView.swift */; };
 		AC4FD0182A127D6200314625 /* DiarySlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FD0172A127D6200314625 /* DiarySlide.swift */; };
+		AC6142082A1CD16300D1E30F /* MapBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6142072A1CD16300D1E30F /* MapBoard.swift */; };
 		AC9167D42A15A80600005377 /* CommentsPiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9167D32A15A80600005377 /* CommentsPiece.swift */; };
 		AC9167D82A15B28400005377 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9167D72A15B28400005377 /* CommentView.swift */; };
 		AC94D9132A0F43CC00F5EA6E /* MapBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC94D9122A0F43CC00F5EA6E /* MapBottomView.swift */; };
@@ -47,9 +49,11 @@
 		AC1C7A892A092F9700B8709C /* NewHomeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHomeHeaderView.swift; sourceTree = "<group>"; };
 		AC1C7A8B2A09303200B8709C /* NewHomeSlide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHomeSlide.swift; sourceTree = "<group>"; };
 		AC1C7A952A0B8BC500B8709C /* MapKittenTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKittenTabView.swift; sourceTree = "<group>"; };
+		AC24BD982A1C5BAB00920EA2 /* MapBoardGET.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoardGET.swift; sourceTree = "<group>"; };
 		AC4FD0132A12687900314625 /* DiaryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryHeaderView.swift; sourceTree = "<group>"; };
 		AC4FD0152A126AFA00314625 /* DiarySlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySlideView.swift; sourceTree = "<group>"; };
 		AC4FD0172A127D6200314625 /* DiarySlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiarySlide.swift; sourceTree = "<group>"; };
+		AC6142072A1CD16300D1E30F /* MapBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoard.swift; sourceTree = "<group>"; };
 		AC9167D32A15A80600005377 /* CommentsPiece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsPiece.swift; sourceTree = "<group>"; };
 		AC9167D72A15B28400005377 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		AC94D9122A0F43CC00F5EA6E /* MapBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBottomView.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 			children = (
 				AF44691A2A1A076A00DA51E8 /* Board.swift */,
 				AF44691C2A1A0A2200DA51E8 /* BoardComment.swift */,
+				AC6142072A1CD16300D1E30F /* MapBoard.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -161,6 +166,8 @@
 		AFF52CDC2A0149D000934692 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				AF4469182A1A075C00DA51E8 /* BoardViewModel.swift */,
+				AC24BD982A1C5BAB00920EA2 /* MapBoardGET.swift */,
 				AF4469182A1A075C00DA51E8 /* BoardCommentGETViewModel.swift */,
 			);
 			path = ViewModels;
@@ -307,8 +314,11 @@
 				AF98A6A52A11295400EC8D39 /* DropdownMenuListRow.swift in Sources */,
 				AC9167D82A15B28400005377 /* CommentView.swift in Sources */,
 				AFEE20412A09173D00412FD9 /* ImagePicker.swift in Sources */,
+				AC6142082A1CD16300D1E30F /* MapBoard.swift in Sources */,
 				AFEE20472A09179800412FD9 /* WriteView.swift in Sources */,
 				AF98A6A32A11295400EC8D39 /* DropdownMenuOption.swift in Sources */,
+				AC24BD992A1C5BAB00920EA2 /* MapBoardGET.swift in Sources */,
+				AC9167D62A15B20100005377 /* CommentHeaderView.swift in Sources */,
 				AC9740D02A13B14300E84A76 /* Home.swift in Sources */,
 				AF44691B2A1A076A00DA51E8 /* Board.swift in Sources */,
 				AC1C7A872A092D0D00B8709C /* ContentView.swift in Sources */,
