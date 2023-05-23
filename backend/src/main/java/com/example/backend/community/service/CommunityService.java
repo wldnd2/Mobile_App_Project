@@ -1,6 +1,5 @@
 package com.example.backend.community.service;
 
-import com.example.backend.board.domain.Board;
 import com.example.backend.community.domain.Community;
 import com.example.backend.community.repository.CommunityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +29,18 @@ public class CommunityService {
                 .build();
         return communityRepository.save(newCommunity);
     }
+
+    public Community increment(Long id) {
+        Community existingCommunity = communityRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        existingCommunity.increaseLike();
+        return communityRepository.save(existingCommunity);
+    }
+
+    public Community decrement(Long id) {
+        Community existingCommunity = communityRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        existingCommunity.decreaseLike();
+        return communityRepository.save(existingCommunity);
+    }
+
 }
 

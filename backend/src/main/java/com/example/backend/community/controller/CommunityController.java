@@ -22,5 +22,15 @@ public class CommunityController {
     public Community createDiary(@RequestBody Community community) {
         return communityService.createCommunity(community);
     }
+
+
+    @PutMapping("/increase/{id}")
+    public Community increment(@PathVariable Long id) {
+        return communityService.increment(id);
+    }
+
+    @PutMapping("/decrease/{id}")
+    public Community decrement(@PathVariable Long id) { return communityService.decrement(id); }
+
 }
 
