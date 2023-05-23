@@ -1,8 +1,5 @@
 package com.example.backend.community.domain;
 
-
-import com.example.backend.user.domain.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -19,6 +16,9 @@ public class Community {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long communityId;
+
+    @Column(nullable = false)
+    private String communityWriter;
 
     @Column(length = 200, nullable = false)
     private String communityImg;
@@ -38,8 +38,9 @@ public class Community {
     @Column(nullable = false)
     private String longitude;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    @JsonIgnore
-    private User user;
+    public void increaseLike() { this.communityLike++; }
+
+    public void decreaseLike() {
+        this.communityLike--;
+    }
 }
