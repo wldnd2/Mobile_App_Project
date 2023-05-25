@@ -39,7 +39,12 @@ struct MapKittenTabView: View {
           //LikesandComments
             
           HStack{
-            HeartButton(isLiked: $isLiked, count:$count)
+//            HeartButton(
+//              isLiked: $isLiked,
+//              count:$boardex.communityLike,
+//              id: $boardex.communityId,
+//              kind: "map"
+//            )
               
             Image(systemName: "text.bubble")
                 .resizable()

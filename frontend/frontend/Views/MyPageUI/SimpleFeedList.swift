@@ -41,6 +41,7 @@ struct SimpleFeedList: View {
             SimpleFeed()
             SimpleFeed()
             SimpleFeed()
+            //ForEach문으로 구현.,,,
             
             VStack {
               Spacer()

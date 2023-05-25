@@ -16,7 +16,6 @@ struct Board: Hashable, Codable{
   var boardContent: String
   var boardLike: Int
   let boardDate: String
-  var boardComments:[BoardComment]
 }
 
 

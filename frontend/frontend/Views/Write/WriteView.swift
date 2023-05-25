@@ -25,6 +25,11 @@ struct WriteView: View {
   
   @State private var keyboardHeight: CGFloat = 0
   
+  @State var date = Date()
+  @State var dateString: String = ""
+  
+  var completion: () -> Void
+  
   var body: some View {
     VStack{
       
@@ -310,12 +315,25 @@ struct WriteView: View {
       }
       
       Button(action: {
-        //
-        print(title)
-        print(image)
-        print(describe)
-        if selectedToggle == 0 { print(catMood?.displayText ?? "")
+        //다이어리 글쓰기
+        if selectedToggle == 0 {
+          print("Clicked")
+          SendAPI.diaryPOST(
+            content: self.describe
+          ){
+            completion()
+          }
         }
+        //분양 글쓰기
+        else if selectedToggle == 1 {
+          
+        }
+        //길냥이 글쓰기
+        else {
+          
+        }
+        
+        presented.toggle()
         
       }){
         Text("완료")
@@ -350,6 +368,8 @@ struct WriteView: View {
 
 struct WriteUI_Previews: PreviewProvider {
   static var previews: some View {
-    WriteView(presented: .constant(true))
+    WriteView(
+      presented: .constant(true),
+       completion: {})
   }
 }
