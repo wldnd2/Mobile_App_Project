@@ -13,13 +13,6 @@ struct NewHomeSlide: View {
   
   var body: some View {
     VStack{
-      
-      Spacer() // 댓글창
-        .fullScreenCover(isPresented: $presented){
-          CommentView(presented: $presented)
-        }
-
-      
       NewHomeHeaderView ()
         .frame(width: 400, height: 50)
       ScrollView(){

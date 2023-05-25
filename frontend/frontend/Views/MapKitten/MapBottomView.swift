@@ -10,7 +10,7 @@ import SwiftUI
 struct MapBottomView: View {
   
   @State var showSheet: Bool = false
-  @StateObject var viewModel = MapBoardGET()
+  @StateObject var viewModel = GET()
   @Environment(\.presentationMode) var presentationMode // 추가
    
   
@@ -74,7 +74,7 @@ struct MapBottomView: View {
       }
     }
     .onAppear{
-      viewModel.fetch()
+      viewModel.feedFetch(kind: "map")//수정!!!
     }
 
   }

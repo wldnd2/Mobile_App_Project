@@ -10,8 +10,11 @@ import SwiftUI
 struct CommentView: View {
   @State private var describe = ""
   
+  @Binding var id : Int
+  var kind : String
+
   @Binding var presented: Bool
-  @StateObject var viewModel = BoardCommentGETViewModel()
+  @StateObject var viewModel = GET()
   
     var body: some View {
       VStack{
@@ -20,13 +23,22 @@ struct CommentView: View {
         
         ScrollView(showsIndicators: true) {
           VStack{
-            ForEach(viewModel.boardComments, id: \.self) { comment in
-              CommentsPiece(comment:   comment)
-                .listRowInsets(EdgeInsets())
+            if kind == "board"{
+              ForEach(viewModel.boardComments, id: \.self) { comment in
+                CommentsPiece(comment: comment)
+                  .listRowInsets(EdgeInsets())
+              }
+            } else if kind == "diary" {
+              ForEach(viewModel.diaryComments, id: \.self) { comment in
+                CommentsPiece(comment: comment)
+                  .listRowInsets(EdgeInsets())
+              }
+            } else {
+              
             }
           }
           .onAppear{
-            viewModel.fetch()
+            viewModel.commentFetch(kind: kind, ID: id)
           }
         }
         Spacer()
@@ -70,6 +82,6 @@ struct CommentView: View {
 
 struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
-      CommentView(presented: .constant(false))
+      CommentView(id: .constant(99), kind: "diary", presented: .constant(false))
     }
 }

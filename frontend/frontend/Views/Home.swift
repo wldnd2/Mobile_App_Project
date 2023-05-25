@@ -13,18 +13,36 @@ struct Home: View {
   
   @State var presented = false
   
+  @StateObject var getViewModel = GET()
+  
   var body: some View {
     
     ZStack{
       
       Spacer() // 글쓰기 화면
         .fullScreenCover(isPresented: $presented){
-          WriteView(presented: $presented)
+          WriteView(
+            presented: $presented) {
+              
+            switch selectedIndex {
+            case 0:
+                getViewModel.feedFetch(kind: "diary")
+//            case 1:
+//
+//            case 3:
+//
+            default:
+              //
+              break
+            }
+          }
         } // 글쓰기 화면
       
       switch selectedIndex {
       case 0:
-        DiarySlide()
+        DiarySlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+          getViewModel.feedFetch(kind: "diary")
+        }
       case 1:
         NewHomeSlide()
       case 3:

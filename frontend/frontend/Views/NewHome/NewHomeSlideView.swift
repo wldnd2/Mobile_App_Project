@@ -11,13 +11,19 @@ import SwiftUI
 
 struct NewHomeSlideView: View {
   
+//  @State var board :Board
   @Binding var presented: Bool
   @State private var isLiked = false
-  @State private var count: Int = 17
   
   var body: some View {
 
     VStack(alignment: .leading, spacing: 0){
+      
+//      Spacer() // 댓글창
+//        .fullScreenCover(isPresented: $presented){
+//          CommentView(id: <#T##Binding<Int>#>, kind: <#T##String#>, presented: <#T##Binding<Bool>#>
+//        }
+      
       HStack(spacing: 15.0){
         
         UserProfile
@@ -69,7 +75,12 @@ private extension NewHomeSlideView {
   var LikesComments: some View{
     HStack{
       
-      HeartButton(isLiked: $isLiked, count: $count)
+      //      HeartButton(
+      //        isLiked: $isLiked,
+      //        count:$count,
+      //        id: ,
+      //        kind: "board"
+      //      )
       
       Button(action: {
         presented.toggle()
@@ -93,7 +104,12 @@ private extension NewHomeSlideView {
   var LikesCommentsEmotions: some View{
     HStack{
      
-      HeartButton(isLiked: $isLiked, count: $count)
+//      HeartButton(
+//        isLiked: $isLiked,
+//        count:$count,
+//        id: ,
+//        kind: "board"
+//      )
       
       Image(systemName: "text.bubble")
         .resizable()
@@ -110,7 +126,7 @@ private extension NewHomeSlideView {
   var UserImage: some View{
     Image("고양이1L")
       .resizable()
-      .scaledToFill()
+      .scaledToFit()
       .frame(maxWidth: .infinity)
       .frame(height: .infinity)
       .clipped()
@@ -123,49 +139,7 @@ private extension NewHomeSlideView {
   }
 }
 
-struct HeartButton: View{
-  
-  @Binding var isLiked : Bool
-  @Binding var count : Int
-  
-  private let animationDuration: Double = 0.1
-  private var animationScale: CGFloat {
-    isLiked ? 0.7 : 1.3
-  }
-  @State private var animate = false
-  
-  var body: some View{
-    Button( action: {
-      if isLiked == false {
-        self.count += 1
-      } else {
-        self.count -= 1
-      }
-      
-      self.isLiked.toggle()
-      self.animate = true
-      
-      DispatchQueue.main.asyncAfter(deadline:.now() + self.animationDuration, execute: {
-            self.animate = false
-          })
-    }) {
-      Image(systemName: isLiked ? "heart.fill" : "heart")
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-        .frame(width: 20,height: 20)
-        .foregroundColor(isLiked ? .red: .gray)
-      Text("\(count)")
-        .font(.footnote)
-        .foregroundColor(.primary)
-    }
-    .scaleEffect(animate ? animationScale : 1)
-    .onChange(of: animate) { _ in
-      withAnimation(.easeIn(duration: animationDuration)) {
-        animate = false
-      }
-    }
-  }
-}
+
 
 struct SlideView_Previews: PreviewProvider {
   static var previews: some View {
