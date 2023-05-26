@@ -43,6 +43,8 @@
 		F573B76C2A01422D00ADB834 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F573B76E2A01423000ADB834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F573B76D2A01423000ADB834 /* Assets.xcassets */; };
 		F573B7712A01423000ADB834 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F573B7702A01423000ADB834 /* Preview Assets.xcassets */; };
+		F5897A1B2A20488C002BFE1C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5897A1A2A20488C002BFE1C /* SearchView.swift */; };
+		F5897A1D2A2048EF002BFE1C /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5897A1C2A2048EF002BFE1C /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		F573B7692A01422D00ADB834 /* frontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = frontendApp.swift; sourceTree = "<group>"; };
 		F573B76D2A01423000ADB834 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F573B7702A01423000ADB834 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F5897A1A2A20488C002BFE1C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		F5897A1C2A2048EF002BFE1C /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 			children = (
 				AFEE20422A09179700412FD9 /* ToggleView.swift */,
 				AFEE20442A09179800412FD9 /* WriteView.swift */,
+				F5897A1A2A20488C002BFE1C /* SearchView.swift */,
 			);
 			path = Write;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 				AFEE20402A09173D00412FD9 /* ImagePicker.swift */,
 				AF4A66AD2A0BABBA00BA8876 /* KeyboardHandler.swift */,
 				AF4A66AF2A0BBF3200BA8876 /* HideKeyboard.swift */,
+				F5897A1C2A2048EF002BFE1C /* LocationManager.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 				AC94D9132A0F43CC00F5EA6E /* MapBottomView.swift in Sources */,
 				F573B76C2A01422D00ADB834 /* (null) in Sources */,
 				AF4A66B02A0BBF3200BA8876 /* HideKeyboard.swift in Sources */,
+				F5897A1B2A20488C002BFE1C /* SearchView.swift in Sources */,
 				AC4FD0162A126AFA00314625 /* DiarySlideView.swift in Sources */,
 				AC4FD0142A12687900314625 /* DiaryHeaderView.swift in Sources */,
 				AF4A66AE2A0BABBA00BA8876 /* KeyboardHandler.swift in Sources */,
@@ -360,6 +367,7 @@
 				AC9167D82A15B28400005377 /* CommentView.swift in Sources */,
 				AF1C549D2A1E66BB00676467 /* SendAPI.swift in Sources */,
 				AFEE20412A09173D00412FD9 /* ImagePicker.swift in Sources */,
+				F5897A1D2A2048EF002BFE1C /* LocationManager.swift in Sources */,
 				AC6142082A1CD16300D1E30F /* MapBoard.swift in Sources */,
 				AFCF4F292A1E9263004657C0 /* HeartButton.swift in Sources */,
 				AFEE20472A09179800412FD9 /* WriteView.swift in Sources */,
@@ -508,6 +516,7 @@
 				DEVELOPMENT_TEAM = 5L7QZ42BFG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your loaction to show it on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -538,6 +547,7 @@
 				DEVELOPMENT_TEAM = 5L7QZ42BFG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your loaction to show it on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
