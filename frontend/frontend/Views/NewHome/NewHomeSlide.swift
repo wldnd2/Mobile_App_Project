@@ -9,18 +9,30 @@ import SwiftUI
 
 struct NewHomeSlide: View {
   
-  @State var presented: Bool = false
+  @Binding var viewModel: GET
+  
+  var completion: () -> Void
   
   var body: some View {
+    
     VStack{
+      
       NewHomeHeaderView ()
         .frame(width: 400, height: 50)
       ScrollView(){
         VStack{
-          NewHomeSlideView(presented: $presented)
-          NewHomeSlideView(presented: $presented)
-          NewHomeSlideView(presented: $presented)
-          //ForEach(){}해서 나중에 하면 될듯
+          ForEach((0..<viewModel.boards.count).reversed(), id: \.self) { index in
+            let board = viewModel.boards[index]
+            
+            NewHomeSlideView(board: board) {
+              completion()
+            }
+            .listRowInsets(EdgeInsets())
+            .padding(.bottom, index == 0 ? 80 : 0)
+          }
+        }
+        .onAppear{
+          completion()
         }
       }
     }
@@ -29,6 +41,6 @@ struct NewHomeSlide: View {
 
 struct NewHomeSldie_Previews: PreviewProvider {
   static var previews: some View {
-    NewHomeSlide()
+    NewHomeSlide(viewModel: .constant(GET()), completion: {})
   }
 }

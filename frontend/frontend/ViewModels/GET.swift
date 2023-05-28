@@ -9,7 +9,7 @@ import SwiftUI
 
 class GET: ObservableObject {
   
-  @Published var boards: [MapBoard] = []
+  @Published var boards: [Board] = []
   @Published var diarys: [Diary] = []
   // + 길냥이 피드..
   
@@ -33,7 +33,7 @@ class GET: ObservableObject {
       }
       do {
         if kind == "board" {
-          let boards = try JSONDecoder().decode([MapBoard].self, from : data)
+          let boards = try JSONDecoder().decode([Board].self, from : data)
           DispatchQueue.main.async {
             self?.boards = boards
           }

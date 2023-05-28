@@ -43,6 +43,42 @@ class SendAPI: ObservableObject {
         task.resume()
     }
   
+  static func boardPOST(writer: String = "아이디", title: String = "POST_Title", img: String = "고양이4L", content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
+      
+      let body: [String: Any] = [
+        "boardWriter": writer,
+        "boardTitle": title,
+        "boardImg": img,
+        "boardContent": content
+      ]
+      
+      let jsonData = try? JSONSerialization.data(withJSONObject: body)
+      
+      let url = URL(string: "http://localhost:8080/board/create")!
+      var request = URLRequest(url: url)
+      request.httpMethod = "POST"
+      request.setValue("\(String(describing: jsonData?.count))", forHTTPHeaderField: "Content-Length")
+      request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+      request.httpBody = jsonData
+      
+      let task = URLSession.shared.dataTask(with: request) { data, _, error in
+          guard let data = data, error == nil else {
+              print(error?.localizedDescription ?? "No data")
+              return
+          }
+        completion()
+        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+          if let responseJSON = responseJSON as? [String: Any] {
+            print("-----2> responseJSON: \(responseJSON)")
+          }
+      }
+      
+      task.resume()
+  }
+  
+  
+  
+  
   static func CommendPOST(kind: String, ID: Int, writer: String = ",,내 아이디,,",content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
       
       let body: [String: Any] = [
@@ -146,7 +182,12 @@ class SendAPI: ObservableObject {
         "diaryContent": content
       ]
     } else if kind == "board" {
-      // 분양..
+      body = [
+        "boardWriter" : writer,
+        "boardTitle": title,
+        "boardImg": img,
+        "boardContent": content
+      ]
     } else {
       // 길냥이.. (수정X)
     }

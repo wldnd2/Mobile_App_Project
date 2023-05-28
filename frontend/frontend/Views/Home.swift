@@ -44,7 +44,9 @@ struct Home: View {
           getViewModel.feedFetch(kind: "diary")
         }
       case 1:
-        NewHomeSlide()
+        NewHomeSlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+          getViewModel.feedFetch(kind: "board")
+        }
       case 3:
         MapBottomView()
       default:

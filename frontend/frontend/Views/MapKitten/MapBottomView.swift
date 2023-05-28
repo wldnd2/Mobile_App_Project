@@ -41,10 +41,10 @@ struct MapBottomView: View {
               .padding(.bottom,10)
               .bold()
             
-            ForEach(viewModel.boards, id: \.self) { board in
+           /* ForEach(viewModel.boards, id: \.self) { board in
               MapKittenTabView(boardex: board)
             }
-            
+            */
             
             //MapKittenTabView(boardex: boardex1)
             
@@ -56,12 +56,12 @@ struct MapBottomView: View {
               .padding(.leading, 30)
               .padding(.bottom,10)
               .bold()
-            
+            /*
             ForEach(viewModel.boards, id: \.self) { board in
               MapKittenTabView(boardex: board)
             }
             //MapKittenTabView(boardex: boardex1)
-            
+            */
             
           }// V
           .frame(maxWidth: .infinity, alignment: .trailing)
