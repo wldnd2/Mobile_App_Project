@@ -85,12 +85,14 @@ private extension NewHomeSlideView {
   var LikesComments: some View{
     HStack{
       
-//            HeartButton(
-//              isLiked: $isLiked,
-//              count:$count,
-//              id: ,
-//              kind: "board"
-//            )
+            HeartButton(
+              isLiked: $isLiked,
+              count:$board.boardLike,
+              kind: "board",
+              id: $board.boardId
+            ){
+              completion()
+            }
       
       Button(action: {
         presented.toggle()

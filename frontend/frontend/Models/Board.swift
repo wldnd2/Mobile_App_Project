@@ -9,7 +9,7 @@ import Foundation
 
 
 struct Board: Hashable, Codable{
-  let boardId: Int
+  var boardId: Int
   let boardWriter: String
   var boardTitle: String
   var boardImg: String
