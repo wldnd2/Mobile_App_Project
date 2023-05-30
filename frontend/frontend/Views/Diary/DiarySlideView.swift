@@ -21,7 +21,7 @@ struct DiarySlideView: View {
         
         Spacer() // 댓글창
           .fullScreenCover(isPresented: $presented){
-            CommentView(id: $diary.diaryId , kind: "diary", presented: $presented)
+            CommentView(id: $diary.diaryId , kind: "diary", completion: {}, presented: $presented)
           }
         
         HStack(spacing: 15.0){

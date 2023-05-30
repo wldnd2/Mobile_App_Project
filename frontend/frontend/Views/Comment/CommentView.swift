@@ -13,6 +13,8 @@ struct CommentView: View {
   @Binding var id : Int
   var kind : String
 
+  var completion: () -> Void
+  
   @Binding var presented: Bool
   @StateObject var viewModel = GET()
   
@@ -46,16 +48,45 @@ struct CommentView: View {
         HStack {
           Spacer()
           Spacer()
-          ZStack(alignment: .topLeading) {
-            TextEditor(text : $describe)
-              .cornerRadius(10)
-              .frame(height: 100)
-              .colorMultiply(Color(UIColor.lightGray))
-              .keyboardType(.default)
+          Image(systemName: "person.circle.fill")
+            .resizable()
+            .frame(width: 35, height: 35)
+            .scaledToFill()
+            .padding(.top, 5)
+        
+          ZStack{
+            
+            Color(UIColor.lightGray)
+            HStack {
+              TextEditor(text : $describe)
+                .cornerRadius(10)
+                .frame(width: 250, height: 40)
+                .colorMultiply(.clear)
+                .keyboardType(.default)
+                .padding(.bottom, 10)
+              
+              Button(action: {
+                SendAPI.CommendPOST(kind: kind, ID: id)
+                {
+                  completion()
+                }
+              }){
+                Text("게시")
+                  .foregroundColor(.black)
+                  .baselineOffset(-25)
+                  .padding(.bottom, 20)
+              }
+            }
           }
+          .frame(width: 320, height: 50)
+          .cornerRadius(20)
+          .padding(.top, 5)
+          .padding(.trailing, 5)
           Spacer()
           Spacer()
         }
+        .frame(height: 50)
+        
       }
     }
   
@@ -82,6 +113,6 @@ struct CommentView: View {
 
 struct CommentView_Previews: PreviewProvider {
     static var previews: some View {
-      CommentView(id: .constant(99), kind: "diary", presented: .constant(false))
+      CommentView(id: .constant(99), kind: "diary", completion: {}, presented: .constant(false))
     }
 }

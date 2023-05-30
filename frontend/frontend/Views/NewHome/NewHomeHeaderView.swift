@@ -53,10 +53,7 @@ struct ButtonDesign: View{
                     .frame(width: 150, height: 45)
                     .modifier(InnerShadowModifier())
 
-               /* Rectangle()
-                    .fill(Color.white)
-                    .frame(width: 2, height: 44)
-*/
+
                 HStack {
                     Button(action: { selection = "최신" }) {
                         Text("최신")
@@ -90,37 +87,7 @@ struct ButtonDesign: View{
           }
         
         
-        /*
-        Capsule()
-          .frame(width: 100, height: 50)
-          .overlay(
-            Capsule()
-              .frame(width: 99, height: 48)
-              .foregroundColor(.white)
-              .modifier(InnerShadowModifier())
-          ).overlay(
-            Capsule()
-              .frame(width:99, height: 50)
-              .foregroundColor(.purple)
-              .clipShape(Capsule())
-            )
-        */
-        /*
-        Capsule()
-          .fill(.white)
-          .frame(width: 50, height: 30)
-          .cornerRadius(10)
-          .padding()
-          .modifier(ShadowModifier())
-          
-        
-        Capsule()
-          .fill(.white)
-          .frame(width: 50, height: 30)
-          .cornerRadius(10)
-          .padding()
-          .modifier(InnerShadowModifier())
-        */
+      
       } // H
       
     }// Z

@@ -11,9 +11,11 @@ import SwiftUI
 
 struct NewHomeSlideView: View {
   
-//  @State var board :Board
-  @Binding var presented: Bool
+  @State var presented: Bool = false
   @State private var isLiked = false
+  @State var board: Board
+  
+  var completion: () -> Void
   
   var body: some View {
 
@@ -23,15 +25,23 @@ struct NewHomeSlideView: View {
 //        .fullScreenCover(isPresented: $presented){
 //          CommentView(id: <#T##Binding<Int>#>, kind: <#T##String#>, presented: <#T##Binding<Bool>#>
 //        }
-      
+//
       HStack(spacing: 15.0){
         
         UserProfile
         UserId
         Spacer()
         Menu("|") {
-          Button("수정", action: {})
-          Button("삭제", action: {})
+          Button("수정", action: {
+            SendAPI.feedPUT(kind: "board",ID: board.boardId){
+              completion()
+            }
+          })
+          Button("삭제", action: {
+            SendAPI.feedDELETE(kind: "board",ID: board.boardId){
+              completion()
+            }
+          })
         }
         .foregroundColor(.black)
         .padding(.horizontal, 15)
@@ -59,7 +69,7 @@ struct NewHomeSlideView: View {
 
 private extension NewHomeSlideView {
   var UserId: some View{
-    Text("아이디입니당")
+    Text(board.boardWriter)
       .font(.footnote)
   }
 
@@ -75,12 +85,14 @@ private extension NewHomeSlideView {
   var LikesComments: some View{
     HStack{
       
-      //      HeartButton(
-      //        isLiked: $isLiked,
-      //        count:$count,
-      //        id: ,
-      //        kind: "board"
-      //      )
+            HeartButton(
+              isLiked: $isLiked,
+              count:$board.boardLike,
+              kind: "board",
+              id: $board.boardId
+            ){
+              completion()
+            }
       
       Button(action: {
         presented.toggle()
@@ -110,7 +122,7 @@ private extension NewHomeSlideView {
 //        id: ,
 //        kind: "board"
 //      )
-      
+//
       Image(systemName: "text.bubble")
         .resizable()
         .frame(width: 20, height: 20)
@@ -133,7 +145,7 @@ private extension NewHomeSlideView {
   }
 
   var UserContext: some View{
-    Text("조금 혼냈더니 풀 죽어버렸네ㅠㅠㅠ 미안해ㅠㅠ")
+    Text(board.boardContent)
       .padding(.leading)
       .padding(.bottom,15)
   }
@@ -143,6 +155,6 @@ private extension NewHomeSlideView {
 
 struct SlideView_Previews: PreviewProvider {
   static var previews: some View {
-    NewHomeSlideView(presented: .constant(false))
+    NewHomeSlideView(presented: false, board: exampleBoard, completion: {})
   }
 }

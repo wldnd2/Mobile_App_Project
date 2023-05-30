@@ -323,10 +323,15 @@ struct WriteView: View {
           ){
             completion()
           }
+          
         }
         //분양 글쓰기
         else if selectedToggle == 1 {
-          
+          SendAPI.boardPOST(
+            content: self.describe
+          ){
+            completion()
+          }
         }
         //길냥이 글쓰기
         else {
