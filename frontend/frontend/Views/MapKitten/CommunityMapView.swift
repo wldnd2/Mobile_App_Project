@@ -117,7 +117,7 @@ struct MapView: UIViewRepresentable {
       return annotationView
     }
   }
-}Jeon/Community_Map
+}
 
 struct CommunityMapView_Previews: PreviewProvider {
     static var previews: some View {
