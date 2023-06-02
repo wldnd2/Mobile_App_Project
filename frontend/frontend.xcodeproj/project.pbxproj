@@ -40,6 +40,7 @@
 		AFFCCB5B2A151E8C0096A116 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCCB5A2A151E8C0096A116 /* UserView.swift */; };
 		AFFCCB5F2A152C5C0096A116 /* SimpleFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCCB5C2A152B090096A116 /* SimpleFeed.swift */; };
 		F5587F992A29756A00606AFD /* CommunityMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5587F982A29756A00606AFD /* CommunityMapView.swift */; };
+		F5587F9C2A29777400606AFD /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = F5587F9B2A29777400606AFD /* OpenAISwift */; };
 		F573B76A2A01422D00ADB834 /* frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573B7692A01422D00ADB834 /* frontendApp.swift */; };
 		F573B76C2A01422D00ADB834 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F573B76E2A01423000ADB834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F573B76D2A01423000ADB834 /* Assets.xcassets */; };
@@ -95,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5587F9C2A29777400606AFD /* OpenAISwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +300,9 @@
 			dependencies = (
 			);
 			name = frontend;
+			packageProductDependencies = (
+				F5587F9B2A29777400606AFD /* OpenAISwift */,
+			);
 			productName = frontend;
 			productReference = F573B7662A01422D00ADB834 /* frontend.app */;
 			productType = "com.apple.product-type.application";
@@ -326,6 +331,9 @@
 				Base,
 			);
 			mainGroup = F573B75D2A01422C00ADB834;
+			packageReferences = (
+				F5587F9A2A29777400606AFD /* XCRemoteSwiftPackageReference "OpenAISwift" */,
+			);
 			productRefGroup = F573B7672A01422D00ADB834 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -593,6 +601,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F5587F9A2A29777400606AFD /* XCRemoteSwiftPackageReference "OpenAISwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adamrushy/OpenAISwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F5587F9B2A29777400606AFD /* OpenAISwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F5587F9A2A29777400606AFD /* XCRemoteSwiftPackageReference "OpenAISwift" */;
+			productName = OpenAISwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F573B75E2A01422C00ADB834 /* Project object */;
 }
