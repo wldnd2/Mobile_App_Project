@@ -41,6 +41,7 @@
 		AFFCCB5F2A152C5C0096A116 /* SimpleFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCCB5C2A152B090096A116 /* SimpleFeed.swift */; };
 		F5587F992A29756A00606AFD /* CommunityMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5587F982A29756A00606AFD /* CommunityMapView.swift */; };
 		F5587F9C2A29777400606AFD /* OpenAISwift in Frameworks */ = {isa = PBXBuildFile; productRef = F5587F9B2A29777400606AFD /* OpenAISwift */; };
+		F5587F9E2A29785900606AFD /* GptChatBotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5587F9D2A29785900606AFD /* GptChatBotView.swift */; };
 		F573B76A2A01422D00ADB834 /* frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F573B7692A01422D00ADB834 /* frontendApp.swift */; };
 		F573B76C2A01422D00ADB834 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		F573B76E2A01423000ADB834 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F573B76D2A01423000ADB834 /* Assets.xcassets */; };
@@ -83,6 +84,7 @@
 		AFFCCB5A2A151E8C0096A116 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		AFFCCB5C2A152B090096A116 /* SimpleFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFeed.swift; sourceTree = "<group>"; };
 		F5587F982A29756A00606AFD /* CommunityMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityMapView.swift; sourceTree = "<group>"; };
+		F5587F9D2A29785900606AFD /* GptChatBotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GptChatBotView.swift; sourceTree = "<group>"; };
 		F573B7662A01422D00ADB834 /* frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = frontend.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F573B7692A01422D00ADB834 /* frontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = frontendApp.swift; sourceTree = "<group>"; };
 		F573B76D2A01423000ADB834 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				AFFCCB5C2A152B090096A116 /* SimpleFeed.swift */,
 				AF96E3502A1537AD00A61CCA /* SimpleFeedList.swift */,
 				AFFCCB5A2A151E8C0096A116 /* UserView.swift */,
+				F5587F9D2A29785900606AFD /* GptChatBotView.swift */,
 				AF98A69E2A11295400EC8D39 /* DropdownMenu */,
 			);
 			path = MyPageUI;
@@ -395,6 +398,7 @@
 				AC4FD0182A127D6200314625 /* DiarySlide.swift in Sources */,
 				AF44691D2A1A0A2200DA51E8 /* Comment.swift in Sources */,
 				AC1C7A882A092D0D00B8709C /* NewHomeSlideView.swift in Sources */,
+				F5587F9E2A29785900606AFD /* GptChatBotView.swift in Sources */,
 				F573B76A2A01422D00ADB834 /* frontendApp.swift in Sources */,
 				F5587F992A29756A00606AFD /* CommunityMapView.swift in Sources */,
 			);
