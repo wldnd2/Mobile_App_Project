@@ -24,7 +24,7 @@ struct NewHomeSlide: View {
           ForEach((0..<viewModel.boards.count).reversed(), id: \.self) { index in
             let board = viewModel.boards[index]
             
-            NewHomeSlideView(board: board) {
+            NewHomeSlideView(myIndex: .constant(index), board: board) {
               completion()
             }
             .listRowInsets(EdgeInsets())

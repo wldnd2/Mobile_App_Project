@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HeartButton: View{
   
+  @Binding var isIndex: Int
   @Binding var isLiked : Bool
   @Binding var count : Int
   
@@ -27,13 +28,13 @@ struct HeartButton: View{
     Button( action: {
       if isLiked == false {
         self.count += 1
-        SendAPI.likePUT(kind: self.kind, how: "increase", ID: id){
+        SendAPI.likePUT(kind: self.kind, how: "increase", ID: id, index: isIndex){
           completion()
         }
         print("좋아요 증가!")
       } else {
         self.count -= 1
-        SendAPI.likePUT(kind: self.kind, how: "decrease", ID: id){
+        SendAPI.likePUT(kind: self.kind, how: "decrease", ID: id, index: isIndex){
           completion()
         }
         print("좋아요 감소!")
@@ -66,7 +67,7 @@ struct HeartButton: View{
 
 struct DiaryHeartButton_Previews: PreviewProvider {
     static var previews: some View {
-      HeartButton(isLiked: .constant(false), count: .constant(99), kind: "diary", id: .constant(99), completion: {})
+      HeartButton(isIndex: .constant(99), isLiked: .constant(false), count: .constant(99), kind: "diary", id: .constant(99), completion: {})
     }
 }
 
