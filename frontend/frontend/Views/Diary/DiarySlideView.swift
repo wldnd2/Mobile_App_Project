@@ -9,10 +9,12 @@ import SwiftUI
 
 struct DiarySlideView: View {
   
-  
+    @Binding var myIndex: Int
     @State var diary :Diary
     @State var presented: Bool = false
-    @State private var isLiked = false
+    var isLiked : Bool {
+      return IsLike.diaryLikeList[myIndex]
+    }
   
     var completion: () -> Void
   
@@ -39,7 +41,7 @@ struct DiarySlideView: View {
             Button("삭제", action: {
               SendAPI.feedDELETE(
                 kind: "diary",
-                ID: diary.diaryId){
+                ID: diary.diaryId, index: myIndex){
                   completion()
               }
             })
@@ -86,7 +88,8 @@ private extension DiarySlideView {
   var LikesCommentsEmotions: some View{
       HStack{
         HeartButton(
-          isLiked: $isLiked,
+          isIndex: $myIndex,
+          isLiked: .constant(isLiked),
           count: $diary.diaryLike,
           kind: "diary",
           id: $diary.diaryId
@@ -159,6 +162,6 @@ struct Emotions: View{
 
 struct DiarySlideView_Previews: PreviewProvider {
     static var previews: some View {
-      DiarySlideView(diary: exampleDiary, presented: false, completion: {})
+      DiarySlideView(myIndex: .constant(99), diary: exampleDiary, presented: false, completion: {})
     }
 }

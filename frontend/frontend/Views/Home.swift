@@ -14,7 +14,7 @@ struct Home: View {
   @State var presented = false
   
   @StateObject var getViewModel = GET()
-  
+
   var body: some View {
     
     ZStack{
@@ -23,12 +23,11 @@ struct Home: View {
         .fullScreenCover(isPresented: $presented){
           WriteView(
             presented: $presented) {
-              
             switch selectedIndex {
             case 0:
-                getViewModel.feedFetch(kind: "diary")
-//            case 1:
-//
+              getViewModel.feedFetch(kind: "diary"){}
+            case 1:
+              getViewModel.feedFetch(kind: "board"){}
 //            case 3:
 //
             default:
@@ -41,11 +40,11 @@ struct Home: View {
       switch selectedIndex {
       case 0:
         DiarySlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
-          getViewModel.feedFetch(kind: "diary")
+          getViewModel.feedFetch(kind: "diary"){}
         }
       case 1:
         NewHomeSlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
-          getViewModel.feedFetch(kind: "board")
+          getViewModel.feedFetch(kind: "board"){}
         }
       case 3:
         MapBottomView()
@@ -59,6 +58,18 @@ struct Home: View {
       }
       
     }// Z
+    .onAppear{
+      getViewModel.feedFetch(kind: "diary"){
+        IsLike.diaryLikeList = Array(
+          repeating: false,
+          count: getViewModel.diarys.count)
+      }
+      getViewModel.feedFetch(kind: "board"){
+        IsLike.boardLikeList = Array(
+          repeating: false,
+          count: getViewModel.boards.count)
+      }
+    }
   }
   
   let icons = [

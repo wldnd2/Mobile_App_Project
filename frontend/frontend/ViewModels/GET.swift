@@ -17,7 +17,7 @@ class GET: ObservableObject {
   @Published var diaryComments: [Comment] = []
   // + 길냥이 댓글들..
   
-  func feedFetch(kind: String) {
+  func feedFetch(kind: String, completion: @escaping () -> Void) {
     let baseURL = "http://localhost:8080"
     let urlString = "\(baseURL)/\(kind)/list"
     print(urlString)
@@ -36,12 +36,14 @@ class GET: ObservableObject {
           let boards = try JSONDecoder().decode([Board].self, from : data)
           DispatchQueue.main.async {
             self?.boards = boards
+            completion()
           }
         }
         else if kind == "diary"{
           let diarys = try JSONDecoder().decode([Diary].self, from: data)
           DispatchQueue.main.async {
             self?.diarys = diarys
+            completion()
           }
         }
         else {

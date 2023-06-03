@@ -74,7 +74,7 @@ struct MapBottomView: View {
       }
     }
     .onAppear{
-      viewModel.feedFetch(kind: "map")//수정!!!
+//      viewModel.feedFetch(kind: "map")//수정!!!
     }
 
   }

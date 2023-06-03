@@ -7,10 +7,10 @@
 
 import SwiftUI
 
+
 struct DiarySlide: View {
   
   @Binding var viewModel: GET
-  
   var completion: () -> Void
   
     var body: some View {
@@ -25,9 +25,9 @@ struct DiarySlide: View {
             ForEach((0..<viewModel.diarys.count).reversed(), id: \.self) { index in
                 let diary = viewModel.diarys[index]
                 
-                DiarySlideView(diary: diary) {
-                    completion()
-                }
+              DiarySlideView(myIndex: .constant(index), diary: diary){
+                completion()
+              }
                 .listRowInsets(EdgeInsets())
                 .padding(.bottom, index == 0 ? 80 : 0)
             }

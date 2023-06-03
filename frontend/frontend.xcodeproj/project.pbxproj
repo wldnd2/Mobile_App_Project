@@ -28,6 +28,7 @@
 		AF44691D2A1A0A2200DA51E8 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF44691C2A1A0A2200DA51E8 /* Comment.swift */; };
 		AF4A66AE2A0BABBA00BA8876 /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A66AD2A0BABBA00BA8876 /* KeyboardHandler.swift */; };
 		AF4A66B02A0BBF3200BA8876 /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A66AF2A0BBF3200BA8876 /* HideKeyboard.swift */; };
+		AF6AEEFF2A2B8F200026E98A /* IsLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6AEEFE2A2B8F200026E98A /* IsLike.swift */; };
 		AF96E3512A1537AE00A61CCA /* SimpleFeedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96E3502A1537AD00A61CCA /* SimpleFeedList.swift */; };
 		AF98A6A32A11295400EC8D39 /* DropdownMenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF98A69F2A11295400EC8D39 /* DropdownMenuOption.swift */; };
 		AF98A6A42A11295400EC8D39 /* DropdownMenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF98A6A02A11295400EC8D39 /* DropdownMenuList.swift */; };
@@ -71,6 +72,7 @@
 		AF44691C2A1A0A2200DA51E8 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		AF4A66AD2A0BABBA00BA8876 /* KeyboardHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHandler.swift; sourceTree = "<group>"; };
 		AF4A66AF2A0BBF3200BA8876 /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
+		AF6AEEFE2A2B8F200026E98A /* IsLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsLike.swift; sourceTree = "<group>"; };
 		AF96E3502A1537AD00A61CCA /* SimpleFeedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFeedList.swift; sourceTree = "<group>"; };
 		AF98A69F2A11295400EC8D39 /* DropdownMenuOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownMenuOption.swift; sourceTree = "<group>"; };
 		AF98A6A02A11295400EC8D39 /* DropdownMenuList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownMenuList.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			children = (
 				AC24BD982A1C5BAB00920EA2 /* GET.swift */,
 				AF1C549C2A1E66BB00676467 /* SendAPI.swift */,
+				AF6AEEFE2A2B8F200026E98A /* IsLike.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF6AEEFF2A2B8F200026E98A /* IsLike.swift in Sources */,
 				AFFCCB5F2A152C5C0096A116 /* SimpleFeed.swift in Sources */,
 				AFFCCB5B2A151E8C0096A116 /* UserView.swift in Sources */,
 				AC4FD00C2A1257BC00314625 /* MapKittenTabView.swift in Sources */,

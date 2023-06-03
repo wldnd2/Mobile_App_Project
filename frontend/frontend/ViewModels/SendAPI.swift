@@ -34,6 +34,7 @@ class SendAPI: ObservableObject {
                 return
             }
           completion()
+          IsLike.diaryLikeList.append(false)
           let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
             if let responseJSON = responseJSON as? [String: Any] {
               print("-----2> responseJSON: \(responseJSON)")
@@ -67,6 +68,7 @@ class SendAPI: ObservableObject {
               return
           }
         completion()
+        IsLike.boardLikeList.append(false)
         let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
           if let responseJSON = responseJSON as? [String: Any] {
             print("-----2> responseJSON: \(responseJSON)")
@@ -116,7 +118,7 @@ class SendAPI: ObservableObject {
   
   
   
-  static func likePUT(kind: String, how: String, ID: Int, completion: @escaping () -> Void) {
+  static func likePUT(kind: String, how: String, ID: Int, index: Int, completion: @escaping () -> Void) {
     
       let baseURL = "http://localhost:8080"
       let urlString = "\(baseURL)/\(kind)/\(how)/\(ID)"
@@ -132,6 +134,26 @@ class SendAPI: ObservableObject {
               return
           }
         
+        if kind == "diary"{
+          if how == "increase"{
+            IsLike.diaryLikeList[index] = true
+          }else{
+            IsLike.diaryLikeList[index] = false
+          }
+          
+        }else if kind == "board" {
+          if how == "increase"{
+            IsLike.boardLikeList[index] = true
+          }else{
+            IsLike.boardLikeList[index] = false
+          }
+        }else if kind == "community" {
+//          if how == "increase"{
+//            IsLike.communityLikeList[index] = true
+//          }else{
+//            IsLike.communityLikeList[index] = false
+//          }
+        }
         completion()
         
         let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
@@ -143,7 +165,7 @@ class SendAPI: ObservableObject {
       task.resume()
   }
   
-  static func feedDELETE(kind: String, ID: Int, completion: @escaping () -> Void) {
+  static func feedDELETE(kind: String, ID: Int, index: Int, completion: @escaping () -> Void) {
     
       let baseURL = "http://localhost:8080"
       let urlString = "\(baseURL)/\(kind)/\(ID)"
@@ -158,8 +180,16 @@ class SendAPI: ObservableObject {
               print(error?.localizedDescription ?? "No data")
               return
           }
+        
+        if kind == "diary"{
+          IsLike.diaryLikeList.remove(at: index)
+        }else if kind == "board" {
+          IsLike.boardLikeList.remove(at: index)
+        }else if kind == "community" {
+//          IsLike.communityLikeList.remove(at: index)
+        }
         completion()
-
+          
         let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
           if let responseJSON = responseJSON as? [String: Any] {
             print("-----2> responseJSON: \(responseJSON)")
