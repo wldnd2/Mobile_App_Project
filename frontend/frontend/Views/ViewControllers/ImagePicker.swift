@@ -47,6 +47,11 @@ struct ImagePicker: UIViewControllerRepresentable {
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 parent.selectedImage = image
             }
+          
+            if let imageURL = info[.imageURL] as? URL {
+                let imageName = imageURL.lastPathComponent
+                print(imageName)
+            }
             
             parent.presentationMode.wrappedValue.dismiss()
         }

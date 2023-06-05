@@ -118,7 +118,7 @@ private extension DiarySlideView {
   }
   
   var UserImage: some View{
-    Image("고양이4L")
+    Image(diary.diaryImg)
       .resizable()
       .scaledToFit()
       .frame(maxWidth: .infinity)

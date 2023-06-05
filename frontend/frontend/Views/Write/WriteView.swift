@@ -319,11 +319,13 @@ struct WriteView: View {
         if selectedToggle == 0 {
           print("Clicked")
           SendAPI.diaryPOST(
+            writer: exampleUser.user_name,
             content: self.describe
+            
           ){
             completion()
           }
-          
+          print(self.image)
         }
         //분양 글쓰기
         else if selectedToggle == 1 {

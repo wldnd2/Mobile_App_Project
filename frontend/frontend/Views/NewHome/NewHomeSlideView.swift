@@ -140,7 +140,7 @@ private extension NewHomeSlideView {
   }
   
   var UserImage: some View{
-    Image("고양이1L")
+    Image(board.boardImg)
       .resizable()
       .scaledToFit()
       .frame(maxWidth: .infinity)

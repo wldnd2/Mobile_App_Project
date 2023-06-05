@@ -49,7 +49,11 @@ struct Home: View {
       case 3:
         MapBottomView()
       default:
-        UserView()
+        UserView(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+          getViewModel.myFeedFetch(kind: "board")
+          getViewModel.myFeedFetch(kind: "diary")
+          getViewModel.myFeedFetch(kind: "community")
+        }
       }
       
       VStack {

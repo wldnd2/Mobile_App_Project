@@ -10,7 +10,9 @@ import SwiftUI
 class GET: ObservableObject {
   
   @Published var boards: [Board] = []
+  @Published var myBoards: [Board] = []
   @Published var diarys: [Diary] = []
+  @Published var myDiarys: [Diary] = []
   // + 길냥이 피드..
   
   @Published var boardComments: [Comment] = []
@@ -44,6 +46,44 @@ class GET: ObservableObject {
           DispatchQueue.main.async {
             self?.diarys = diarys
             completion()
+          }
+        }
+        else {
+          // 길냥이 GET..
+        }
+      }
+      catch {
+        print(error)
+      }
+    }
+    task.resume()
+  }
+  
+  func myFeedFetch(kind: String) {
+    let baseURL = "http://localhost:8080"
+    let urlString = "\(baseURL)/\(kind)/user?writer=\(exampleUser.user_name)"
+    print(urlString)
+    
+    guard let url = URL(string :urlString) else {
+      return
+    }
+    
+    let task = URLSession.shared.dataTask(with: url) {
+      [weak self] data, _, error in
+      guard let data = data, error == nil else {
+        return
+      }
+      do {
+        if kind == "board" {
+          let myBoards = try JSONDecoder().decode([Board].self, from : data)
+          DispatchQueue.main.async {
+            self?.myBoards = myBoards
+          }
+        }
+        else if kind == "diary"{
+          let myDiarys = try JSONDecoder().decode([Diary].self, from: data)
+          DispatchQueue.main.async {
+            self?.myDiarys = myDiarys
           }
         }
         else {

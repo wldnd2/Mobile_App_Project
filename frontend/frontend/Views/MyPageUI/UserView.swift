@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct UserView: View {
+  
+  @Binding var viewModel: GET
+  var completion: () -> Void
+  
   var body: some View {
     VStack {
       
@@ -24,14 +28,17 @@ struct UserView: View {
             .background(Color.black)
             .frame(width: 350)
           
-          SimpleFeedList(name: "나의 다이어리")
-          SimpleFeedList(name: "나의 길냥이")
-          SimpleFeedList(name: "나의 분양")
+          SimpleFeedList(viewModel: $viewModel, name: "나의 다이어리", kind: "diary")
+          SimpleFeedList(viewModel: $viewModel, name: "나의 길냥이", kind: "community")
+          SimpleFeedList(viewModel: $viewModel, name: "나의 분양", kind: "board")
             .padding(.bottom, 80)
         }// V
         .frame(maxWidth: .infinity)
       }// ScrollView
     }// V
+    .onAppear{
+      completion()
+    }
   }
 }
 
@@ -57,20 +64,36 @@ private extension UserView{
     }
   }
   var userImage: some View {
-    Image(systemName: "person.circle.fill")
-      .resizable()
-      .frame(width: 80, height: 80)
-      .scaledToFill()
-      .padding(.vertical)
+    
+    return ZStack{
+      Image(systemName: "person.circle.fill")
+        .resizable()
+        .frame(width: 80, height: 80)
+        .scaledToFill()
+        .padding(.vertical)
+      
+      if let imageData =
+          try? Data(contentsOf:
+                      URL(string: exampleUser.profile)!),
+         let userImg = UIImage(data: imageData) {
+           Image(uiImage: userImg)
+            .resizable()
+            .frame(width: 80, height: 80)
+            .scaledToFit()
+            .clipShape(Circle())
+            .padding(.vertical)
+         }
+      
+    }
   }
   var userName: some View {
-    Text("아이디입니당")
+    Text("\(exampleUser.user_name)")
       .font(.title3)
       .fontWeight(.black)
       .padding(.vertical,5)
   }
   var userDescribe: some View {
-    Text("3살 짜리 치즈냥이를 키우고 있어요!!")
+    Text("\(exampleUser.user_email)")
       .font(.subheadline)
       .fontWeight(.bold)
       .padding(.bottom,10)
@@ -79,7 +102,7 @@ private extension UserView{
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView()
+      UserView(viewModel: .constant(GET())){}
     }
 }
 

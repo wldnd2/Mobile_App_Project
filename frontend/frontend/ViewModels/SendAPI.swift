@@ -10,7 +10,7 @@ import Combine
 
 class SendAPI: ObservableObject {
     
-    static func diaryPOST(writer: String = ",,내 아이디,,", title: String = "POST_Title", img: String = "고양이4L", content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
+  static func diaryPOST(writer: String = exampleUser.user_name, title: String = "POST_Title", img: String = "고양이4L", content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
         
         let body: [String: Any] = [
           "diaryWriter": writer,
@@ -44,7 +44,7 @@ class SendAPI: ObservableObject {
         task.resume()
     }
   
-  static func boardPOST(writer: String = "아이디", title: String = "POST_Title", img: String = "고양이4L", content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
+  static func boardPOST(writer: String = exampleUser.user_name, title: String = "POST_Title", img: String = "고양이1L", content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
       
       let body: [String: Any] = [
         "boardWriter": writer,
@@ -81,7 +81,7 @@ class SendAPI: ObservableObject {
   
   
   
-  static func CommendPOST(kind: String, ID: Int, writer: String = ",,내 아이디,,",content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
+  static func CommendPOST(kind: String, ID: Int, writer: String = exampleUser.user_name,content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
       
       let body: [String: Any] = [
         "commentWriter": writer,
@@ -200,7 +200,7 @@ class SendAPI: ObservableObject {
       
   }
   
-  static func feedPUT(kind: String, ID: Int, writer: String = ",,내 아이디,,", title: String = "PUT_Title", img: String = "고양이4L", content: String = "PUT 성공!!!!", completion: @escaping () -> Void) {
+  static func feedPUT(kind: String, ID: Int, writer: String = exampleUser.user_name, title: String = "PUT_Title", img: String = "고양이4L", content: String = "PUT 성공!!!!", completion: @escaping () -> Void) {
     
     var body: [String: Any] = [:]
     
