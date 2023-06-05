@@ -10,13 +10,14 @@ import Combine
 
 class SendAPI: ObservableObject {
     
-  static func diaryPOST(writer: String = exampleUser.user_name, title: String = "POST_Title", img: String = "고양이4L", content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
+  static func diaryPOST(writer: String = exampleUser.user_name, title: String = "POST_Title", img: String = "고양이4L", content: String = "POST 성공!!!!", emotion: Int = 1,completion: @escaping () -> Void) {
         
         let body: [String: Any] = [
           "diaryWriter": writer,
           "diaryTitle": title,
           "diaryImg": img,
-          "diaryContent": content
+          "diaryContent": content,
+          "diaryemotion": emotion
         ]
         
         let jsonData = try? JSONSerialization.data(withJSONObject: body)
