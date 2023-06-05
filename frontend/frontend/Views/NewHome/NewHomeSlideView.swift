@@ -11,9 +11,12 @@ import SwiftUI
 
 struct NewHomeSlideView: View {
   
-  @State var presented: Bool = false
-  @State private var isLiked = false
+  @Binding var myIndex: Int
   @State var board: Board
+  @State var presented: Bool = false
+  var isLiked : Bool { IsLike.boardLikeList[myIndex]
+  }
+  
   
   var completion: () -> Void
   
@@ -38,7 +41,7 @@ struct NewHomeSlideView: View {
             }
           })
           Button("삭제", action: {
-            SendAPI.feedDELETE(kind: "board",ID: board.boardId){
+            SendAPI.feedDELETE(kind: "board",ID: board.boardId, index: myIndex){
               completion()
             }
           })
@@ -86,7 +89,8 @@ private extension NewHomeSlideView {
     HStack{
       
             HeartButton(
-              isLiked: $isLiked,
+              isIndex: $myIndex,
+              isLiked: .constant(isLiked),
               count:$board.boardLike,
               kind: "board",
               id: $board.boardId
@@ -136,7 +140,7 @@ private extension NewHomeSlideView {
   }
   
   var UserImage: some View{
-    Image("고양이1L")
+    Image(board.boardImg)
       .resizable()
       .scaledToFit()
       .frame(maxWidth: .infinity)
@@ -155,6 +159,6 @@ private extension NewHomeSlideView {
 
 struct SlideView_Previews: PreviewProvider {
   static var previews: some View {
-    NewHomeSlideView(presented: false, board: exampleBoard, completion: {})
+    NewHomeSlideView(myIndex: .constant(99), board: exampleBoard, presented: false, completion: {})
   }
 }

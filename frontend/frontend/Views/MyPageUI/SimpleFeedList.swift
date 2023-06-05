@@ -8,7 +8,21 @@
 import SwiftUI
 
 struct SimpleFeedList: View {
+  
+  @Binding var viewModel: GET
+  
   var name: String
+  var kind: String
+  
+  var myBoards: [Board] {
+      viewModel.boards
+  }
+  var myDiarys: [Diary] {
+      viewModel.diarys
+  }
+//  var myCommunitys: [MapBoard] {
+//      viewModel.mapBoards
+//  }
   
     var body: some View {
       VStack {
@@ -33,33 +47,7 @@ struct SimpleFeedList: View {
         ScrollView(.horizontal,showsIndicators: false){
           //작은사진 여러개 + 더보기+버튼
           
-          HStack{
-            Spacer()
-            Spacer()
-            
-            SimpleFeed()
-            SimpleFeed()
-            SimpleFeed()
-            SimpleFeed()
-            //ForEach문으로 구현.,,,
-            
-            VStack {
-              Spacer()
-              Spacer()
-              
-              plusButton
-              
-              Spacer()
-              Spacer()
-              Spacer()
-            }
-            .padding(.leading)
-            
-            Spacer()
-            Spacer()
-          }// H
-
-          
+          simpleList
           
         }//ScrollView
         .frame(height: 200)
@@ -98,11 +86,50 @@ private extension SimpleFeedList {
       .cornerRadius(100)
     .shadow(radius: 5)
   }
-  
+  var simpleList: some View {
+    var myFeeds:[Any] = []
+    if kind == "diary"{
+      myFeeds = myDiarys
+    }else if kind == "board"{
+      myFeeds = myBoards
+    }else if kind == "community"{
+      //
+    }
+    
+    return HStack{
+      Spacer()
+      Spacer()
+
+      //ForEach문으로 구현.,,,
+      ForEach((0..<myFeeds.count).reversed(), id: \.self) { index in
+          let feed = myFeeds[index]
+          
+        SimpleFeed(
+          kind: "board",
+          feed: feed
+        )
+      }
+      
+      VStack {
+        Spacer()
+        Spacer()
+        
+        plusButton
+        
+        Spacer()
+        Spacer()
+        Spacer()
+      }
+      .padding(.leading)
+      
+      Spacer()
+      Spacer()
+    }// H
+  }
 }
 
 struct SimpleFeedList_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleFeedList(name: "리스트 제목")
+      SimpleFeedList(viewModel: .constant(GET()), name: "리스트 제목", kind: "board")
     }
 }
