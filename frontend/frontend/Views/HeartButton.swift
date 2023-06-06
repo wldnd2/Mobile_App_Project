@@ -10,7 +10,7 @@ import SwiftUI
 struct HeartButton: View{
   
   @Binding var isIndex: Int
-  @Binding var isLiked : Bool
+  @State var isLiked : Bool
   @Binding var count : Int
   
   var kind : String
@@ -41,6 +41,7 @@ struct HeartButton: View{
       }
       
       self.isLiked.toggle()
+      print("<<\(self.isLiked)>>")
       self.animate = true
       
       DispatchQueue.main.asyncAfter(deadline:.now() + self.animationDuration, execute: {
@@ -67,7 +68,7 @@ struct HeartButton: View{
 
 struct DiaryHeartButton_Previews: PreviewProvider {
     static var previews: some View {
-      HeartButton(isIndex: .constant(99), isLiked: .constant(false), count: .constant(99), kind: "diary", id: .constant(99), completion: {})
+      HeartButton(isIndex: .constant(99), isLiked: false, count: .constant(99), kind: "diary", id: .constant(99), completion: {})
     }
 }
 

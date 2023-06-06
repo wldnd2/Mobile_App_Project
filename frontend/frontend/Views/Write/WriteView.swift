@@ -10,6 +10,8 @@ import SwiftUI
 struct WriteView: View {
   
   @Binding var presented: Bool
+  @State private var showAlert = false
+  @State private var alarm_msg = ""
   
   @State var selectedToggle = 0
   // 0: 다이어리 / 1: 분양 / 2: 길냥이
@@ -317,19 +319,24 @@ struct WriteView: View {
       Button(action: {
         //다이어리 글쓰기
         if selectedToggle == 0 {
-          print("Clicked")
-          SendAPI.diaryPOST(
-            writer: exampleUser.user_name,
-            content: self.describe
-            
-          ){
-            completion()
+          if let unwrapedMood = catMood {
+            SendAPI.diaryPOST(
+              writer: exampleUser.user_name,
+              content: self.describe,
+              emotion: unwrapedMood.key
+            ){
+              print(unwrapedMood.key)
+              completion()
+            }
+          }else{
+            alarm_msg = "고양이 기분을 선택해주세요!"
+            showAlert = true
           }
-          print(self.image)
         }
         //분양 글쓰기
         else if selectedToggle == 1 {
           SendAPI.boardPOST(
+            writer: exampleUser.user_name,
             content: self.describe
           ){
             completion()
@@ -339,8 +346,13 @@ struct WriteView: View {
         else {
           
         }
-        
-        presented.toggle()
+        if describe == "" {
+          alarm_msg = "내용을 입력해주세요!"
+          showAlert = true
+        }
+        if showAlert == false {
+          presented.toggle()
+        }
         
       }){
         Text("완료")
@@ -351,6 +363,11 @@ struct WriteView: View {
           .background(.blue)
           .cornerRadius(30)
           .shadow(radius: 5)
+      }
+      .alert(isPresented: $showAlert) {
+          Alert(title: Text("림"),
+                message: Text(alarm_msg),
+                dismissButton: .default(Text("확인")))
       }
       
       Spacer()

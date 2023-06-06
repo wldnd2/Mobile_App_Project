@@ -13,29 +13,43 @@ struct UserView: View {
   var completion: () -> Void
   
   var body: some View {
-    VStack {
-      
-      topLayer
-      
-      ScrollView(.vertical){
-        VStack{
-          
-          userImage
-          userName
-          userDescribe
-          
-          Divider()
-            .background(Color.black)
-            .frame(width: 350)
-          
-          SimpleFeedList(viewModel: $viewModel, name: "나의 다이어리", kind: "diary")
-          SimpleFeedList(viewModel: $viewModel, name: "나의 길냥이", kind: "community")
-          SimpleFeedList(viewModel: $viewModel, name: "나의 분양", kind: "board")
-            .padding(.bottom, 80)
-        }// V
-        .frame(maxWidth: .infinity)
-      }// ScrollView
-    }// V
+    NavigationView{
+      VStack {
+        
+        topLayer
+        
+        ScrollView(.vertical){
+          VStack{
+            
+            userImage
+            userName
+            userDescribe
+            
+            Divider()
+              .background(Color.black)
+              .frame(width: 350)
+            
+            SimpleFeedList(
+              viewModel: $viewModel,
+              kind: "diary"){
+                completion()
+              }
+            SimpleFeedList(
+              viewModel: $viewModel,
+              kind: "community"){
+                completion()
+              }
+            SimpleFeedList(
+              viewModel: $viewModel,
+              kind: "board"){
+                completion()
+              }
+              .padding(.bottom, 80)
+          }// V
+          .frame(maxWidth: .infinity)
+        }// ScrollView
+      }// V
+    }// NavigationView
     .onAppear{
       completion()
     }

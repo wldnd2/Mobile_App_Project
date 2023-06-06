@@ -16,4 +16,4 @@ struct User {
 }
 
 let exampleUser: User =
-  User(id: 1, profile: "https://lh3.googleusercontent.com/a/AAcHTtd0eBIbrJWHII4fJSO-AyEThdOa3XMBAKO3OF_E2Q=s96-c", user_email: "noyusu98@gmail.com", user_name: "노유수")
+  User(id: 1, profile: "https://lh3.googleusercontent.com/a/AAcHTtd0eBIbrJWHII4fJSO-AyEThdOa3XMBAKO3OF_E2Q=s96-c", user_email: "noyusu98@gmail.com", user_name: "noyusu")
