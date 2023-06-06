@@ -47,7 +47,7 @@ struct Home: View {
           getViewModel.feedFetch(kind: "board"){}
         }
       case 3:
-        MapBottomView()
+        MapKittenView()
       default:
         UserView(viewModel: Binding(get: { getViewModel }, set: { _ in })){
           getViewModel.myFeedFetch(kind: "board")
