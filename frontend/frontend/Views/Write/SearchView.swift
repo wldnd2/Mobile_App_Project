@@ -7,7 +7,8 @@
 
 import SwiftUI
 import MapKit
-/*
+
+
 @MainActor class location: ObservableObject {
   @Published var long : String
   @Published var lat : String
@@ -17,9 +18,9 @@ import MapKit
     lat = "0.0"
   }
 }
-*/
+
 struct SearchView: View {
-  //@StateObject var locationInfo: location
+  @EnvironmentObject var locationInfo: location
   
   @StateObject var locationManager: LocationManager = .init()
   @State var navigationTag: String?
@@ -225,6 +226,6 @@ struct MapViewHelper: UIViewRepresentable{
 struct SearchView_Previews: PreviewProvider {
   static var previews: some View {
     SearchView()
-      //.environmentObject(location())
+      .environmentObject(location())
   }
 }

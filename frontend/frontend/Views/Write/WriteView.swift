@@ -9,7 +9,8 @@ import SwiftUI
 
 struct WriteView: View {
   
-    
+  @StateObject var locationInfo = location()
+  @State var mapchoose: Bool = false
   @Binding var presented: Bool
   
   @State var selectedToggle = 0
@@ -50,8 +51,14 @@ struct WriteView: View {
           newHomeWriteUI // diaryUI add..
           
         default: // 길냥이 글 작성 UI
-          strayWriteUI // StrayUI add..
           
+          if mapchoose == true {
+            SearchView()
+          }
+          else {
+            strayWriteUI
+              .environmentObject(locationInfo)
+          }
         }
         
         VStack {
@@ -65,7 +72,7 @@ struct WriteView: View {
     }// V
     .onAppear(perform : UIApplication.shared.hideKeyboard)
     .onAppear(perform: subscribeToKeyboardEvents)
-    //.environmentObject(locationInfo)
+    
   }
   
   var topLayer: some View{
@@ -245,9 +252,34 @@ struct WriteView: View {
   // strayWriteUI
   var strayWriteUI: some View {
     ScrollView(.vertical) {
+      
       VStack(alignment: .leading){
+        HStack{
+          Text("위치 선택") // 이미지 선택
+            .font(.title3)
+            .fontWeight(.black)
+            .padding(.horizontal,24)
+            .padding(.top)
+          //위치 선택 버튼 완성
+          //이 버튼 누르면 이제 search view 로 이동
+          Button(action : {
+            mapchoose = true
+          }, label: {
+            ZStack{
+              Rectangle()
+                .fill(Color(UIColor.lightGray))
+                .frame(width: 250, height: 40)
+                .cornerRadius(20)
+                .padding(.top, 10)
+              Image(systemName: "magnifyingglass")
+                .padding(.leading, 200)
+                .padding(.top, 10)
+              
+            }
+          })
+        }
         
-
+        
         Text("이미지 선택") // 이미지 선택
           .font(.title3)
           .fontWeight(.black)
