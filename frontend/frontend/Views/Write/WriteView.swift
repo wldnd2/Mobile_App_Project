@@ -9,6 +9,7 @@ import SwiftUI
 
 struct WriteView: View {
   
+    
   @Binding var presented: Bool
   
   @State var selectedToggle = 0
@@ -64,6 +65,7 @@ struct WriteView: View {
     }// V
     .onAppear(perform : UIApplication.shared.hideKeyboard)
     .onAppear(perform: subscribeToKeyboardEvents)
+    //.environmentObject(locationInfo)
   }
   
   var topLayer: some View{

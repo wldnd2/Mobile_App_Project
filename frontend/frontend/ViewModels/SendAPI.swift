@@ -148,11 +148,11 @@ class SendAPI: ObservableObject {
             IsLike.boardLikeList[index] = false
           }
         }else if kind == "community" {
-//          if how == "increase"{
-//            IsLike.communityLikeList[index] = true
-//          }else{
-//            IsLike.communityLikeList[index] = false
-//          }
+          if how == "increase"{
+            IsLike.communityLikeList[index] = true
+          }else{
+            IsLike.communityLikeList[index] = false
+          }
         }
         completion()
         
@@ -186,7 +186,7 @@ class SendAPI: ObservableObject {
         }else if kind == "board" {
           IsLike.boardLikeList.remove(at: index)
         }else if kind == "community" {
-//          IsLike.communityLikeList.remove(at: index)
+          IsLike.communityLikeList.remove(at: index)
         }
         completion()
           
@@ -219,7 +219,13 @@ class SendAPI: ObservableObject {
         "boardContent": content
       ]
     } else {
-      // 길냥이.. (수정X)
+      body = [
+        "communityWriter" : writer,
+        "communityTitle": title,
+        "communityImg": img,
+        "communityContent": content
+      ]
+    
     }
     
     let jsonData = try? JSONSerialization.data(withJSONObject: body)
