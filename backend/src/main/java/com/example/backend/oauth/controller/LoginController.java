@@ -18,7 +18,7 @@ public class LoginController {
 
     // Oauth2를 통해서 사용자의 이름과 이메일 받음
     @RequestMapping(value="/api/v1/oauth2/google", method = RequestMethod.GET)
-    public String loginGoogle(@RequestParam(value = "code") String authCode){
+    public User loginGoogle(@RequestParam(value = "code") String authCode){//이거 변경?
         return loginService.getGoogleEmail(authCode);
     }
 }

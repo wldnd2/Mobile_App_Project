@@ -7,9 +7,11 @@ import com.example.backend.user.domain.User;
 import com.example.backend.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +34,7 @@ public class LoginService {
         return reqUrl;
     }
 
-    public String getGoogleEmail(String authCode) {
+    public User getGoogleEmail(String authCode) {
         RestTemplate restTemplate = new RestTemplate();
         GoogleRequest googleOAuthRequestParam = GoogleRequest
                 .builder()
@@ -60,9 +62,8 @@ public class LoginService {
                     .profile(googleProfile)
                     .build();
             userRepository.save(newUser);
-            return "Login Successfully!";
         }
-
-        return "Already exists!";
+        User userResult2 = userRepository.findByEmail(googleEmail).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return userResult2;
     }
 }
