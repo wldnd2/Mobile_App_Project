@@ -50,8 +50,7 @@ struct WriteView: View {
       ToggleView(selectedToggle: $selectedToggle, toggleTexts: ["다이어리", "   분양    ", " 길냥이   "])
       
       ZStack{
-        
-        
+
         switch selectedToggle {
           
         case 0: // 다이어리 글 작성 UI
@@ -67,7 +66,7 @@ struct WriteView: View {
               SearchView(mapchoose: $mapchoose)
                 .navigationBarBackButtonHidden(true)
             }
-            .environmentObject(locationInfo)
+            .environmentObject(location())
           }
           else {
             strayWriteUI
@@ -277,6 +276,8 @@ struct WriteView: View {
           //이 버튼 누르면 이제 search view 로 이동
           Button(action : {
             mapchoose = true
+            print("받아온 위도: \(locationInfo.lat)")
+            print("받아온 경도: \(locationInfo.long)")
           }, label: {
             ZStack{
               Rectangle()
@@ -291,6 +292,8 @@ struct WriteView: View {
             }
           })
         }
+        
+        
         
         
         Text("이미지 선택") // 이미지 선택

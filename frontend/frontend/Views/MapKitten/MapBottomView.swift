@@ -15,17 +15,22 @@ struct MapBottomView: View {
    
   
   var body: some View {
+    ZStack {
+      
       NavigationView{
         Button {
           showSheet.toggle()
         } label: {
-          VStack(){
-            Image(systemName: "chevron.up")
-              .foregroundColor(.black)
-          }
-          .frame(width: 500, height: 50)
-          //.background(.gray)
-          .padding(.top, 500)
+            
+            VStack(){
+              Image(systemName: "chevron.up")
+                .foregroundColor(.black)
+            }
+            .frame(width: 500, height: 50)
+            //.background(.gray)
+            .padding(.top, 500)
+            
+          
         }
         .navigationTitle("길냥이 지도")
         .halfSheet(showSheet: $showSheet) {
@@ -75,8 +80,10 @@ struct MapBottomView: View {
       .onAppear{
         //      viewModel.feedFetch(kind: "map")//수정!!!
       }
-      
+      CommunityMapView()
     }
+    
+  }
   
 }
 

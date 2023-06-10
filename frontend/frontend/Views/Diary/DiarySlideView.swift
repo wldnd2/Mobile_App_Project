@@ -12,6 +12,7 @@ struct DiarySlideView: View {
     @Binding var myIndex: Int
     @State var diary :Diary
     @State var presented: Bool = false
+  
     var isLiked : Bool {
       return IsLike.diaryLikeList[myIndex]
     }
