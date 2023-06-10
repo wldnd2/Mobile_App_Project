@@ -12,9 +12,9 @@ import MapKit
 
 
 struct SearchView: View {
+  @EnvironmentObject var locationInfo: location
   
   @Binding var mapchoose: Bool
-  
   
   @StateObject var locationManager: LocationManager = .init()
   @State var navigationTag: String?

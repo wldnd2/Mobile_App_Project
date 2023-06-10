@@ -284,10 +284,12 @@ struct WriteView: View {
               SearchView(mapchoose: $mapchoose)
                 .navigationBarBackButtonHidden(false)
             }
+            .environmentObject(locationInfo)
           }
         }
-        Text("\(locationInfo.lat)")
-        Text("\(locationInfo.long)")
+        //Text("\(locationInfo.lat)")
+        //Text("\(locationInfo.long)")
+        
         Text("이미지 선택") // 이미지 선택
           .font(.title3)
           .fontWeight(.black)
