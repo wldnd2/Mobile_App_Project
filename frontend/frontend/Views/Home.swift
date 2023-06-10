@@ -46,8 +46,9 @@ struct Home: View {
         NewHomeSlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
           getViewModel.feedFetch(kind: "board"){}
         }
-      case 3:
-        MapKittenView()
+      //case 3:
+        //MapBottomView()
+        
       default:
         UserView(viewModel: Binding(get: { getViewModel }, set: { _ in })){
           getViewModel.myFeedFetch(kind: "board")
@@ -138,4 +139,5 @@ struct SwiftUIView_Previews: PreviewProvider {
     Home()
   }
 }
+
 

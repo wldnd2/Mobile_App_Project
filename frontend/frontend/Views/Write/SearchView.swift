@@ -9,18 +9,12 @@ import SwiftUI
 import MapKit
 
 
-@MainActor class location: ObservableObject {
-  @Published var long : String
-  @Published var lat : String
-  
-  init() {
-    long = "0.0"
-    lat = "0.0"
-  }
-}
+
 
 struct SearchView: View {
-  @EnvironmentObject var locationInfo: location
+  
+  @Binding var mapchoose: Bool
+  
   
   @StateObject var locationManager: LocationManager = .init()
   @State var navigationTag: String?
@@ -113,7 +107,7 @@ struct SearchView: View {
     .frame(maxHeight: .infinity, alignment: .top)
     .background{
       NavigationLink(tag: "MAPVIEW", selection: $navigationTag){
-        MapViewSelection()
+        MapViewSelection(mapchoose: $mapchoose)
           .environmentObject(locationManager)
           .navigationBarHidden(true)
       }label: {
@@ -125,6 +119,9 @@ struct SearchView: View {
 }
 
 struct MapViewSelection: View{
+  @EnvironmentObject var locationInfo: location
+  @Binding var mapchoose: Bool
+  
   @EnvironmentObject var locationManager: LocationManager
   @Environment(\.dismiss) var dismiss
   @State private var selectedLatitude: Double?
@@ -175,6 +172,10 @@ struct MapViewSelection: View{
                 selectedLongitude = place.location?.coordinate.longitude
                 print("선택된 위치의 위도: \(selectedLatitude ?? 0.0)")
                 print("선택된 위치의 경도: \(selectedLongitude ?? 0.0)")
+                locationInfo.lat = String(format: "%f", selectedLatitude ?? 0.0)
+                locationInfo.long = String(format: "%f", selectedLongitude ?? 0.0)
+                mapchoose = false
+              
             }
           }) {
             Label(
@@ -225,7 +226,7 @@ struct MapViewHelper: UIViewRepresentable{
 
 struct SearchView_Previews: PreviewProvider {
   static var previews: some View {
-    SearchView()
+    SearchView(mapchoose: .constant(true))
       .environmentObject(location())
   }
 }

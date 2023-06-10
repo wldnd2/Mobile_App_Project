@@ -7,6 +7,16 @@
 
 import SwiftUI
 
+@MainActor class location: ObservableObject {
+  @Published var long : String
+  @Published var lat : String
+  
+  init() {
+    long = "0.0"
+    lat = "0.0"
+  }
+}
+
 struct WriteView: View {
   
   @StateObject var locationInfo = location()
@@ -53,11 +63,14 @@ struct WriteView: View {
         default: // 길냥이 글 작성 UI
           
           if mapchoose == true {
-            SearchView()
+            NavigationView(){
+              SearchView(mapchoose: $mapchoose)
+                .navigationBarBackButtonHidden(true)
+            }
+            .environmentObject(locationInfo)
           }
           else {
             strayWriteUI
-              .environmentObject(locationInfo)
           }
         }
         
