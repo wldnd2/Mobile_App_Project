@@ -32,7 +32,7 @@ struct Home: View {
             case 3:
               getViewModel.feedFetch(kind: "community"){}
             default:
-              //
+            //
               break
             }
           }

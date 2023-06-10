@@ -28,12 +28,16 @@ struct WriteView: View {
   
   @State private var title = ""
   
+  
   @State var catMood: DropdownMenuOption? = nil
   
   @State private var image = UIImage()
   @State private var openPhoto = false
   
   @State private var describe = ""
+  
+  @State private var latitude = ""
+  @State private var longitude = ""
   
   @State private var keyboardHeight: CGFloat = 0
   
@@ -286,9 +290,18 @@ struct WriteView: View {
             }
             .environmentObject(locationInfo)
           }
+          /*
+          .onAppear{
+            latitude = locationInfo.lat
+            longitude = locationInfo.long
+          }*/
         }
-        //Text("\(locationInfo.lat)")
-        //Text("\(locationInfo.long)")
+        Text("\(locationInfo.lat)")
+        Text("\(locationInfo.long)")
+        
+        //latitude = locationInfo.lat
+        //longitude = locationInfo.long
+        
         
         Text("이미지 선택") // 이미지 선택
           .font(.title3)
@@ -381,7 +394,11 @@ struct WriteView: View {
         }
         //길냥이 글쓰기
         else {
-          
+          SendAPI.communityPOST(
+            longitude: locationInfo.long, latitude: locationInfo.lat, content: self.describe
+          ){
+            completion()
+          }
         }
         
         presented.toggle()

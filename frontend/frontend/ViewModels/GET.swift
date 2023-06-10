@@ -136,7 +136,10 @@ class GET: ObservableObject {
           }
         }
         else{
-          // + 길냥이...
+          let communityComments = try JSONDecoder().decode([Comment].self, from: data)
+          DispatchQueue.main.async {
+            self?.communityComments = communityComments
+          }
         }
       }
       catch {

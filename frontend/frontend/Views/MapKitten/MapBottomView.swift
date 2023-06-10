@@ -21,7 +21,6 @@ struct MapBottomView: View {
         Button {
           showSheet.toggle()
         } label: {
-            
             VStack(){
               Image(systemName: "chevron.up")
                 .foregroundColor(.black)
@@ -45,12 +44,11 @@ struct MapBottomView: View {
                 .padding(.bottom,10)
                 .bold()
               
-              /* ForEach(viewModel.boards, id: \.self) { board in
-               MapKittenTabView(boardex: board)
+              /*
+              ForEach(viewModel.boards, id: \.self) { board in
+                MapKittenTabView(boardex: board)
                }
                */
-              
-              //MapKittenTabView(boardex: boardex1)
               
               
               Text("인기 길냥이")
@@ -60,12 +58,24 @@ struct MapBottomView: View {
                 .padding(.leading, 30)
                 .padding(.bottom,10)
                 .bold()
+             
+              /*
+               
+               ForEach((0..<viewModel.boards.count).reversed(), id: \.self) { index in
+                 let board = viewModel.boards[index]
+                 
+                 NewHomeSlideView(myIndex: .constant(index), board: board) {
+                   completion()
+                 }
+                 .listRowInsets(EdgeInsets())
+               
+               */
               /*
                ForEach(viewModel.boards, id: \.self) { board in
                MapKittenTabView(boardex: board)
-               }
+               }*/
                //MapKittenTabView(boardex: boardex1)
-               */
+               
               
             }// V
             .frame(maxWidth: .infinity, alignment: .trailing)
