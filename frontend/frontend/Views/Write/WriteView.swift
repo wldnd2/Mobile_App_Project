@@ -46,13 +46,11 @@ struct WriteView: View {
     VStack{
       
       topLayer // 상단 뒤로가기, 글쓰기
-      
       ToggleView(selectedToggle: $selectedToggle, toggleTexts: ["다이어리", "   분양    ", " 길냥이   "])
-      
-      ZStack{
 
+      ZStack{
         switch selectedToggle {
-          
+
         case 0: // 다이어리 글 작성 UI
           diaryWriteUI  // diaryUI add..
           
@@ -60,17 +58,7 @@ struct WriteView: View {
           newHomeWriteUI // diaryUI add..
           
         default: // 길냥이 글 작성 UI
-          
-          if mapchoose == true {
-            NavigationView(){
-              SearchView(mapchoose: $mapchoose)
-                .navigationBarBackButtonHidden(true)
-            }
-            .environmentObject(location())
-          }
-          else {
-            strayWriteUI
-          }
+          strayWriteUI
         }
         
         VStack {
@@ -275,9 +263,9 @@ struct WriteView: View {
           //위치 선택 버튼 완성
           //이 버튼 누르면 이제 search view 로 이동
           Button(action : {
-            mapchoose = true
             print("받아온 위도: \(locationInfo.lat)")
             print("받아온 경도: \(locationInfo.long)")
+            mapchoose = true
           }, label: {
             ZStack{
               Rectangle()
@@ -291,11 +279,15 @@ struct WriteView: View {
               
             }
           })
+          .sheet(isPresented: $mapchoose) {
+            NavigationView(){
+              SearchView(mapchoose: $mapchoose)
+                .navigationBarBackButtonHidden(false)
+            }
+          }
         }
-        
-        
-        
-        
+        Text("\(locationInfo.lat)")
+        Text("\(locationInfo.long)")
         Text("이미지 선택") // 이미지 선택
           .font(.title3)
           .fontWeight(.black)

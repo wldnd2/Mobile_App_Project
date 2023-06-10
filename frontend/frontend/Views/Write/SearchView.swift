@@ -22,7 +22,7 @@ struct SearchView: View {
     VStack{
       HStack(spacing: 15){
         Button{
-          
+          mapchoose = false
         } label: {
           Image(systemName: "chevron.left")
             .font(.title3)
