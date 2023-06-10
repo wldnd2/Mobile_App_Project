@@ -8,19 +8,19 @@
 import Foundation
 
 struct Community: Hashable, Codable {
-  let communityId: Int
+  var communityId: Int
   let communityWriter: String
   let communityImg: String
   let communityContent: String
   let communityDate: String
-  let communityLike: Int
+  var communityLike: Int
   let latitude: String
   let longitude: String
 }
 
 
 
-let communityes: Community = Community(
+let communities: Community = Community(
   communityId : 1234,
   communityWriter : "Google_1",
   communityImg : "image.jpg",

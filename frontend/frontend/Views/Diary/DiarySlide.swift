@@ -15,9 +15,6 @@ struct DiarySlide: View {
   
     var body: some View {
       VStack{
-        
-        
-        
         DiaryHeaderView()
           .frame(width: 400, height: 50)
         ScrollView(){
@@ -25,6 +22,7 @@ struct DiarySlide: View {
             ForEach((0..<viewModel.diarys.count).reversed(), id: \.self) { index in
                 let diary = viewModel.diarys[index]
                 
+              //diarys -> communities /
               DiarySlideView(myIndex: .constant(index), diary: diary){
                 completion()
               }
