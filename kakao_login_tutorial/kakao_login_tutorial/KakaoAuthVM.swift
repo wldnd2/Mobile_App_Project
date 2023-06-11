@@ -12,15 +12,21 @@ import KakaoSDKUser
 
 class KakaoAuthVM : ObservableObject{
     
-    func handleKakaoLogout(){
-        UserApi.shared.logout {(error) in
-            if let error = error {
-                print(error)
-            }
-            else {
-                print("logout() success.")
+    func handleKakaoLogout() async -> Bool{
+        
+        await withCheckedContinuation{continuation in
+            UserApi.shared.logout {(error) in
+                if let error = error {
+                    print(error)
+                    continuation.resume(returning: false)
+                }
+                else {
+                    print("logout() success.")
+                    continuation.resume(returning: true)
+                }
             }
         }
+        
     }
     
     func handleKakakoLogin(){
