@@ -12,6 +12,15 @@ import KakaoSDKUser
 
 class KakaoAuthVM : ObservableObject{
     
+    @Published var isLoggedIn : Bool = false
+    
+    func kakaoLogout(){
+        Task{
+            if await handleKakaoLogout(){
+                isLoggedIn = false
+            }
+        }
+    }
     func handleKakaoLogout() async -> Bool{
         
         await withCheckedContinuation{continuation in
