@@ -14,9 +14,12 @@ struct DiarySlideView: View {
     @State var presented: Bool = false
   
     var isLiked : Bool {
-      return IsLike.diaryLikeList[myIndex]
+      if myIndex < IsLike.diaryLikeList.count {
+        return IsLike.diaryLikeList[myIndex]
+      } else {
+        return false
+      }
     }
-  
     var completion: () -> Void
   
     var body: some View {

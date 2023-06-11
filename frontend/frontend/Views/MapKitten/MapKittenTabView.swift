@@ -14,8 +14,12 @@ struct MapKittenTabView: View {
   @State var community :Community
   //var isLiked: Bool = false
   var isLiked : Bool {
-    IsLike.communityLikeList[myIndex]
-  }
+        if myIndex < IsLike.communityLikeList.count {
+          return IsLike.communityLikeList[myIndex]
+        } else {
+          return false
+        }
+      }
   
   //@State private var isLiked = false
   @State private var count: Int = 0
@@ -61,9 +65,7 @@ struct MapKittenTabView: View {
       .padding(.bottom, 20)
       //          .padding(.leading, 30)
     }
-    //    .onAppear {
-    //        count = mapex.communityLike
-    //    }
+    
     
   }
 }

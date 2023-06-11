@@ -87,8 +87,9 @@ struct MapBottomView: View {
           .frame(maxWidth: .infinity, alignment: .trailing)
         }
         
-      }onEnd: {
-        
+      }onEnd: {}
+      .onAppear {
+        completion()
       }
     }
    

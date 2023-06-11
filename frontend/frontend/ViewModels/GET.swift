@@ -53,6 +53,7 @@ class GET: ObservableObject {
           let communities = try JSONDecoder().decode([Community].self, from: data)
           DispatchQueue.main.async {
             self?.communities = communities
+            print(urlString)
             completion()
           }
         }
