@@ -20,7 +20,9 @@ struct ContentView: View {
                 kakaoAuthVM.handleKakakoLogin()
                 
             })
-            Button("카카오 로그아웃", action: {})
+            Button("카카오 로그아웃", action: {
+                kakaoAuthVM.handleKakaoLogout()
+            })
         }
         
     }

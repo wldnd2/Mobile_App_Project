@@ -12,6 +12,16 @@ import KakaoSDKUser
 
 class KakaoAuthVM : ObservableObject{
     
+    func handleKakaoLogout(){
+        UserApi.shared.logout {(error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("logout() success.")
+            }
+        }
+    }
     
     func handleKakakoLogin(){
         // 카카오톡 실행 가능 여부 확인
