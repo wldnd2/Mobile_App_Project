@@ -65,17 +65,6 @@ struct CommunityMapView: View {
   }
 }
 
-struct Community: Decodable, Identifiable {
-  let id = UUID()
-  let communityId: Int
-  let communityWriter: String
-  let communityImg: String
-  let communityContent: String
-  let communityDate: String
-  let communityLike: Int
-  let latitude: String
-  let longitude: String
-}
 
 struct MapView: UIViewRepresentable {
   var annotations: [MKPointAnnotation]

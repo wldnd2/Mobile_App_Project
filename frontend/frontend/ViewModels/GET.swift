@@ -13,11 +13,12 @@ class GET: ObservableObject {
   @Published var myBoards: [Board] = []
   @Published var diarys: [Diary] = []
   @Published var myDiarys: [Diary] = []
-  // + 길냥이 피드..
+  @Published var communities: [Community] = []
+  @Published var myCommunities: [Community] = []
   
   @Published var boardComments: [Comment] = []
   @Published var diaryComments: [Comment] = []
-  // + 길냥이 댓글들..
+  @Published var communityComments: [Comment] = []
   
   func feedFetch(kind: String, completion: @escaping () -> Void) {
     let baseURL = "http://localhost:8080"
@@ -49,7 +50,12 @@ class GET: ObservableObject {
           }
         }
         else {
-          // 길냥이 GET..
+          let communities = try JSONDecoder().decode([Community].self, from: data)
+          DispatchQueue.main.async {
+            self?.communities = communities
+            print(urlString)
+            completion()
+          }
         }
       }
       catch {
@@ -89,7 +95,10 @@ class GET: ObservableObject {
           }
         }
         else {
-          // 길냥이 GET..
+          let myCommunities = try JSONDecoder().decode([Community].self, from: data)
+          DispatchQueue.main.async {
+            self?.myCommunities = myCommunities
+          }
         }
       }
       catch {
@@ -130,7 +139,10 @@ class GET: ObservableObject {
           }
         }
         else{
-          // + 길냥이...
+          let communityComments = try JSONDecoder().decode([Comment].self, from: data)
+          DispatchQueue.main.async {
+            self?.communityComments = communityComments
+          }
         }
       }
       catch {

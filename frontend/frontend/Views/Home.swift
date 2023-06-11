@@ -1,3 +1,4 @@
+
 //
 //  SwiftUIView.swift
 //  frontend
@@ -28,10 +29,10 @@ struct Home: View {
               getViewModel.feedFetch(kind: "diary"){}
             case 1:
               getViewModel.feedFetch(kind: "board"){}
-//            case 3:
-//
+            case 3:
+              getViewModel.feedFetch(kind: "community"){}
             default:
-              //
+            //
               break
             }
           }
@@ -47,7 +48,10 @@ struct Home: View {
           getViewModel.feedFetch(kind: "board"){}
         }
       case 3:
-        MapBottomView()
+        MapBottomView(viewModel: Binding(get: { getViewModel }, set: { _ in})){
+          getViewModel.feedFetch(kind: "community"){}
+        }
+        
       default:
         UserView(viewModel: Binding(get: { getViewModel }, set: { _ in })){
           getViewModel.myFeedFetch(kind: "board")

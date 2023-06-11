@@ -14,8 +14,13 @@ struct NewHomeSlideView: View {
   @Binding var myIndex: Int
   @State var board: Board
   @State var presented: Bool = false
-  var isLiked : Bool { IsLike.boardLikeList[myIndex]
-  }
+  var isLiked : Bool {
+        if myIndex < IsLike.boardLikeList.count {
+          return IsLike.boardLikeList[myIndex]
+        } else {
+          return false
+        }
+      }
   
   
   var completion: () -> Void

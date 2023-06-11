@@ -79,7 +79,41 @@ class SendAPI: ObservableObject {
       task.resume()
   }
   
-  
+  static func communityPOST(writer: String = exampleUser.user_name, title: String = "POST_Title", img: String = "고양이4L", longitude: String = "35", latitude : String = "122", content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
+        
+        let body: [String: Any] = [
+          "communityWriter": writer,
+          "communityTitle": title,
+          "communityImg": img,
+          "communityContent": content,
+          "latitude": latitude,
+          "longitude": longitude
+        ]
+        
+        let jsonData = try? JSONSerialization.data(withJSONObject: body)
+        
+        let url = URL(string: "http://localhost:8080/community/create")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("\(String(describing: jsonData?.count))", forHTTPHeaderField: "Content-Length")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+          completion()
+          IsLike.diaryLikeList.append(false)
+          let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            if let responseJSON = responseJSON as? [String: Any] {
+              print("-----2> responseJSON: \(responseJSON)")
+            }
+        }
+        
+        task.resume()
+    }
   
   
   static func CommendPOST(kind: String, ID: Int, writer: String = exampleUser.user_name,content: String = "POST 성공!!!!",completion: @escaping () -> Void) {
@@ -149,11 +183,11 @@ class SendAPI: ObservableObject {
             IsLike.boardLikeList[index] = false
           }
         }else if kind == "community" {
-//          if how == "increase"{
-//            IsLike.communityLikeList[index] = true
-//          }else{
-//            IsLike.communityLikeList[index] = false
-//          }
+          if how == "increase"{
+            IsLike.communityLikeList[index] = true
+          }else{
+            IsLike.communityLikeList[index] = false
+          }
         }
         completion()
         
@@ -187,7 +221,7 @@ class SendAPI: ObservableObject {
         }else if kind == "board" {
           IsLike.boardLikeList.remove(at: index)
         }else if kind == "community" {
-//          IsLike.communityLikeList.remove(at: index)
+          IsLike.communityLikeList.remove(at: index)
         }
         completion()
           
@@ -220,7 +254,13 @@ class SendAPI: ObservableObject {
         "boardContent": content
       ]
     } else {
-      // 길냥이.. (수정X)
+      body = [
+        "communityWriter" : writer,
+        "communityTitle": title,
+        "communityImg": img,
+        "communityContent": content
+      ]
+    
     }
     
     let jsonData = try? JSONSerialization.data(withJSONObject: body)
