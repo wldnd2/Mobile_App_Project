@@ -32,7 +32,7 @@ public class DiaryService {
                 .diaryImg(diary.getDiaryImg())
                 .diaryDate(new Timestamp(System.currentTimeMillis()))
                 .diaryLike(0)
-                .diaryemotion(0)
+                .diaryemotion(diary.getDiaryemotion())
                 .build();
         return diaryRepository.save(newDiary);
     }

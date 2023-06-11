@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CommentsPiece: View {
-    @State var comment :BoardComment
+    @State var comment :Comment
   
     var body: some View {
       HStack(alignment: .top){
@@ -58,6 +58,6 @@ private extension CommentsPiece {
 
 struct CommentsPiece_Previews: PreviewProvider {
     static var previews: some View {
-      CommentsPiece( comment: exampleBoardComment)
+      CommentsPiece( comment: exampleComment)
     }
 }

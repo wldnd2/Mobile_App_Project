@@ -9,30 +9,47 @@ import SwiftUI
 
 struct MapBottomView: View {
   
+  @Binding var viewModel: GET
+  var completion: () -> Void
   @State var showSheet: Bool = false
-  @StateObject var viewModel = MapBoardGET()
   @Environment(\.presentationMode) var presentationMode // 추가
-   
   
   var body: some View {
-    NavigationView{
+    ZStack{
+      CommunityMapView()
+      
+      VStack(alignment: .leading) {
+        Text("길냥이 지도")
+          .font(.title)
+          .foregroundColor(.black)
+          .bold()
+          .padding(.leading, 10)
+          .padding(.trailing, 220)
+      }
+      .frame(width: 500, height: 70)
+      .background(Color.white)
+      .padding(.bottom, 700)
+      
       Button {
         showSheet.toggle()
       } label: {
-        VStack{
+        VStack(){
           Image(systemName: "chevron.up")
             .foregroundColor(.black)
+            .bold()
+            .padding(.bottom, 90)
         }
-        .frame(width: 500, height: 50)
-        .background(.gray)
+        .frame(width: 500, height: 120)
+        .background(.white)
+        .padding(.top, 720)
+        
         
       }
       .navigationTitle("길냥이 지도")
       .halfSheet(showSheet: $showSheet) {
-        //그 반짝 뷰에 들어갈 내용
+        
         ScrollView() {
           VStack{
-            
             Text("최근 목격된 길냥이")
               .font(.title3)
               .padding(.top, 20)
@@ -41,13 +58,14 @@ struct MapBottomView: View {
               .padding(.bottom,10)
               .bold()
             
-            ForEach(viewModel.boards, id: \.self) { board in
-              MapKittenTabView(boardex: board)
+            ForEach((0..<viewModel.communities.count).reversed(), id: \.self) { index in
+                let community = viewModel.communities[index]
+                
+              MapKittenTabView(myIndex: .constant(index), community: community){
+                completion()
+              }
+                
             }
-            
-            
-            //MapKittenTabView(boardex: boardex1)
-            
             
             Text("인기 길냥이")
               .font(.title3)
@@ -57,28 +75,27 @@ struct MapBottomView: View {
               .padding(.bottom,10)
               .bold()
             
-            ForEach(viewModel.boards, id: \.self) { board in
-              MapKittenTabView(boardex: board)
+            ForEach((0..<viewModel.communities.count).reversed(), id: \.self) { index in
+                let community = viewModel.communities[index]
+                
+              MapKittenTabView(myIndex: .constant(index), community: community){
+                completion()
+              }
+               
             }
-            //MapKittenTabView(boardex: boardex1)
-            
-            
-          }// V
+          }
           .frame(maxWidth: .infinity, alignment: .trailing)
-          
         }
-        .ignoresSafeArea()
-      } onEnd: {
-        print("Dismissed")
-        presentationMode.wrappedValue.dismiss()
+        
+      }onEnd: {}
+      .onAppear {
+        completion()
       }
     }
-    .onAppear{
-      viewModel.fetch()
-    }
-
+   
   }
 }
+  
 
 extension View {
   func halfSheet<SheetView: View>(showSheet: Binding<Bool>, @ViewBuilder sheetView: @escaping ()-> SheetView, onEnd: @escaping()->())->some View{
@@ -134,33 +151,18 @@ struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable{
     init(parent: HalfSheetHelper) {
         self.parent = parent
     }
-    /*
+    
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         parent.showSheet = false
         parent.onEnd()
     }
-     */
+     
 }
 
 }
 
-class CustomHostingController<Content: View>: UIHostingController<Content> {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        if let presentationController = presentationController as? UISheetPresentationController {
-            presentationController.detents = [
-                .medium(),
-                .large()
-            ]
-
-            presentationController.prefersGrabberVisible = true
-        }
-    }
-}
 
 
-/*
 class CustomHostingController<Content: View>: UIHostingController<Content>{
   override func viewDidLoad() {
     if let presentationController = presentationController as?
@@ -173,11 +175,11 @@ class CustomHostingController<Content: View>: UIHostingController<Content>{
       presentationController.prefersGrabberVisible = true
     }
   }
-}*/
+}
 
 
 struct MapBottomView_Previews: PreviewProvider {
     static var previews: some View {
-        MapBottomView()
+      MapBottomView(viewModel: .constant(GET()), completion: {})
     }
 }

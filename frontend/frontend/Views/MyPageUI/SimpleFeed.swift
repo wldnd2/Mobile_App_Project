@@ -9,7 +9,15 @@ import SwiftUI
 
 struct SimpleFeed: View {
   
-  @State private var isLiked = true
+  var kind: String
+  @State private var isLiked = false
+  var feed: Any
+  
+  init(kind: String, isLiked: Bool = false, feed: Any) {
+    self.kind = kind
+    self._isLiked = State(initialValue: isLiked)
+    self.feed = feed
+  }
   
   var body: some View {
     
@@ -36,13 +44,29 @@ struct SimpleFeed: View {
 private extension SimpleFeed {
   
   var productImage: some View {
-    Image("고양이1L")
+    var img: String = ""
+    if let typedFeed = feed as? Board {
+      img = typedFeed.boardImg
+    } else if let typedFeed = feed as? Diary {
+      img = typedFeed.diaryImg
+    } else if let typedFeed = feed as? MapBoard {
+      img = typedFeed.communityImg
+    }
+    return Image(img)
       .resizable()
       .scaledToFill()
   }
 
   var productDescription : some View {
-    VStack(alignment:.center){
+    var like_num: Int = 0
+    if let typedFeed = feed as? Board {
+      like_num = typedFeed.boardLike
+    } else if let typedFeed = feed as? Diary {
+      like_num = typedFeed.diaryLike
+    } else if let typedFeed = feed as? MapBoard {
+      like_num = typedFeed.communityLike
+    }
+    return VStack(alignment:.center){
       HStack {
         Spacer()
         
@@ -52,7 +76,7 @@ private extension SimpleFeed {
           .frame(width: 20)
           .foregroundColor(isLiked ? .red: .gray)
         
-        Text("999")
+        Text("\(like_num)")
           .font(.subheadline)
           .fontWeight(.bold)
         
@@ -75,6 +99,6 @@ private extension SimpleFeed {
 
 struct SimpleFeed_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleFeed()
+      SimpleFeed(kind: "board", feed: exampleBoard)
     }
 }

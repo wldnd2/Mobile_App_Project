@@ -7,14 +7,29 @@
 
 import SwiftUI
 
+@MainActor class location: ObservableObject {
+  @Published var long : String
+  @Published var lat : String
+  
+  init() {
+    long = "0.0"
+    lat = "0.0"
+  }
+}
+
 struct WriteView: View {
   
+  @StateObject var locationInfo = location()
+  @State var mapchoose: Bool = false
   @Binding var presented: Bool
+  @State private var showAlert = false
+  @State private var alarm_msg = ""
   
   @State var selectedToggle = 0
   // 0: 다이어리 / 1: 분양 / 2: 길냥이
   
   @State private var title = ""
+  
   
   @State var catMood: DropdownMenuOption? = nil
   
@@ -23,20 +38,25 @@ struct WriteView: View {
   
   @State private var describe = ""
   
+  @State private var latitude = ""
+  @State private var longitude = ""
+  
   @State private var keyboardHeight: CGFloat = 0
+  
+  @State var date = Date()
+  @State var dateString: String = ""
+  
+  var completion: () -> Void
   
   var body: some View {
     VStack{
       
       topLayer // 상단 뒤로가기, 글쓰기
-      
       ToggleView(selectedToggle: $selectedToggle, toggleTexts: ["다이어리", "   분양    ", " 길냥이   "])
-      
+
       ZStack{
-        
-        
         switch selectedToggle {
-          
+
         case 0: // 다이어리 글 작성 UI
           diaryWriteUI  // diaryUI add..
           
@@ -44,8 +64,7 @@ struct WriteView: View {
           newHomeWriteUI // diaryUI add..
           
         default: // 길냥이 글 작성 UI
-          strayWriteUI // StrayUI add..
-          
+          strayWriteUI
         }
         
         VStack {
@@ -59,6 +78,7 @@ struct WriteView: View {
     }// V
     .onAppear(perform : UIApplication.shared.hideKeyboard)
     .onAppear(perform: subscribeToKeyboardEvents)
+    
   }
   
   var topLayer: some View{
@@ -238,9 +258,53 @@ struct WriteView: View {
   // strayWriteUI
   var strayWriteUI: some View {
     ScrollView(.vertical) {
+      
       VStack(alignment: .leading){
+        HStack{
+          Text("위치 선택") // 이미지 선택
+            .font(.title3)
+            .fontWeight(.black)
+            .padding(.horizontal,24)
+            .padding(.top)
+          //위치 선택 버튼 완성
+          //이 버튼 누르면 이제 search view 로 이동
+          Button(action : {
+            print("받아온 위도: \(locationInfo.lat)")
+            print("받아온 경도: \(locationInfo.long)")
+            mapchoose = true
+          }, label: {
+            ZStack{
+              Rectangle()
+                .fill(Color(UIColor.lightGray))
+                .frame(width: 250, height: 40)
+                .cornerRadius(20)
+                .padding(.top, 10)
+              Image(systemName: "magnifyingglass")
+                .padding(.leading, 200)
+                .padding(.top, 10)
+              
+            }
+          })
+          .sheet(isPresented: $mapchoose) {
+            NavigationView(){
+              SearchView(mapchoose: $mapchoose)
+                .navigationBarBackButtonHidden(false)
+            }
+            .environmentObject(locationInfo)
+          }
+          /*
+          .onAppear{
+            latitude = locationInfo.lat
+            longitude = locationInfo.long
+          }*/
+        }
+        Text("\(locationInfo.lat)")
+        Text("\(locationInfo.long)")
         
-
+        //latitude = locationInfo.lat
+        //longitude = locationInfo.long
+        
+        
         Text("이미지 선택") // 이미지 선택
           .font(.title3)
           .fontWeight(.black)
@@ -310,11 +374,45 @@ struct WriteView: View {
       }
       
       Button(action: {
-        //
-        print(title)
-        print(image)
-        print(describe)
-        if selectedToggle == 0 { print(catMood?.displayText ?? "")
+        //다이어리 글쓰기
+        if selectedToggle == 0 {
+          if let unwrapedMood = catMood {
+            SendAPI.diaryPOST(
+              writer: exampleUser.user_name,
+              content: self.describe,
+              emotion: unwrapedMood.key
+            ){
+              print(unwrapedMood.key)
+              completion()
+            }
+          }else{
+            alarm_msg = "고양이 기분을 선택해주세요!"
+            showAlert = true
+          }
+        }
+        //분양 글쓰기
+        else if selectedToggle == 1 {
+          SendAPI.boardPOST(
+            writer: exampleUser.user_name,
+            content: self.describe
+          ){
+            completion()
+          }
+        }
+        //길냥이 글쓰기
+        else {
+          SendAPI.communityPOST(
+            longitude: locationInfo.long, latitude: locationInfo.lat, content: self.describe
+          ){
+            completion()
+          }
+        }
+        if describe == "" {
+          alarm_msg = "내용을 입력해주세요!"
+          showAlert = true
+        }
+        if showAlert == false {
+          presented.toggle()
         }
         
       }){
@@ -326,6 +424,11 @@ struct WriteView: View {
           .background(.blue)
           .cornerRadius(30)
           .shadow(radius: 5)
+      }
+      .alert(isPresented: $showAlert) {
+          Alert(title: Text("림"),
+                message: Text(alarm_msg),
+                dismissButton: .default(Text("확인")))
       }
       
       Spacer()
@@ -350,6 +453,8 @@ struct WriteView: View {
 
 struct WriteUI_Previews: PreviewProvider {
   static var previews: some View {
-    WriteView(presented: .constant(true))
+    WriteView(
+      presented: .constant(true),
+       completion: {})
   }
 }

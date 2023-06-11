@@ -11,21 +11,45 @@ import SwiftUI
 
 struct NewHomeSlideView: View {
   
-  @Binding var presented: Bool
-  @State private var isLiked = false
-  @State private var count: Int = 17
+  @Binding var myIndex: Int
+  @State var board: Board
+  @State var presented: Bool = false
+  var isLiked : Bool {
+        if myIndex < IsLike.boardLikeList.count {
+          return IsLike.boardLikeList[myIndex]
+        } else {
+          return false
+        }
+      }
+  
+  
+  var completion: () -> Void
   
   var body: some View {
 
     VStack(alignment: .leading, spacing: 0){
+      
+//      Spacer() // 댓글창
+//        .fullScreenCover(isPresented: $presented){
+//          CommentView(id: <#T##Binding<Int>#>, kind: <#T##String#>, presented: <#T##Binding<Bool>#>
+//        }
+//
       HStack(spacing: 15.0){
         
         UserProfile
         UserId
         Spacer()
         Menu("|") {
-          Button("수정", action: {})
-          Button("삭제", action: {})
+          Button("수정", action: {
+            SendAPI.feedPUT(kind: "board",ID: board.boardId){
+              completion()
+            }
+          })
+          Button("삭제", action: {
+            SendAPI.feedDELETE(kind: "board",ID: board.boardId, index: myIndex){
+              completion()
+            }
+          })
         }
         .foregroundColor(.black)
         .padding(.horizontal, 15)
@@ -53,7 +77,7 @@ struct NewHomeSlideView: View {
 
 private extension NewHomeSlideView {
   var UserId: some View{
-    Text("아이디입니당")
+    Text(board.boardWriter)
       .font(.footnote)
   }
 
@@ -69,7 +93,15 @@ private extension NewHomeSlideView {
   var LikesComments: some View{
     HStack{
       
-      HeartButton(isLiked: $isLiked, count: $count)
+            HeartButton(
+              isIndex: $myIndex,
+              isLiked: isLiked,
+              count:$board.boardLike,
+              kind: "board",
+              id: $board.boardId
+            ){
+              completion()
+            }
       
       Button(action: {
         presented.toggle()
@@ -93,8 +125,13 @@ private extension NewHomeSlideView {
   var LikesCommentsEmotions: some View{
     HStack{
      
-      HeartButton(isLiked: $isLiked, count: $count)
-      
+//      HeartButton(
+//        isLiked: $isLiked,
+//        count:$count,
+//        id: ,
+//        kind: "board"
+//      )
+//
       Image(systemName: "text.bubble")
         .resizable()
         .frame(width: 20, height: 20)
@@ -108,67 +145,25 @@ private extension NewHomeSlideView {
   }
   
   var UserImage: some View{
-    Image("고양이1L")
+    Image(board.boardImg)
       .resizable()
-      .scaledToFill()
+      .scaledToFit()
       .frame(maxWidth: .infinity)
       .frame(height: .infinity)
       .clipped()
   }
 
   var UserContext: some View{
-    Text("조금 혼냈더니 풀 죽어버렸네ㅠㅠㅠ 미안해ㅠㅠ")
+    Text(board.boardContent)
       .padding(.leading)
       .padding(.bottom,15)
   }
 }
 
-struct HeartButton: View{
-  
-  @Binding var isLiked : Bool
-  @Binding var count : Int
-  
-  private let animationDuration: Double = 0.1
-  private var animationScale: CGFloat {
-    isLiked ? 0.7 : 1.3
-  }
-  @State private var animate = false
-  
-  var body: some View{
-    Button( action: {
-      if isLiked == false {
-        self.count += 1
-      } else {
-        self.count -= 1
-      }
-      
-      self.isLiked.toggle()
-      self.animate = true
-      
-      DispatchQueue.main.asyncAfter(deadline:.now() + self.animationDuration, execute: {
-            self.animate = false
-          })
-    }) {
-      Image(systemName: isLiked ? "heart.fill" : "heart")
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-        .frame(width: 20,height: 20)
-        .foregroundColor(isLiked ? .red: .gray)
-      Text("\(count)")
-        .font(.footnote)
-        .foregroundColor(.primary)
-    }
-    .scaleEffect(animate ? animationScale : 1)
-    .onChange(of: animate) { _ in
-      withAnimation(.easeIn(duration: animationDuration)) {
-        animate = false
-      }
-    }
-  }
-}
+
 
 struct SlideView_Previews: PreviewProvider {
   static var previews: some View {
-    NewHomeSlideView(presented: .constant(false))
+    NewHomeSlideView(myIndex: .constant(99), board: exampleBoard, presented: false, completion: {})
   }
 }

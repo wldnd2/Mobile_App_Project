@@ -16,6 +16,9 @@ struct DropdownMenuOption: Identifiable, Hashable {
   var displayText: String {
       return option.keys.first ?? ""
   }
+  var key: Int {
+    return option.values.first ?? 0
+  }
 }
 
 extension DropdownMenuOption {

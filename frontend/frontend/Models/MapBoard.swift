@@ -10,12 +10,12 @@ import Foundation
 
 struct MapBoard: Hashable, Codable{
   
-  let communityId: Int
+  var communityId: Int
   let communityWriter: String
   let communityImg: String
   let communityContent: String
   let communityDate: String
-  let communityLike: Int
+  var communityLike: Int
   let langtitude: String
   let longtitude: String
 }

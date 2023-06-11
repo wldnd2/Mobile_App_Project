@@ -1,3 +1,4 @@
+
 //
 //  SwiftUIView.swift
 //  frontend
@@ -13,24 +14,50 @@ struct Home: View {
   
   @State var presented = false
   
+  @StateObject var getViewModel = GET()
+
   var body: some View {
     
     ZStack{
       
       Spacer() // 글쓰기 화면
         .fullScreenCover(isPresented: $presented){
-          WriteView(presented: $presented)
+          WriteView(
+            presented: $presented) {
+            switch selectedIndex {
+            case 0:
+              getViewModel.feedFetch(kind: "diary"){}
+            case 1:
+              getViewModel.feedFetch(kind: "board"){}
+            case 3:
+              getViewModel.feedFetch(kind: "community"){}
+            default:
+            //
+              break
+            }
+          }
         } // 글쓰기 화면
       
       switch selectedIndex {
       case 0:
-        DiarySlide()
+        DiarySlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+          getViewModel.feedFetch(kind: "diary"){}
+        }
       case 1:
-        NewHomeSlide()
+        NewHomeSlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+          getViewModel.feedFetch(kind: "board"){}
+        }
       case 3:
-        MapBottomView()
+        MapBottomView(viewModel: Binding(get: { getViewModel }, set: { _ in})){
+          getViewModel.feedFetch(kind: "community"){}
+        }
+        
       default:
-        UserView()
+        UserView(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+          getViewModel.myFeedFetch(kind: "board")
+          getViewModel.myFeedFetch(kind: "diary")
+          getViewModel.myFeedFetch(kind: "community")
+        }
       }
       
       VStack {
@@ -39,6 +66,18 @@ struct Home: View {
       }
       
     }// Z
+    .onAppear{
+      getViewModel.feedFetch(kind: "diary"){
+        IsLike.diaryLikeList = Array(
+          repeating: false,
+          count: getViewModel.diarys.count)
+      }
+      getViewModel.feedFetch(kind: "board"){
+        IsLike.boardLikeList = Array(
+          repeating: false,
+          count: getViewModel.boards.count)
+      }
+    }
   }
   
   let icons = [
