@@ -17,6 +17,7 @@
 		D4331CC12A35A36300AD3026 /* KakaoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D4331CC02A35A36300AD3026 /* KakaoSDK */; };
 		D4331CC52A35A81100AD3026 /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4331CC42A35A81100AD3026 /* MyAppDelegate.swift */; };
 		D4331CC72A35AA4500AD3026 /* MySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4331CC62A35AA4500AD3026 /* MySceneDelegate.swift */; };
+		D4331CC92A35C20000AD3026 /* KakaoAuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4331CC82A35C20000AD3026 /* KakaoAuthVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		D4331CC32A35A5F400AD3026 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		D4331CC42A35A81100AD3026 /* MyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
 		D4331CC62A35AA4500AD3026 /* MySceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySceneDelegate.swift; sourceTree = "<group>"; };
+		D4331CC82A35C20000AD3026 /* KakaoAuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAuthVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				D4331CC32A35A5F400AD3026 /* Config.xcconfig */,
 				D4331CC42A35A81100AD3026 /* MyAppDelegate.swift */,
 				D4331CC62A35AA4500AD3026 /* MySceneDelegate.swift */,
+				D4331CC82A35C20000AD3026 /* KakaoAuthVM.swift */,
 			);
 			path = kakao_login_tutorial;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4331CC92A35C20000AD3026 /* KakaoAuthVM.swift in Sources */,
 				D4331C982A359F1500AD3026 /* ContentView.swift in Sources */,
 				D4331CC52A35A81100AD3026 /* MyAppDelegate.swift in Sources */,
 				D4331C962A359F1500AD3026 /* kakao_login_tutorialApp.swift in Sources */,
@@ -493,6 +497,7 @@
 		};
 		D4331CBA2A359F1700AD3026 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4331CC32A35A5F400AD3026 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +517,7 @@
 		};
 		D4331CBB2A359F1700AD3026 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4331CC32A35A5F400AD3026 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -531,6 +537,7 @@
 		};
 		D4331CBD2A359F1700AD3026 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4331CC32A35A5F400AD3026 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -548,6 +555,7 @@
 		};
 		D4331CBE2A359F1700AD3026 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4331CC32A35A5F400AD3026 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
