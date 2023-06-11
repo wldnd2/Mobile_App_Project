@@ -12,6 +12,13 @@ struct DiarySlideView: View {
     @Binding var myIndex: Int
     @State var diary :Diary
     @State var presented: Bool = false
+    var isLiked : Bool {
+      if myIndex < IsLike.diaryLikeList.count {
+        return IsLike.diaryLikeList[myIndex]
+      } else {
+        return false
+      }
+    }
   
     var isLiked : Bool {
       if myIndex < IsLike.diaryLikeList.count {
@@ -93,7 +100,7 @@ private extension DiarySlideView {
       HStack{
         HeartButton(
           isIndex: $myIndex,
-          isLiked: .constant(isLiked),
+          isLiked: isLiked,
           count: $diary.diaryLike,
           kind: "diary",
           id: $diary.diaryId
@@ -138,31 +145,29 @@ private extension DiarySlideView {
 
 }
 
-
-
-
 struct Emotions: View{
-  @State var emo = 1
+  @State var emo: Int
+  init(emo: Int) {
+    self.emo = emo
+  }
   
   var body: some View {
     
     switch emo {
       
-    case 1 :
-      Text("😺 잘 놀았어요")
-    case 2 :
-      Text("😽 행복해요")
-    case 3 :
-      Text("😾 꿀꿀해요")
-    case 4 :
+    case 0 :
       Text("😻 신나요")
+    case 1 :
+      Text("😽 행복해요")
+    case 2 :
+      Text("😾 꿀꿀해요")
+    case 3 :
+      Text("😺 잘 놀았어요")
     default :
       Text("😿 아팠어요")
     }
   }
 }
-
-
 
 struct DiarySlideView_Previews: PreviewProvider {
     static var previews: some View {

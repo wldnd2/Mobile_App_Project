@@ -71,6 +71,7 @@ class GET: ObservableObject {
     print(urlString)
     
     guard let url = URL(string :urlString) else {
+      print("invalid url...")
       return
     }
     
@@ -84,6 +85,7 @@ class GET: ObservableObject {
           let myBoards = try JSONDecoder().decode([Board].self, from : data)
           DispatchQueue.main.async {
             self?.myBoards = myBoards
+            print(myBoards)
           }
         }
         else if kind == "diary"{

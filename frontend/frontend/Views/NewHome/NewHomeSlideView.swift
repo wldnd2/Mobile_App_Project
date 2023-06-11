@@ -95,7 +95,7 @@ private extension NewHomeSlideView {
       
             HeartButton(
               isIndex: $myIndex,
-              isLiked: .constant(isLiked),
+              isLiked: isLiked,
               count:$board.boardLike,
               kind: "board",
               id: $board.boardId

@@ -8,53 +8,78 @@
 import SwiftUI
 
 struct SimpleFeedList: View {
-  
+  @State private var showMyFeedSlide = false
   @Binding var viewModel: GET
   
-  var name: String
   var kind: String
+  var name: String {
+    if kind == "board"{
+      return "나의 분양"
+    }else if kind == "diary"{
+      return "나의 다이어리"
+    }else if kind == "community"{
+      return "나의 길냥이"
+    }else{return ""}
+  }
   
   var myBoards: [Board] {
-      viewModel.boards
+      viewModel.myBoards
   }
   var myDiarys: [Diary] {
-      viewModel.diarys
+      viewModel.myDiarys
   }
 //  var myCommunitys: [MapBoard] {
 //      viewModel.mapBoards
 //  }
   
-    var body: some View {
-      VStack {
+  var completion: () -> Void
+  
+  var body: some View {
+    VStack {
+      
+      HStack{
+        // 나의 다이어리, +
         
-        HStack{
-          // 나의 다이어리, +
-          
-          Spacer()
-          Spacer()
-          
-          listName
-          
-          Spacer().frame(width: .infinity)
-          
-          topPlusButton
-          
-          Spacer()
-          Spacer()
-          
-        }// H
+        Spacer()
+        Spacer()
         
-        ScrollView(.horizontal,showsIndicators: false){
-          //작은사진 여러개 + 더보기+버튼
-          
-          simpleList
-          
-        }//ScrollView
-        .frame(height: 200)
+        listName
         
-      }// V
-      .padding(.top,10)
-    }
+        Spacer().frame(width: .infinity)
+        
+        topPlusButton
+        
+        Spacer()
+        Spacer()
+        
+      }// H
+      
+      ScrollView(.horizontal,showsIndicators: false){
+        //작은사진 여러개 + 더보기+버튼
+        
+        simpleList
+        
+      }//ScrollView
+      .frame(height: 200)
+      
+    }// V
+    .padding(.top,10)
+    .background(
+      NavigationLink(
+        destination:
+          MyFeedSlide(
+          kind: kind,
+          viewModel: $viewModel,
+          completion: { completion() }
+          ),
+        isActive: $showMyFeedSlide,
+        label: {
+          EmptyView()
+        }
+      )
+      .hidden()
+    )
+  }
 }
 
 private extension SimpleFeedList {
@@ -67,16 +92,14 @@ private extension SimpleFeedList {
   }
   
   var topPlusButton: some View {
-    Button(action: {
-      //action
-    }) {
-      HStack{
+    NavigationLink(destination: MyFeedSlide(kind: kind, viewModel: $viewModel, completion: { completion() }
+    )) {
+      HStack {
         Image(systemName: "plus")
         Text("더보기")
       }
     }
   }
-  
   var plusButton: some View {
     Image(systemName: "plus")
       .font(.largeTitle)
@@ -84,43 +107,66 @@ private extension SimpleFeedList {
       .frame(maxWidth: .infinity)
       .background(Color(UIColor.lightGray))
       .cornerRadius(100)
-    .shadow(radius: 5)
+      .shadow(radius: 5)
+      .onTapGesture {
+        showMyFeedSlide = true
+      }
+          
   }
   var simpleList: some View {
+    var feed_show_last: Int
+    
     var myFeeds:[Any] = []
     if kind == "diary"{
       myFeeds = myDiarys
     }else if kind == "board"{
       myFeeds = myBoards
     }else if kind == "community"{
-      //
+      // 길냥이,,,
+    }
+    
+    if myFeeds.count > 4 {
+      feed_show_last = myFeeds.count - 4
+    } else {
+      feed_show_last = 0
     }
     
     return HStack{
       Spacer()
       Spacer()
 
-      //ForEach문으로 구현.,,,
-      ForEach((0..<myFeeds.count).reversed(), id: \.self) { index in
-          let feed = myFeeds[index]
-          
-        SimpleFeed(
-          kind: "board",
-          feed: feed
-        )
-      }
-      
-      VStack {
-        Spacer()
-        Spacer()
+      if myFeeds.count != 0 {
+        //ForEach문으로 구현.,,,
+        ForEach((feed_show_last..<myFeeds.count).reversed(), id: \.self) { index in
+            let feed = myFeeds[index]
+            
+          SimpleFeed(
+            kind: "board",
+            feed: feed
+          )
+        }
         
-        plusButton
-        
-        Spacer()
-        Spacer()
-        Spacer()
+        if myFeeds.count > 2{
+          VStack {
+            Spacer()
+            Spacer()
+            
+            plusButton
+            
+            Spacer()
+            Spacer()
+            Spacer()
+          }
+          .padding(.leading)
+        }
+      }else{
+        Text("피드가 없습니다..")
+          .font(.largeTitle)
+          .fontWeight(.bold)
+          .foregroundColor(Color(UIColor.lightGray))
+          .padding(.leading,70)
       }
-      .padding(.leading)
+
       
       Spacer()
       Spacer()
@@ -130,6 +176,6 @@ private extension SimpleFeedList {
 
 struct SimpleFeedList_Previews: PreviewProvider {
     static var previews: some View {
-      SimpleFeedList(viewModel: .constant(GET()), name: "리스트 제목", kind: "board")
+      SimpleFeedList(viewModel: .constant(GET()),kind: "board"){}
     }
 }
