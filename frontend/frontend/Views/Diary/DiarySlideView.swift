@@ -12,7 +12,6 @@ struct DiarySlideView: View {
     @Binding var myIndex: Int
     @State var diary :Diary
     @State var presented: Bool = false
-    @State var rewritePresented: Bool = false
     var isLiked : Bool {
       if myIndex < IsLike.diaryLikeList.count {
         return IsLike.diaryLikeList[myIndex]
@@ -24,34 +23,12 @@ struct DiarySlideView: View {
   
     var completion: () -> Void
   
-    var moodKind: DropdownMenuOption? {
-      switch diary.diaryemotion{
-      case 0:
-        return DropdownMenuOption.selectCatMoods[0]
-      case 1:
-        return DropdownMenuOption.selectCatMoods[1]
-      case 2:
-        return DropdownMenuOption.selectCatMoods[2]
-      case 3:
-        return DropdownMenuOption.selectCatMoods[3]
-      default:
-        return DropdownMenuOption.selectCatMoods[4]
-        
-      }
-    }
-  
     var body: some View {
       VStack(alignment: .leading, spacing: 0){
         
         Spacer() // 댓글창
           .fullScreenCover(isPresented: $presented){
             CommentView(id: $diary.diaryId , kind: "diary", completion: {}, presented: $presented)
-          }
-        Spacer() // 수정창
-          .fullScreenCover(isPresented: $rewritePresented){
-            RewriteView(id: diary.diaryId, kind: "diary",presented: $rewritePresented,   selectedToggle: 0, catMood: moodKind, describe: diary.diaryContent){
-              completion()
-            }
           }
         
         HStack(spacing: 15.0){
@@ -60,7 +37,11 @@ struct DiarySlideView: View {
           Spacer()
           Menu("|") {
             Button("수정", action: {
-              rewritePresented.toggle()
+              SendAPI.feedPUT(
+                kind: "diary",
+                ID: diary.diaryId){
+                  completion()
+              }
             })
             Button("삭제", action: {
               SendAPI.feedDELETE(
@@ -142,14 +123,12 @@ private extension DiarySlideView {
   }
   
   var UserImage: some View{
-    GeometryReader{proxy in
-      Image(diary.diaryImg)
-        .resizable()
-        .scaledToFit()
-        .frame(maxWidth: proxy.size.width)
-        .frame(height: proxy.size.height)
-        .clipped()
-    }
+    Image(diary.diaryImg)
+      .resizable()
+      .scaledToFit()
+      .frame(maxWidth: .infinity)
+      .frame(height: .infinity)
+      .clipped()
   }
   
   var UserContext: some View{

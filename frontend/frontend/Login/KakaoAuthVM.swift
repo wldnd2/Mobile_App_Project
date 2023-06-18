@@ -10,6 +10,7 @@ import Combine
 import KakaoSDKAuth
 import KakaoSDKUser
 
+
 class KakaoAuthVM : ObservableObject{
     
     @Published var isLoggedIn : Bool = false
@@ -47,6 +48,7 @@ class KakaoAuthVM : ObservableObject{
                         continuation.resume(returning: false)
                     }
                     else {
+                      
                         print("loginWithKakaoAccount() success.")
 
                         //do something
