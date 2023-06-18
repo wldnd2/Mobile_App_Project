@@ -20,6 +20,9 @@ public class BoardController {
         return boardService.showAll();
     }
 
+    @GetMapping("/sortList")
+    public List<Board> sortList() {return boardService.showSortList();}
+
     @GetMapping("user")
     public List<Board> showUserDiary(@RequestParam(value = "writer") String writer) { return boardService.showUserDiary(writer); }
 

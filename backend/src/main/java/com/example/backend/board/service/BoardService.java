@@ -19,6 +19,8 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
+    public List<Board> showSortList() { return boardRepository.findAllOrderByBoardLike();}
+
     public List<Board> showUserDiary(String writer) {
         return boardRepository.showUserBoardPara(writer);
     }
