@@ -37,22 +37,27 @@ struct SimpleFeedList: View {
   var body: some View {
     VStack {
       
-      HStack{
-        // 나의 다이어리, +
-        
-        Spacer()
-        Spacer()
-        
-        listName
-        
-        Spacer().frame(width: .infinity)
-        
-        topPlusButton
-        
-        Spacer()
-        Spacer()
-        
-      }// H
+      GeometryReader{proxy in
+        HStack{
+          // 나의 다이어리, +
+          
+          Spacer()
+          Spacer()
+          
+          listName
+          
+          
+          Spacer()
+            .frame(width: proxy.size.width)
+          
+          
+          topPlusButton
+          
+          Spacer()
+          Spacer()
+          
+        }// H
+      }
       
       ScrollView(.horizontal,showsIndicators: false){
         //작은사진 여러개 + 더보기+버튼

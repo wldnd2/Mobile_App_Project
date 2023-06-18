@@ -7,11 +7,8 @@
 
 import SwiftUI
 
-
-
 struct ButtonDesign: View{
-  @EnvironmentObject var selection: WhichToShow
-  //@State private var selection: String? = "최신"
+  @State private var selection: String? = "최신"
   
   var body: some View{
     ZStack {
@@ -20,13 +17,13 @@ struct ButtonDesign: View{
         .frame(width: 150, height: 45)
         .modifier(InnerShadowModifier())
       HStack {
-        Button(action: { selection.which = "최신" }) {
+        Button(action: { selection = "최신" }) {
           Text("최신")
           .foregroundColor(.black)
           .padding(.horizontal)
           .background(
             Capsule()
-              .fill(selection.which == "최신" ?
+              .fill(selection == "최신" ?
                 Color.clear : .white)
               .frame(width:75, height: 40)
             //.shadow(radius: selection == "최신" ? 5 : 0)
@@ -34,13 +31,13 @@ struct ButtonDesign: View{
         }
         .buttonStyle(BorderlessButtonStyle())
         
-        Button(action: { selection.which = "인기" }) {
+        Button(action: { selection = "인기" }) {
           Text("인기")
           .foregroundColor(.black)
           .padding(.horizontal)
           .background(
             Capsule()
-              .foregroundColor(selection.which == "인기" ?
+              .foregroundColor(selection == "인기" ?
                 Color("Clear") : .white)
               .frame(width:75, height: 40)
             //.shadow(radius: selection == "인기" ? 5 : 0)
