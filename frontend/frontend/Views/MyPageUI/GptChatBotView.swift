@@ -32,6 +32,8 @@ final class ViewModel: ObservableObject {
 }
 
 struct GptChatBotView: View {
+  //@Binding var show: Bool
+  
   @ObservedObject var viewModel = ViewModel()
   @State var text = ""
   @State var models = [String]()

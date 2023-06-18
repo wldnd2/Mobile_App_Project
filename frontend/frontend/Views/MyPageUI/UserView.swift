@@ -9,46 +9,65 @@ import SwiftUI
 
 struct UserView: View {
   
+  @State private var showingSheet = false
   @Binding var viewModel: GET
   var completion: () -> Void
   
   var body: some View {
     NavigationView{
-      VStack {
-        
-        topLayer
-        
-        ScrollView(.vertical){
-          VStack{
-            
-            userImage
-            userName
-            userDescribe
-            
-            Divider()
-              .background(Color.black)
-              .frame(width: 350)
-            
-            SimpleFeedList(
-              viewModel: $viewModel,
-              kind: "diary"){
-                completion()
-              }
-            SimpleFeedList(
-              viewModel: $viewModel,
-              kind: "community"){
-                completion()
-              }
-            SimpleFeedList(
-              viewModel: $viewModel,
-              kind: "board"){
-                completion()
-              }
-              .padding(.bottom, 80)
-          }// V
-          .frame(maxWidth: .infinity)
-        }// ScrollView
-      }// V
+      ZStack{
+        VStack {
+          
+          topLayer
+          
+          ScrollView(.vertical){
+            VStack{
+              
+              userImage
+              userName
+              userDescribe
+              
+              
+              Divider()
+                .background(Color.black)
+                .frame(width: 350)
+              
+              SimpleFeedList(
+                viewModel: $viewModel,
+                kind: "diary"){
+                  completion()
+                }
+              SimpleFeedList(
+                viewModel: $viewModel,
+                kind: "community"){
+                  completion()
+                }
+              SimpleFeedList(
+                viewModel: $viewModel,
+                kind: "board"){
+                  completion()
+                }
+                .padding(.bottom, 80)
+            }// V
+            .frame(maxWidth: .infinity)
+          }// ScrollView
+          
+        }// V
+        ZStack{
+          Button(action: {
+            self.showingSheet.toggle()
+          })
+          {
+            askGPT
+          }
+          .sheet(isPresented: $showingSheet){
+            GptChatBotView()
+          }
+                 
+      }
+      .padding(.top, 540)
+      .padding(.leading, 300)
+      }//Z
     }// NavigationView
     .onAppear{
       completion()
@@ -75,8 +94,31 @@ private extension UserView{
         .font(.title)
         .fontWeight(.black)
       Spacer()
+      
+//      ZStack{
+//        askGPT
+//      }
+//      .padding(.trailing, 10)
+//      //.offset(x: 120, y: -180)
     }
   }
+  
+  var askGPT: some View {
+    Image("chat")
+      .resizable()
+      //.clipShape(Circle())
+    .clipShape(RoundedRectangle(cornerRadius: 5))
+      .scaledToFill()
+      .frame(width: 55, height: 55)
+      
+//      .overlay{
+//        RoundedRectangle(cornerRadius: 5)
+//          //.stroke(Color(red: 0.3, green: 0.3, blue: 0.3), lineWidth: 2)
+//
+//      }
+      .shadow(radius: 7)
+  }
+  
   var userImage: some View {
     
     return ZStack{
