@@ -235,7 +235,7 @@ class SendAPI: ObservableObject {
       
   }
   
-  static func feedPUT(kind: String, ID: Int, writer: String = exampleUser.user_name, title: String = "PUT_Title", img: String = "고양이4L",emotion: Int = 0 ,content: String = "PUT 성공!!!!", completion: @escaping () -> Void) {
+  static func feedPUT(kind: String, ID: Int, writer: String = exampleUser.user_name, title: String = "PUT_Title", img: String = "고양이4L", content: String = "PUT 성공!!!!", completion: @escaping () -> Void) {
     
     var body: [String: Any] = [:]
     
@@ -244,8 +244,7 @@ class SendAPI: ObservableObject {
         "diaryWriter": writer,
         "diaryTitle": title,
         "diaryImg": img,
-        "diaryContent": content,
-        "diaryemotion": emotion
+        "diaryContent": content
       ]
     } else if kind == "board" {
       body = [
@@ -282,11 +281,12 @@ class SendAPI: ObservableObject {
             print(error?.localizedDescription ?? "No data")
             return
         }
-      
+      print("수정1")
+      completion()
       let responseJSON = try? JSONSerialization.jsonObject(with: data, options: .allowFragments)
         if let responseJSON = responseJSON as? [String: Any] {
           print("-----2> responseJSON: \(responseJSON)")
-          completion()
+          
         }
     }
     

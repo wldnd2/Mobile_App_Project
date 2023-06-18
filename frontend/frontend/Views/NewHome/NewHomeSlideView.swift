@@ -145,14 +145,12 @@ private extension NewHomeSlideView {
   }
   
   var UserImage: some View{
-    GeometryReader{proxy in
-      Image(board.boardImg)
-        .resizable()
-        .scaledToFit()
-        .frame(maxWidth: proxy.size.width)
-        .frame(height: proxy.size.height)
-        .clipped()
-    }
+    Image(board.boardImg)
+      .resizable()
+      .scaledToFit()
+      .frame(maxWidth: .infinity)
+      .frame(height: .infinity)
+      .clipped()
   }
 
   var UserContext: some View{
