@@ -20,6 +20,8 @@ public class DiaryService {
         return diaryRepository.findAll();
     }
 
+    public List<Diary> showSortList() { return diaryRepository.findAllOrderByDiaryLike();}
+
     public List<Diary> showUserDiary(String writer){
         return diaryRepository.showUserDiaryPara(writer);
     }

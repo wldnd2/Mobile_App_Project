@@ -21,6 +21,9 @@ public class DiaryController {
         return diaryService.showAll();
     }
 
+    @GetMapping("/sortList")
+    public List<Diary> sortList() {return diaryService.showSortList();}
+
     @GetMapping("user")
     public List<Diary> showUserDiary(@RequestParam(value = "writer") String writer) { return diaryService.showUserDiary(writer); }
 
