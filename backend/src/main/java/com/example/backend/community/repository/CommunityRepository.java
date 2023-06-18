@@ -11,6 +11,6 @@ public interface CommunityRepository extends JpaRepository<Community, Long> {
     @Query(value = "SELECT * FROM community where community_writer = :writer", nativeQuery = true)
     List<Community> showUserCommunityPara(@Param("writer") String writer);
 
-    @Query(value = "SELECT * FROM community ORDER BY community_like DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM community ORDER BY community_like ASC", nativeQuery = true)
     List<Community> findAllOrderByCommunityLike();
 }

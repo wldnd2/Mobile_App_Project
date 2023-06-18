@@ -47,6 +47,7 @@ public class DiaryService {
         existingDiary.setDiaryImg(diary.getDiaryImg());
         existingDiary.setDiaryLike(existingDiary.getDiaryLike());
         existingDiary.setDiaryDate(existingDiary.getDiaryDate());
+        existingDiary.setEmotion(existingDiary.getDiaryemotion());
         return diaryRepository.save(existingDiary);
     }
 
