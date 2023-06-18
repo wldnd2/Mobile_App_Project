@@ -16,17 +16,18 @@ struct CommentsPiece: View {
           .padding(.top, 5)
         
         VStack(alignment: .leading){
-          UserId
-            VStack(alignment: .leading){
-              Comment
-                .padding(.top, 10)
-                .offset(x: -60, y: 3)
-              Spacer()
-            }
-            .frame(width: 300, height: 65)
-            .background(Color(UIColor.lightGray))
-            .cornerRadius(15)
-            //.padding(.horizontal, 10)
+            UserId
+          
+          
+          VStack{
+            Comment
+              .padding(.top, 10)
+            Spacer()
+          }
+          .frame(width: 300, height: 65)
+          .background(Color(UIColor.lightGray))
+          .cornerRadius(15)
+          
                   
           }
           
@@ -51,7 +52,11 @@ private extension CommentsPiece {
     
   }
   var Comment: some View{
-    Text(comment.commentContent)
+    HStack {
+      Text(comment.commentContent)
+        .padding(.leading, 10)
+      Spacer()
+    }
   }
 }
 

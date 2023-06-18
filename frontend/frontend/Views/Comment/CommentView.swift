@@ -10,6 +10,7 @@ import SwiftUI
 struct CommentView: View {
   @State private var describe = ""
   
+  
   @Binding var id : Int
   var kind : String
 
@@ -70,7 +71,8 @@ struct CommentView: View {
               Button(action: {
                 SendAPI.CommendPOST(kind: kind, ID: id, content: describe)
                 {
-                  completion()
+                  describe = ""
+                  viewModel.commentFetch(kind: "diary", ID:id)
                 }
               }){
                 Text("게시")
