@@ -57,16 +57,18 @@ struct CommentView: View {
           ZStack{
             
             Color(UIColor.lightGray)
+            
             HStack {
               TextEditor(text : $describe)
                 .cornerRadius(10)
                 .frame(width: 250, height: 40)
-                .colorMultiply(.clear)
+                .colorMultiply(Color(UIColor.lightGray))
                 .keyboardType(.default)
                 .padding(.bottom, 10)
+                
               
               Button(action: {
-                SendAPI.CommendPOST(kind: kind, ID: id)
+                SendAPI.CommendPOST(kind: kind, ID: id, content: describe)
                 {
                   completion()
                 }

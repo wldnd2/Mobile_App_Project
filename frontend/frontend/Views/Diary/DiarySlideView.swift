@@ -20,13 +20,7 @@ struct DiarySlideView: View {
       }
     }
   
-    var isLiked : Bool {
-      if myIndex < IsLike.diaryLikeList.count {
-        return IsLike.diaryLikeList[myIndex]
-      } else {
-        return false
-      }
-    }
+  
     var completion: () -> Void
   
     var body: some View {

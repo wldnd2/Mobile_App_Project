@@ -75,7 +75,7 @@ private extension MapKittenTabView {
       HStack{
         HeartButton(
           isIndex: $myIndex,
-          isLiked: .constant(isLiked),
+          isLiked: isLiked,
           count: $community.communityLike,
           kind: "community",
           id: $community.communityId
