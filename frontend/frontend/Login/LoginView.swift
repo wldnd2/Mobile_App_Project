@@ -14,7 +14,8 @@ struct LoginView: View {
   
   //@Binding var auth: Bool
   @StateObject var kakaoAuthVM : KakaoAuthVM = KakaoAuthVM()
-      
+    
+  static let base = Color("beige")
       var loginStatusInfo : Bool {
         //Login.auth = kakaoAuthVM.isLoggedIn
 //        if loginStatusInfo == true {
@@ -31,21 +32,45 @@ struct LoginView: View {
               baseView()
             }
             else {
-              Text("로그인하세요")
-                .padding()
+              Image("main")
+                .resizable()
+                .frame(width: 200, height: 200)
               
-              Button("카카오 로그인",action: {
-                  kakaoAuthVM.handleKakakoLogin()
+              Button(action: {
+                kakaoAuthVM.handleKakakoLogin()
                 
-              })
-              Button("카카오 로그아웃", action: {
-                  kakaoAuthVM.kakaoLogout()
+              }){
+                
+                ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                  
+                              .foregroundColor(Color("beige"))
+                                .frame(width: 250, height: 65)
+                                .shadow(radius: 5)
+                            
+                            Text("카카오 로그인")
+                                .foregroundColor(.white)
+                        }
                   
-              })
-            }
-            
+              }
+              Button(action: {
+                kakaoAuthVM.kakaoLogout()
+                
+              }){
+                ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.gray)
+                                .frame(width: 250, height: 65)
+                                .shadow(radius: 5)
+                            
+                            Text("카카오 로그아웃")
+                                .foregroundColor(.white)
+                        }
+                
+              }
               
-            
+              
+            }
           }
       }
 }
