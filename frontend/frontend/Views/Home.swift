@@ -8,16 +8,7 @@
 
 import SwiftUI
 
-@MainActor class WhichToShow: ObservableObject {
-  @Published var which : String
-  
-  init() {
-    which = "최신"
-  }
-}
-
 struct Home: View {
-  @StateObject var selection = WhichToShow()
   
   @State var selectedIndex = 0
   
@@ -28,7 +19,7 @@ struct Home: View {
   var body: some View {
     
     ZStack{
-      //print("\(selection.which)")
+      
       Spacer() // 글쓰기 화면
         .fullScreenCover(isPresented: $presented){
           WriteView(
@@ -49,37 +40,16 @@ struct Home: View {
       
       switch selectedIndex {
       case 0:
-        if selection.which == "최신" {
-          DiarySlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
-            getViewModel.feedFetch(kind: "diary"){}
-          }
-        }
-        else {
-          DiarySlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
-            getViewModel.PopularFeedFetch(kind: "diary"){}
-          }
+        DiarySlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+          getViewModel.feedFetch(kind: "diary"){}
         }
       case 1:
-        if selection.which == "최신" {
-          NewHomeSlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
-            getViewModel.feedFetch(kind: "board"){}
-          }
-        }
-        else {
-          NewHomeSlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
-            getViewModel.PopularFeedFetch(kind: "board"){}
-          }
+        NewHomeSlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+          getViewModel.feedFetch(kind: "board"){}
         }
       case 3:
-        if selection.which == "최신" {
-          MapBottomView(viewModel: Binding(get: { getViewModel }, set: { _ in})){
-            getViewModel.feedFetch(kind: "community"){}
-          }
-        }
-        else {
-          MapBottomView(viewModel: Binding(get: { getViewModel }, set: { _ in})){
-            getViewModel.PopularFeedFetch(kind: "community"){}
-          }
+        MapBottomView(viewModel: Binding(get: { getViewModel }, set: { _ in})){
+          getViewModel.feedFetch(kind: "community"){}
         }
         
       default:
@@ -98,7 +68,6 @@ struct Home: View {
       .frame(height: 40)
       
     }// Z
-    .environmentObject(selection)
     .onAppear{
       getViewModel.feedFetch(kind: "diary"){
         IsLike.diaryLikeList = Array(

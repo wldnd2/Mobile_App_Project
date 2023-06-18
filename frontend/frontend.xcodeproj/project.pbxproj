@@ -13,7 +13,6 @@
 		AC1C7A8C2A09303200B8709C /* NewHomeSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A8B2A09303200B8709C /* NewHomeSlide.swift */; };
 		AC24BD992A1C5BAB00920EA2 /* GET.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC24BD982A1C5BAB00920EA2 /* GET.swift */; };
 		AC4FD00C2A1257BC00314625 /* MapKittenTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A952A0B8BC500B8709C /* MapKittenTabView.swift */; };
-		AC4FD0122A125DBC00314625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F573B76D2A01423000ADB834 /* Assets.xcassets */; };
 		AC4FD0142A12687900314625 /* DiaryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FD0132A12687900314625 /* DiaryHeaderView.swift */; };
 		AC4FD0162A126AFA00314625 /* DiarySlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FD0152A126AFA00314625 /* DiarySlideView.swift */; };
 		AC4FD0182A127D6200314625 /* DiarySlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FD0172A127D6200314625 /* DiarySlide.swift */; };
@@ -34,6 +33,10 @@
 		AF78BB4E2A2E279800F440EE /* MyFeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF78BB4D2A2E279800F440EE /* MyFeedHeaderView.swift */; };
 		AF78BB502A2E28B700F440EE /* ButtonDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF78BB4F2A2E28B700F440EE /* ButtonDesign.swift */; };
 		AF78BB522A2E2A1B00F440EE /* MyFeedSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF78BB512A2E2A1B00F440EE /* MyFeedSlide.swift */; };
+		AF86C6112A3EFB5600EC2F6B /* KakaoAuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF86C60C2A3EFB5600EC2F6B /* KakaoAuthVM.swift */; };
+		AF86C6122A3EFB5600EC2F6B /* MyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF86C60D2A3EFB5600EC2F6B /* MyAppDelegate.swift */; };
+		AF86C6132A3EFB5600EC2F6B /* MySceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF86C60E2A3EFB5600EC2F6B /* MySceneDelegate.swift */; };
+		AF86C6162A3EFBC600EC2F6B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF86C6152A3EFBC600EC2F6B /* LoginView.swift */; };
 		AF96E3512A1537AE00A61CCA /* SimpleFeedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF96E3502A1537AD00A61CCA /* SimpleFeedList.swift */; };
 		AF98A6A32A11295400EC8D39 /* DropdownMenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF98A69F2A11295400EC8D39 /* DropdownMenuOption.swift */; };
 		AF98A6A42A11295400EC8D39 /* DropdownMenuList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF98A6A02A11295400EC8D39 /* DropdownMenuList.swift */; };
@@ -92,6 +95,11 @@
 		AF78BB4D2A2E279800F440EE /* MyFeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedHeaderView.swift; sourceTree = "<group>"; };
 		AF78BB4F2A2E28B700F440EE /* ButtonDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDesign.swift; sourceTree = "<group>"; };
 		AF78BB512A2E2A1B00F440EE /* MyFeedSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedSlide.swift; sourceTree = "<group>"; };
+		AF86C60C2A3EFB5600EC2F6B /* KakaoAuthVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KakaoAuthVM.swift; sourceTree = "<group>"; };
+		AF86C60D2A3EFB5600EC2F6B /* MyAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAppDelegate.swift; sourceTree = "<group>"; };
+		AF86C60E2A3EFB5600EC2F6B /* MySceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySceneDelegate.swift; sourceTree = "<group>"; };
+		AF86C6152A3EFBC600EC2F6B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AF86C6182A3F2F7F00EC2F6B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		AF96E3502A1537AD00A61CCA /* SimpleFeedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFeedList.swift; sourceTree = "<group>"; };
 		AF98A69F2A11295400EC8D39 /* DropdownMenuOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownMenuOption.swift; sourceTree = "<group>"; };
 		AF98A6A02A11295400EC8D39 /* DropdownMenuList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropdownMenuList.swift; sourceTree = "<group>"; };
@@ -205,6 +213,18 @@
 			path = MyFeedSlide;
 			sourceTree = "<group>";
 		};
+		AF86C6092A3EFB3F00EC2F6B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				AF86C60C2A3EFB5600EC2F6B /* KakaoAuthVM.swift */,
+				AF86C60D2A3EFB5600EC2F6B /* MyAppDelegate.swift */,
+				AF86C60E2A3EFB5600EC2F6B /* MySceneDelegate.swift */,
+				AF86C6152A3EFBC600EC2F6B /* LoginView.swift */,
+				AF86C6182A3F2F7F00EC2F6B /* Config.xcconfig */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		AF98A69E2A11295400EC8D39 /* DropdownMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +333,7 @@
 		F573B7682A01422D00ADB834 /* frontend */ = {
 			isa = PBXGroup;
 			children = (
+				AF86C6092A3EFB3F00EC2F6B /* Login */,
 				AFF52CDC2A0149D000934692 /* ViewModels */,
 				AFF52CDB2A0149C400934692 /* Models */,
 				AFF52CDA2A0149BD00934692 /* Views */,
@@ -405,7 +426,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC4FD0122A125DBC00314625 /* Assets.xcassets in Resources */,
 				F573B7712A01423000ADB834 /* Preview Assets.xcassets in Resources */,
 				F573B76E2A01423000ADB834 /* Assets.xcassets in Resources */,
 			);
@@ -434,11 +454,14 @@
 				AF98A6A42A11295400EC8D39 /* DropdownMenuList.swift in Sources */,
 				AFEE20452A09179800412FD9 /* ToggleView.swift in Sources */,
 				AF98A6A52A11295400EC8D39 /* DropdownMenuListRow.swift in Sources */,
+				AF86C6112A3EFB5600EC2F6B /* KakaoAuthVM.swift in Sources */,
 				AF78BB522A2E2A1B00F440EE /* MyFeedSlide.swift in Sources */,
 				AC9167D82A15B28400005377 /* CommentView.swift in Sources */,
+				AF86C6132A3EFB5600EC2F6B /* MySceneDelegate.swift in Sources */,
 				AF1C549D2A1E66BB00676467 /* SendAPI.swift in Sources */,
 				AFEE20412A09173D00412FD9 /* ImagePicker.swift in Sources */,
 				F5897A1D2A2048EF002BFE1C /* LocationManager.swift in Sources */,
+				AF86C6122A3EFB5600EC2F6B /* MyAppDelegate.swift in Sources */,
 				AC6142082A1CD16300D1E30F /* MapBoard.swift in Sources */,
 				AF78BB502A2E28B700F440EE /* ButtonDesign.swift in Sources */,
 				AFCF4F292A1E9263004657C0 /* HeartButton.swift in Sources */,
@@ -450,6 +473,7 @@
 				AF6ACC632A2BB18400D305F7 /* User.swift in Sources */,
 				AC1C7A872A092D0D00B8709C /* ContentView.swift in Sources */,
 				AC1C7A8A2A092F9700B8709C /* NewHomeHeaderView.swift in Sources */,
+				AF86C6162A3EFBC600EC2F6B /* LoginView.swift in Sources */,
 				AC9167D42A15A80600005377 /* CommentsPiece.swift in Sources */,
 				AF98A6A62A11295400EC8D39 /* DropdownMenu.swift in Sources */,
 				AF78BB4E2A2E279800F440EE /* MyFeedHeaderView.swift in Sources */,
@@ -469,6 +493,7 @@
 /* Begin XCBuildConfiguration section */
 		F573B7722A01423000ADB834 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF86C6182A3F2F7F00EC2F6B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -529,6 +554,7 @@
 		};
 		F573B7732A01423000ADB834 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF86C6182A3F2F7F00EC2F6B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -583,15 +609,18 @@
 		};
 		F573B7752A01423000ADB834 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF86C6182A3F2F7F00EC2F6B /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"frontend/Preview Content\"";
 				DEVELOPMENT_TEAM = 5L7QZ42BFG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = frontend/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your loaction to show it on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -606,6 +635,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = mobileAppProject.frontend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -614,15 +644,18 @@
 		};
 		F573B7762A01423000ADB834 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF86C6182A3F2F7F00EC2F6B /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"frontend/Preview Content\"";
 				DEVELOPMENT_TEAM = 5L7QZ42BFG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = frontend/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your loaction to show it on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -637,6 +670,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = mobileAppProject.frontend;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
