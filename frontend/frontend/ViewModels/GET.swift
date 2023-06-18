@@ -20,6 +20,52 @@ class GET: ObservableObject {
   @Published var diaryComments: [Comment] = []
   @Published var communityComments: [Comment] = []
   
+  func PopularFeedFetch(kind: String, completion: @escaping () -> Void) {
+    let baseURL = "http://localhost:8080"
+    let urlString = "\(baseURL)/\(kind)/sortList"
+    print(urlString)
+    
+    guard let url = URL(string :urlString) else {
+      return
+    }
+    
+    let task = URLSession.shared.dataTask(with: url) {
+      [weak self] data, _, error in
+      guard let data = data, error == nil else {
+        return
+      }
+      do {
+        if kind == "board" {
+          let boards = try JSONDecoder().decode([Board].self, from : data)
+          DispatchQueue.main.async {
+            self?.boards = boards
+            completion()
+          }
+        }
+        else if kind == "diary"{
+          let diarys = try JSONDecoder().decode([Diary].self, from: data)
+          DispatchQueue.main.async {
+            self?.diarys = diarys
+            completion()
+          }
+        }
+        else {
+          let communities = try JSONDecoder().decode([Community].self, from: data)
+          DispatchQueue.main.async {
+            self?.communities = communities
+            print(urlString)
+            completion()
+          }
+        }
+      }
+      catch {
+        print(error)
+      }
+    }
+    task.resume()
+  }
+  
+  
   func feedFetch(kind: String, completion: @escaping () -> Void) {
     let baseURL = "http://localhost:8080"
     let urlString = "\(baseURL)/\(kind)/list"

@@ -7,7 +7,16 @@
 
 import SwiftUI
 
+@MainActor class WhichToShow: ObservableObject {
+  @Published var which : String
+  init() {
+    which = "최신"
+  }
+}
+
 struct baseView: View {
+  @StateObject var selection = WhichToShow()
+  
   @State var selectedIndex = 0
   
   @State var presented = false
@@ -37,17 +46,42 @@ struct baseView: View {
         
         switch selectedIndex {
         case 0:
-          DiarySlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
-            getViewModel.feedFetch(kind: "diary"){}
+          if selection.which == "최신"{
+            DiarySlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+              getViewModel.feedFetch(kind: "diary"){}
+            }
+          }
+          else {
+            DiarySlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+              getViewModel.PopularFeedFetch(kind: "diary"){}
+            }
           }
         case 1:
-          NewHomeSlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
-            getViewModel.feedFetch(kind: "board"){}
+          if selection.which == "최신"{
+            NewHomeSlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+              getViewModel.feedFetch(kind: "board"){}
+            }
           }
+          else {
+            NewHomeSlide(viewModel: Binding(get: { getViewModel }, set: { _ in })){
+              getViewModel.PopularFeedFetch(kind: "board"){}
+            }
+          }
+
+        
         case 3:
-          MapBottomView(viewModel: Binding(get: { getViewModel }, set: { _ in})){
-            getViewModel.feedFetch(kind: "community"){}
+          if selection.which == "최신"{
+            MapBottomView(viewModel: Binding(get: { getViewModel }, set: { _ in})){
+              getViewModel.feedFetch(kind: "community"){}
+            }
           }
+          else {
+            MapBottomView(viewModel: Binding(get: { getViewModel }, set: { _ in})){
+              getViewModel.PopularFeedFetch(kind: "community"){}
+            }
+          }
+          
+          
           
         default:
           UserView(viewModel: Binding(get: { getViewModel }, set: { _ in })){
@@ -65,6 +99,7 @@ struct baseView: View {
         .frame(height: 40)
         
       }// Z
+      .environmentObject(selection)
       .onAppear{
         getViewModel.feedFetch(kind: "diary"){
           IsLike.diaryLikeList = Array(
@@ -78,6 +113,7 @@ struct baseView: View {
         }
       }
     }
+    
   
   var bottomBar: some View {
     ZStack {// 하단바
