@@ -18,6 +18,7 @@ public class CommunityService {
 
     public List<Community> showAllCommunity() { return communityRepository.findAll();}
 
+    public List<Community> showSortList() { return communityRepository.findAllOrderByCommunityLike();}
     public List<Community> showUserDiary(String writer) {
         return communityRepository.showUserCommunityPara(writer);
     }
