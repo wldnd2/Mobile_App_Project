@@ -64,6 +64,8 @@ struct Home: View {
         Spacer()
         bottomBar
       }
+      .padding(.top, 670)
+      .frame(height: 40)
       
     }// Z
     .onAppear{

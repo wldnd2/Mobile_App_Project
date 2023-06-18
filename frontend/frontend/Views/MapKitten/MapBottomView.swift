@@ -37,9 +37,9 @@ struct MapBottomView: View {
           Image(systemName: "chevron.up")
             .foregroundColor(.black)
             .bold()
-            .padding(.bottom, 90)
+            .padding(.bottom, 120)
         }
-        .frame(width: 500, height: 120)
+        .frame(width: 500, height: 150)
         .background(.white)
         .padding(.top, 720)
         
