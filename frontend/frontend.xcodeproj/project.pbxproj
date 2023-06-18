@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC12A8C12A3F4F6E00C02381 /* baseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC12A8C02A3F4F6E00C02381 /* baseView.swift */; };
 		AC1C7A872A092D0D00B8709C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A852A092D0D00B8709C /* ContentView.swift */; };
 		AC1C7A882A092D0D00B8709C /* NewHomeSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A862A092D0D00B8709C /* NewHomeSlideView.swift */; };
 		AC1C7A8A2A092F9700B8709C /* NewHomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1C7A892A092F9700B8709C /* NewHomeHeaderView.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AC12A8C02A3F4F6E00C02381 /* baseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baseView.swift; sourceTree = "<group>"; };
 		AC1C7A852A092D0D00B8709C /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AC1C7A862A092D0D00B8709C /* NewHomeSlideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHomeSlideView.swift; sourceTree = "<group>"; };
 		AC1C7A892A092F9700B8709C /* NewHomeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHomeHeaderView.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				AFFCCB592A151E550096A116 /* MyPageUI */,
 				AF4A66AC2A0BAAE900BA8876 /* ViewControllers */,
 				AC9740CF2A13B14300E84A76 /* Home.swift */,
+				AC12A8C02A3F4F6E00C02381 /* baseView.swift */,
 				AC1C7A852A092D0D00B8709C /* ContentView.swift */,
 				AFCF4F282A1E9263004657C0 /* HeartButton.swift */,
 				AF78BB4F2A2E28B700F440EE /* ButtonDesign.swift */,
@@ -485,6 +488,7 @@
 				F5587F9E2A29785900606AFD /* GptChatBotView.swift in Sources */,
 				F573B76A2A01422D00ADB834 /* frontendApp.swift in Sources */,
 				F5587F992A29756A00606AFD /* CommunityMapView.swift in Sources */,
+				AC12A8C12A3F4F6E00C02381 /* baseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

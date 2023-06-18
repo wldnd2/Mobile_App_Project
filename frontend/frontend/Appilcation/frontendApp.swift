@@ -13,7 +13,7 @@ struct frontendApp: App {
   
     var body: some Scene {
         WindowGroup {
-          LoginView()
+          Home()
         }
     }
 }
